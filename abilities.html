@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#080b12">
+<title>Ghost Tap | Abilities</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+    --bg:#080b12;
+    --panel:#101622;
+    --panel2:#151d2b;
+    --border:#263247;
+    --text:#ffffff;
+    --muted:#8d99ad;
+    --green:#35e58c;
+    --blue:#4da6ff;
+    --purple:#a66cff;
+    --gold:#ffd84d;
+    --red:#ff5d73;
+    --cyan:#38e8ff;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 50% -10%,rgba(53,229,140,.12),transparent 35%),
+        var(--bg);
+    color:var(--text);
+    font-family:Tahoma,Arial,sans-serif;
+    padding-bottom:90px;
+}
+
+button{
+    font-family:inherit;
+}
+
+.app{
+    width:100%;
+    max-width:540px;
+    margin:auto;
+    padding:14px;
+}
+
+/* HEADER */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:14px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.logo-icon{
+    width:43px;
+    height:43px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#172337,#0c111c);
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+}
+
+.logo-text{
+    font-size:18px;
+    font-weight:900;
+}
+
+.logo-text small{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    margin-top:3px;
+}
+
+.back-btn{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    border:1px solid var(--border);
+    background:var(--panel);
+    color:white;
+    font-size:19px;
+}
+
+/* WALLET */
+
+.wallet{
+    background:linear-gradient(135deg,#121b2a,#0d131e);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:17px;
+    margin-bottom:14px;
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+}
+
+.wallet-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.wallet-label{
+    color:var(--muted);
+    font-size:11px;
+}
+
+.wallet-coins{
+    font-size:25px;
+    font-weight:900;
+    margin-top:4px;
+}
+
+.wallet-coin{
+    font-size:24px;
+}
+
+.wallet-bottom{
+    display:flex;
+    justify-content:space-between;
+    margin-top:13px;
+    color:var(--muted);
+    font-size:11px;
+}
+
+.wallet-bottom strong{
+    color:white;
+}
+
+/* TITLE */
+
+.page-title{
+    margin:18px 2px 6px;
+    font-size:22px;
+    font-weight:900;
+}
+
+.page-subtitle{
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.8;
+    margin:0 2px 15px;
+}
+
+/* ACTIVE AREA */
+
+.active-box{
+    background:
+        radial-gradient(circle at 85% 20%,rgba(56,232,255,.12),transparent 30%),
+        linear-gradient(135deg,#101a28,#0e141e);
+    border:1px solid #26384d;
+    border-radius:20px;
+    padding:15px;
+    margin-bottom:15px;
+}
+
+.active-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:12px;
+}
+
+.active-title{
+    font-size:14px;
+    font-weight:900;
+}
+
+.active-count{
+    font-size:10px;
+    color:var(--muted);
+}
+
+.active-list{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding-bottom:3px;
+}
+
+.active-list::-webkit-scrollbar{
+    display:none;
+}
+
+.active-empty{
+    color:var(--muted);
+    font-size:11px;
+    padding:9px 0;
+}
+
+.active-item{
+    min-width:120px;
+    padding:10px;
+    border-radius:14px;
+    background:#121c2a;
+    border:1px solid #304258;
+}
+
+.active-icon{
+    font-size:25px;
+}
+
+.active-name{
+    font-size:11px;
+    font-weight:800;
+    margin-top:5px;
+}
+
+.active-status{
+    color:var(--green);
+    font-size:9px;
+    margin-top:4px;
+}
+
+/* FILTER */
+
+.filters{
+    display:flex;
+    gap:7px;
+    overflow-x:auto;
+    margin-bottom:13px;
+    padding-bottom:3px;
+}
+
+.filters::-webkit-scrollbar{
+    display:none;
+}
+
+.filter{
+    flex:0 0 auto;
+    border:1px solid var(--border);
+    background:var(--panel);
+    color:var(--muted);
+    border-radius:11px;
+    padding:8px 12px;
+    font-size:10px;
+    font-weight:700;
+}
+
+.filter.active{
+    background:#183326;
+    border-color:#2e8059;
+    color:var(--green);
+}
+
+/* ABILITY GRID */
+
+.abilities{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px;
+}
+
+.ability{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(145deg,#111925,#0d131d);
+    border:1px solid var(--border);
+    border-radius:19px;
+    padding:13px;
+    min-height:235px;
+    transition:.18s;
+}
+
+.ability.active{
+    border-color:#36a86d;
+    box-shadow:0 0 0 1px rgba(53,229,140,.1),0 12px 30px rgba(53,229,140,.06);
+}
+
+.ability.locked{
+    opacity:.55;
+}
+
+.ability-icon{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    background:#182234;
+    border:1px solid #2a3950;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    margin-bottom:9px;
+}
+
+.ability-rarity{
+    display:inline-block;
+    padding:4px 7px;
+    border-radius:7px;
+    font-size:8px;
+    font-weight:900;
+    margin-bottom:6px;
+}
+
+.common{
+    background:rgba(255,255,255,.08);
+    color:#cdd5e0;
+}
+
+.rare{
+    background:rgba(77,166,255,.12);
+    color:#62b1ff;
+}
+
+.epic{
+    background:rgba(166,108,255,.13);
+    color:#b989ff;
+}
+
+.legendary{
+    background:rgba(255,216,77,.12);
+    color:#ffdb57;
+}
+
+.mythic{
+    background:rgba(255,92,115,.12);
+    color:#ff7185;
+}
+
+.god{
+    background:rgba(56,232,255,.12);
+    color:#57edff;
+}
+
+.ability-name{
+    font-size:14px;
+    font-weight:900;
+}
+
+.ability-desc{
+    color:var(--muted);
+    font-size:9px;
+    line-height:1.8;
+    min-height:48px;
+    margin-top:6px;
+}
+
+.ability-effect{
+    color:#d9e3f2;
+    font-size:9px;
+    line-height:1.7;
+    background:#0b111a;
+    border-radius:10px;
+    padding:7px;
+    margin-top:7px;
+}
+
+.ability-effect strong{
+    color:var(--cyan);
+}
+
+.ability-bottom{
+    margin-top:10px;
+}
+
+.cost{
+    color:#ffd84d;
+    font-size:10px;
+    font-weight:900;
+    margin-bottom:7px;
+}
+
+.action{
+    width:100%;
+    border:0;
+    border-radius:11px;
+    padding:9px;
+    color:white;
+    background:#1d2a3c;
+    font-size:10px;
+    font-weight:900;
+}
+
+.action.buy{
+    background:#183d2b;
+    color:#67eea3;
+}
+
+.action.use{
+    background:#173650;
+    color:#64c2ff;
+}
+
+.action.stop{
+    background:#3d1d26;
+    color:#ff8192;
+}
+
+.action:active{
+    transform:scale(.97);
+}
+
+.lock-text{
+    color:#ff7488;
+    font-size:9px;
+    text-align:center;
+    padding:8px;
+}
+
+/* COOLDOWN */
+
+.cooldown{
+    margin-top:7px;
+    height:5px;
+    background:#202a39;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.cooldown-fill{
+    height:100%;
+    width:0%;
+    background:var(--green);
+    transition:.3s;
+}
+
+/* NOTICE */
+
+.notice{
+    margin-top:15px;
+    background:#111823;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:12px;
+    color:var(--muted);
+    font-size:10px;
+    line-height:1.9;
+}
+
+.notice strong{
+    color:white;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:88px;
+    transform:translateX(-50%) translateY(20px);
+    background:#172131;
+    border:1px solid #314158;
+    border-radius:13px;
+    padding:11px 16px;
+    font-size:11px;
+    font-weight:800;
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+    z-index:100;
+    white-space:nowrap;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+/* NAV */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:72px;
+    background:rgba(8,11,18,.95);
+    backdrop-filter:blur(15px);
+    border-top:1px solid #202b3c;
+    display:flex;
+    justify-content:center;
+    z-index:50;
+}
+
+.nav-inner{
+    width:100%;
+    max-width:540px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.nav-item{
+    color:#69778d;
+    text-decoration:none;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    font-size:9px;
+}
+
+.nav-item span:first-child{
+    font-size:20px;
+}
+
+.nav-item.active{
+    color:var(--green);
+}
+
+@media(max-width:390px){
+    .abilities{
+        grid-template-columns:1fr;
+    }
+
+    .ability{
+        min-height:210px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">⚡</div>
+            <div class="logo-text">
+                Ghost Tap
+                <small>توانایی‌ها</small>
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="location.href='index.html'">←</button>
+    </div>
+
+    <div class="wallet">
+        <div class="wallet-top">
+            <div>
+                <div class="wallet-label">موجودی سکه</div>
+                <div class="wallet-coins" id="coins">0</div>
+            </div>
+
+            <div class="wallet-coin">🪙</div>
+        </div>
+
+        <div class="wallet-bottom">
+            <span>توانایی فعال</span>
+            <strong id="activeCount">0 / 3</strong>
+        </div>
+    </div>
+
+    <div class="page-title">⚡ توانایی‌ها</div>
+
+    <div class="page-subtitle">
+        توانایی‌ها را خریداری و فعال کن. بعضی توانایی‌ها قدرت ضربه را افزایش می‌دهند
+        و بعضی روی انرژی، کمبو و درآمد تأثیر مستقیم دارند.
+    </div>
+
+    <div class="active-box">
+        <div class="active-header">
+            <div class="active-title">🔥 توانایی‌های فعال</div>
+            <div class="active-count" id="activeText">هیچ توانایی فعالی نیست</div>
+        </div>
+
+        <div class="active-list" id="activeList"></div>
+    </div>
+
+    <div class="filters">
+        <button class="filter active" data-filter="all">همه</button>
+        <button class="filter" data-filter="Common">Common</button>
+        <button class="filter" data-filter="Rare">Rare</button>
+        <button class="filter" data-filter="Epic">Epic</button>
+        <button class="filter" data-filter="Legendary">Legendary</button>
+        <button class="filter" data-filter="Mythic">Mythic</button>
+        <button class="filter" data-filter="GOD">GOD</button>
+    </div>
+
+    <div class="abilities" id="abilities"></div>
+
+    <div class="notice">
+        <strong>💡 نکته:</strong>
+        حداکثر ۳ توانایی را می‌توانی همزمان فعال کنی.
+        توانایی‌ها با ذخیره‌سازی مشترک Ghost Tap کار می‌کنند و اثر آن‌ها
+        برای بخش اصلی بازی قابل استفاده است.
+    </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="bottom-nav">
+    <div class="nav-inner">
+
+        <a class="nav-item" href="index.html">
+            <span>👻</span>
+            <span>بازی</span>
+        </a>
+
+        <a class="nav-item" href="cards.html">
+            <span>🃏</span>
+            <span>کارت‌ها</span>
+        </a>
+
+        <a class="nav-item active" href="abilities.html">
+            <span>⚡</span>
+            <span>توانایی</span>
+        </a>
+
+        <a class="nav-item" href="wheel.html">
+            <span>🎡</span>
+            <span>گردونه</span>
+        </a>
+
+        <a class="nav-item" href="profile.html">
+            <span>👤</span>
+            <span>پروفایل</span>
+        </a>
+
+    </div>
+</div>
+
+<script>
+/* =========================================================
+   GHOST TAP
+   ABILITIES SYSTEM
+   ========================================================= */
+
+const STORAGE_KEY = "ghostAbilities";
+const COINS_KEY = "ghostCoins";
+const REBIRTH_KEY = "ghostRebirths";
+const XP_KEY = "ghostXP";
+
+/*
+    Ability database
+    هر توانایی اثر واقعی دارد.
+*/
+
+const ABILITY_DATABASE = [
+
+    {
+        id:"double_tap",
+        name:"Double Tap",
+        icon:"👊",
+        rarity:"Common",
+        price:500,
+        unlock:1,
+        cooldown:30,
+        duration:20,
+        description:"قدرت هر ضربه را برای مدت کوتاهی افزایش می‌دهد.",
+        effect:"قدرت ضربه ×2",
+        type:"tap",
+        tapMultiplier:2
+    },
+
+    {
+        id:"energy_boost",
+        name:"Energy Boost",
+        icon:"🔋",
+        rarity:"Common",
+        price:1200,
+        unlock:3,
+        cooldown:45,
+        duration:25,
+        description:"مصرف انرژی را کاهش می‌دهد و انرژی بیشتری در اختیار می‌گذارد.",
+        effect:"مصرف انرژی ×0.5",
+        type:"energy",
+        energyCostMultiplier:.5
+    },
+
+    {
+        id:"combo_master",
+        name:"Combo Master",
+        icon:"🔥",
+        rarity:"Rare",
+        price:5000,
+        unlock:7,
+        cooldown:60,
+        duration:30,
+        description:"کمبو سریع‌تر رشد می‌کند و پاداش کمبو بیشتر می‌شود.",
+        effect:"ضریب کمبو ×1.5",
+        type:"combo",
+        comboMultiplier:1.5
+    },
+
+    {
+        id:"coin_rain",
+        name:"Coin Rain",
+        icon:"🪙",
+        rarity:"Rare",
+        price:15000,
+        unlock:12,
+        cooldown:90,
+        duration:15,
+        description:"هر ضربه در مدت فعال بودن سکه بیشتری تولید می‌کند.",
+        effect:"درآمد ×3",
+        type:"coins",
+        coinMultiplier:3
+    },
+
+    {
+        id:"ghost_mode",
+        name:"Ghost Mode",
+        icon:"👻",
+        rarity:"Epic",
+        price:50000,
+        unlock:20,
+        cooldown:120,
+        duration:25,
+        description:"حالت روحی که قدرت ضربه و درآمد را همزمان افزایش می‌دهد.",
+        effect:"قدرت ×3 + درآمد ×2",
+        type:"ghost",
+        tapMultiplier:3,
+        coinMultiplier:2
+    },
+
+    {
+        id:"shadow_fury",
+        name:"Shadow Fury",
+        icon:"🌑",
+        rarity:"Epic",
+        price:150000,
+        unlock:35,
+        cooldown:180,
+        duration:30,
+        description:"انرژی را سریع‌تر مصرف می‌کند اما قدرت ضربه بسیار زیاد می‌شود.",
+        effect:"قدرت ×5",
+        type:"fury",
+        tapMultiplier:5
+    },
+
+    {
+        id:"legend_power",
+        name:"Legend Power",
+        icon:"👑",
+        rarity:"Legendary",
+        price:750000,
+        unlock:60,
+        cooldown:300,
+        duration:45,
+        description:"توانایی مخصوص بازیکنان سطح بالا.",
+        effect:"قدرت ×8",
+        type:"legend",
+        tapMultiplier:8
+    },
+
+    {
+        id:"mythic_overdrive",
+        name:"Mythic Overdrive",
+        icon:"💠",
+        rarity:"Mythic",
+        price:5000000,
+        unlock:120,
+        cooldown:600,
+        duration:60,
+        description:"قدرت افسانه‌ای برای ضربه‌های بسیار قدرتمند.",
+        effect:"قدرت ×15 + درآمد ×3",
+        type:"mythic",
+        tapMultiplier:15,
+        coinMultiplier:3
+    },
+
+    {
+        id:"god_touch",
+        name:"GOD Touch",
+        icon:"⚡",
+        rarity:"GOD",
+        price:1000000000,
+        unlock:250,
+        cooldown:1200,
+        duration:90,
+        description:"بالاترین توانایی Ghost Tap.",
+        effect:"قدرت ×50 + درآمد ×10",
+        type:"god",
+        tapMultiplier:50,
+        coinMultiplier:10
+    }
+
+];
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
+let abilities = {};
+let currentFilter = "all";
+
+let coins = 0;
+let rebirths = 0;
+let xp = 0;
+
+/* =========================================================
+   LOAD
+   ========================================================= */
+
+function loadState(){
+
+    coins = Number(localStorage.getItem(COINS_KEY)) || 0;
+
+    rebirths = Number(localStorage.getItem(REBIRTH_KEY)) || 0;
+
+    xp = Number(localStorage.getItem(XP_KEY)) || 0;
+
+    try{
+
+        abilities =
+            JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+
+    }catch(error){
+
+        abilities = {};
+
+    }
+
+    normalizeAbilities();
+}
+
+/* =========================================================
+   NORMALIZE
+   ========================================================= */
+
+function normalizeAbilities(){
+
+    ABILITY_DATABASE.forEach(ability => {
+
+        if(!abilities[ability.id]){
+
+            abilities[ability.id] = {
+                owned:false,
+                active:false,
+                level:1,
+                activatedAt:0,
+                expiresAt:0,
+                cooldownUntil:0,
+                totalUses:0
+            };
+
+        }
+
+    });
+
+}
+
+/* =========================================================
+   SAVE
+   ========================================================= */
+
+function saveAbilities(){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(abilities)
+    );
+
+}
+
+/* =========================================================
+   FORMAT
+   ========================================================= */
+
+function formatNumber(number){
+
+    number = Number(number) || 0;
+
+    if(number >= 1e15)
+        return (number / 1e15).toFixed(2) + "Q";
+
+    if(number >= 1e12)
+        return (number / 1e12).toFixed(2) + "T";
+
+    if(number >= 1e9)
+        return (number / 1e9).toFixed(2) + "B";
+
+    if(number >= 1e6)
+        return (number / 1e6).toFixed(2) + "M";
+
+    if(number >= 1e3)
+        return (number / 1e3).toFixed(2) + "K";
+
+    return Math.floor(number).toLocaleString("en-US");
+}
+
+/* =========================================================
+   LEVEL
+   ========================================================= */
+
+function getLevel(){
+
+    return Math.floor(xp / 100) + 1;
+
+}
+
+/* =========================================================
+   REBIRTH MULTIPLIER
+   ========================================================= */
+
+function getRebirthMultiplier(){
+
+    if(rebirths <= 0) return 1;
+
+    if(rebirths === 1) return 2;
+
+    if(rebirths === 2) return 3;
+
+    if(rebirths === 3) return 5;
+
+    if(rebirths === 4) return 10;
+
+    return 10 + ((rebirths - 4) * 5);
+
+}
+
+/* =========================================================
+   RARITY CLASS
+   ========================================================= */
+
+function rarityClass(rarity){
+
+    return rarity.toLowerCase();
+
+}
+
+/* =========================================================
+   CHECK UNLOCK
+   ========================================================= */
+
+function isUnlocked(ability){
+
+    return getLevel() >= ability.unlock;
+
+}
+
+/* =========================================================
+   ACTIVE COUNT
+   ========================================================= */
+
+function getActiveCount(){
+
+    let count = 0;
+
+    ABILITY_DATABASE.forEach(ability => {
+
+        const data = abilities[ability.id];
+
+        if(data && data.owned && data.active){
+
+            count++;
+
+        }
+
+    });
+
+    return count;
+
+}
+
+/* =========================================================
+   COOLDOWN
+   ========================================================= */
+
+function isOnCooldown(id){
+
+    const data = abilities[id];
+
+    if(!data) return false;
+
+    return Date.now() < Number(data.cooldownUntil || 0);
+
+}
+
+/* =========================================================
+   IS RUNNING
+   ========================================================= */
+
+function isRunning(id){
+
+    const data = abilities[id];
+
+    if(!data) return false;
+
+    return (
+        data.active &&
+        Date.now() < Number(data.expiresAt || 0)
+    );
+
+}
+
+/* =========================================================
+   BUY
+   ========================================================= */
+
+function buyAbility(id){
+
+    const ability =
+        ABILITY_DATABASE.find(item => item.id === id);
+
+    if(!ability) return;
+
+    const data = abilities[id];
+
+    if(data.owned){
+
+        showToast("این توانایی قبلاً خریداری شده است.");
+
+        return;
+
+    }
+
+    if(!isUnlocked(ability)){
+
+        showToast(
+            "برای این توانایی باید به سطح " +
+            ability.unlock +
+            " برسی."
+        );
+
+        return;
+
+    }
+
+    if(coins < ability.price){
+
+        showToast("سکه کافی نداری! 🪙");
+
+        return;
+
+    }
+
+    coins -= ability.price;
+
+    localStorage.setItem(
+        COINS_KEY,
+        String(coins)
+    );
+
+    data.owned = true;
+    data.active = false;
+    data.level = 1;
+    data.totalUses = 0;
+
+    saveAbilities();
+
+    showToast(
+        "⚡ " + ability.name + " خریداری شد!"
+    );
+
+    render();
+
+}
+
+/* =========================================================
+   ACTIVATE
+   ========================================================= */
+
+function activateAbility(id){
+
+    const ability =
+        ABILITY_DATABASE.find(item => item.id === id);
+
+    if(!ability) return;
+
+    const data = abilities[id];
+
+    if(!data || !data.owned){
+
+        showToast("ابتدا این توانایی را خریداری کن.");
+
+        return;
+
+    }
+
+    if(isOnCooldown(id)){
+
+        const seconds =
+            Math.ceil(
+                (data.cooldownUntil - Date.now()) / 1000
+            );
+
+        showToast(
+            "⏳ " + seconds + " ثانیه تا استفاده بعدی"
+        );
+
+        return;
+
+    }
+
+    if(!data.active && getActiveCount() >= 3){
+
+        showToast(
+            "حداکثر ۳ توانایی را همزمان فعال کن."
+        );
+
+        return;
+
+    }
+
+    if(data.active){
+
+        stopAbility(id);
+
+        return;
+
+    }
+
+    const now = Date.now();
+
+    data.active = true;
+
+    data.activatedAt = now;
+
+    data.expiresAt =
+        now + (ability.duration * 1000);
+
+    data.cooldownUntil =
+        now + ((ability.duration + ability.cooldown) * 1000);
+
+    data.totalUses =
+        Number(data.totalUses || 0) + 1;
+
+    saveAbilities();
+
+    showToast(
+        "⚡ " + ability.name + " فعال شد!"
+    );
+
+    render();
+
+}
+
+/* =========================================================
+   STOP
+   ========================================================= */
+
+function stopAbility(id){
+
+    const data = abilities[id];
+
+    if(!data) return;
+
+    data.active = false;
+
+    saveAbilities();
+
+    showToast("توانایی متوقف شد.");
+
+    render();
+
+}
+
+/* =========================================================
+   AUTO EXPIRE
+   ========================================================= */
+
+function updateExpiredAbilities(){
+
+    let changed = false;
+
+    ABILITY_DATABASE.forEach(ability => {
+
+        const data = abilities[ability.id];
+
+        if(!data) return;
+
+        if(
+            data.active &&
+            Date.now() >= Number(data.expiresAt || 0)
+        ){
+
+            data.active = false;
+
+            changed = true;
+
+        }
+
+    });
+
+    if(changed){
+
+        saveAbilities();
+
+    }
+
+}
+
+/* =========================================================
+   COOLDOWN TEXT
+   ========================================================= */
+
+function getButtonState(ability){
+
+    const data = abilities[ability.id];
+
+    if(!data || !data.owned){
+
+        if(!isUnlocked(ability)){
+
+            return {
+                text:"🔒 قفل",
+                cls:"",
+                action:"none"
+            };
+
+        }
+
+        return {
+            text:"🪙 خرید",
+            cls:"buy",
+            action:"buy"
+        };
+
+    }
+
+    if(data.active){
+
+        return {
+            text:"⛔ توقف",
+            cls:"stop",
+            action:"stop"
+        };
+
+    }
+
+    if(isOnCooldown(ability.id)){
+
+        const sec =
+            Math.ceil(
+                (data.cooldownUntil - Date.now()) / 1000
+            );
+
+        return {
+            text:"⏳ " + formatTime(sec),
+            cls:"",
+            action:"cooldown"
+        };
+
+    }
+
+    return {
+        text:"⚡ فعال‌سازی",
+        cls:"use",
+        action:"use"
+    };
+
+}
+
+/* =========================================================
+   TIME FORMAT
+   ========================================================= */
+
+function formatTime(seconds){
+
+    seconds = Math.max(0,Math.floor(seconds));
+
+    const min = Math.floor(seconds / 60);
+
+    const sec = seconds % 60;
+
+    if(min > 0){
+
+        return min + ":" +
+            String(sec).padStart(2,"0");
+
+    }
+
+    return sec + "s";
+
+}
+
+/* =========================================================
+   FILTER
+   ========================================================= */
+
+document.querySelectorAll(".filter").forEach(button => {
+
+    button.addEventListener("click",function(){
+
+        document
+            .querySelectorAll(".filter")
+            .forEach(item =>
+                item.classList.remove("active")
+            );
+
+        this.classList.add("active");
+
+        currentFilter =
+            this.dataset.filter;
+
+        renderAbilities();
+
+    });
+
+});
+
+/* =========================================================
+   RENDER ABILITIES
+   ========================================================= */
+
+function renderAbilities(){
+
+    const container =
+        document.getElementById("abilities");
+
+    let list =
+        ABILITY_DATABASE.filter(ability => {
+
+            if(currentFilter === "all")
+                return true;
+
+            return ability.rarity === currentFilter;
+
+        });
+
+    container.innerHTML = "";
+
+    list.forEach(ability => {
+
+        const data =
+            abilities[ability.id];
+
+        const unlocked =
+            isUnlocked(ability);
+
+        const running =
+            isRunning(ability.id);
+
+        const state =
+            getButtonState(ability);
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "ability" +
+            (running ? " active" : "") +
+            (!unlocked ? " locked" : "");
+
+        let cooldownHTML = "";
+
+        if(data && data.owned){
+
+            const now = Date.now();
+
+            const remaining =
+                Math.max(
+                    0,
+                    Number(data.cooldownUntil || 0) - now
+                );
+
+            const total =
+                (ability.duration + ability.cooldown) * 1000;
+
+            let percent =
+                100 - ((remaining / total) * 100);
+
+            percent =
+                Math.max(0,Math.min(100,percent));
+
+            cooldownHTML = `
+                <div class="cooldown">
+                    <div
+                        class="cooldown-fill"
+                        style="width:${percent}%"
+                    ></div>
+                </div>
+            `;
+
+        }
+
+        card.innerHTML = `
+
+            <div class="ability-icon">
+                ${ability.icon}
+            </div>
+
+            <span class="ability-rarity ${rarityClass(ability.rarity)}">
+                ${ability.rarity}
+            </span>
+
+            <div class="ability-name">
+                ${ability.name}
+            </div>
+
+            <div class="ability-desc">
+                ${ability.description}
+            </div>
+
+            <div class="ability-effect">
+                <strong>اثر:</strong>
+                ${ability.effect}
+            </div>
+
+            <div class="ability-bottom">
+
+                ${
+                    unlocked
+                    ?
+                    `
+                    <div class="cost">
+                        ${
+                            data && data.owned
+                            ?
+                            "✓ خریداری شده"
+                            :
+                            "🪙 " + formatNumber(ability.price)
+                        }
+                    </div>
+
+                    <button
+                        class="action ${state.cls}"
+                        onclick="handleAction('${ability.id}')"
+                    >
+                        ${state.text}
+                    </button>
+                    `
+                    :
+                    `
+                    <div class="lock-text">
+                        🔒 سطح ${ability.unlock} لازم است
+                    </div>
+                    `
+                }
+
+                ${cooldownHTML}
+
+            </div>
+        `;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+/* =========================================================
+   ACTION
+   ========================================================= */
+
+function handleAction(id){
+
+    const ability =
+        ABILITY_DATABASE.find(item => item.id === id);
+
+    if(!ability) return;
+
+    const data = abilities[id];
+
+    if(!data || !data.owned){
+
+        buyAbility(id);
+
+        return;
+
+    }
+
+    if(data.active){
+
+        stopAbility(id);
+
+        return;
+
+    }
+
+    if(isOnCooldown(id)){
+
+        const seconds =
+            Math.ceil(
+                (data.cooldownUntil - Date.now()) / 1000
+            );
+
+        showToast(
+            "⏳ " + formatTime(seconds) +
+            " تا استفاده بعدی"
+        );
+
+        return;
+
+    }
+
+    activateAbility(id);
+
+}
+
+/* =========================================================
+   RENDER ACTIVE
+   ========================================================= */
+
+function renderActive(){
+
+    const list =
+        document.getElementById("activeList");
+
+    const active =
+        ABILITY_DATABASE.filter(ability => {
+
+            const data = abilities[ability.id];
+
+            return data &&
+                   data.owned &&
+                   data.active;
+
+        });
+
+    document.getElementById("activeCount").textContent =
+        active.length + " / 3";
+
+    document.getElementById("activeText").textContent =
+        active.length
+        ?
+        active.length + " توانایی فعال"
+        :
+        "هیچ توانایی فعالی نیست";
+
+    list.innerHTML = "";
+
+    if(active.length === 0){
+
+        list.innerHTML = `
+            <div class="active-empty">
+                هنوز توانایی‌ای فعال نکرده‌ای ⚡
+            </div>
+        `;
+
+        return;
+
+    }
+
+    active.forEach(ability => {
+
+        const data =
+            abilities[ability.id];
+
+        const remaining =
+            Math.max(
+                0,
+                Math.ceil(
+                    (data.expiresAt - Date.now()) / 1000
+                )
+            );
+
+        const item =
+            document.createElement("div");
+
+        item.className = "active-item";
+
+        item.innerHTML = `
+            <div class="active-icon">
+                ${ability.icon}
+            </div>
+
+            <div class="active-name">
+                ${ability.name}
+            </div>
+
+            <div class="active-status">
+                فعال · ${formatTime(remaining)}
+            </div>
+        `;
+
+        list.appendChild(item);
+
+    });
+
+}
+
+/* =========================================================
+   RENDER WALLET
+   ========================================================= */
+
+function renderWallet(){
+
+    document.getElementById("coins").textContent =
+        formatNumber(coins);
+
+}
+
+/* =========================================================
+   MAIN RENDER
+   ========================================================= */
+
+function render(){
+
+    updateExpiredAbilities();
+
+    renderWallet();
+
+    renderActive();
+
+    renderAbilities();
+
+}
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+let toastTimer = null;
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        },2200);
+
+}
+
+/* =========================================================
+   PUBLIC API
+   ========================================================= */
+
+window.GhostAbilities = {
+
+    getAll:function(){
+
+        return abilities;
+
+    },
+
+    getActive:function(){
+
+        return ABILITY_DATABASE.filter(ability => {
+
+            const data = abilities[ability.id];
+
+            return data &&
+                   data.owned &&
+                   data.active;
+
+        });
+
+    },
+
+    getActiveCount:function(){
+
+        return getActiveCount();
+
+    },
+
+    isActive:function(id){
+
+        return isRunning(id);
+
+    },
+
+    getTapMultiplier:function(){
+
+        let multiplier = 1;
+
+        ABILITY_DATABASE.forEach(ability => {
+
+            const data = abilities[ability.id];
+
+            if(
+                data &&
+                data.owned &&
+                data.active &&
+                isRunning(ability.id)
+            ){
+
+                multiplier *=
+                    Number(ability.tapMultiplier || 1);
+
+            }
+
+        });
+
+        return multiplier;
+
+    },
+
+    getCoinMultiplier:function(){
+
+        let multiplier = 1;
+
+        ABILITY_DATABASE.forEach(ability => {
+
+            const data = abilities[ability.id];
+
+            if(
+                data &&
+                data.owned &&
+                data.active &&
+                isRunning(ability.id)
+            ){
+
+                multiplier *=
+                    Number(ability.coinMultiplier || 1);
+
+            }
+
+        });
+
+        return multiplier;
+
+    },
+
+    getComboMultiplier:function(){
+
+        let multiplier = 1;
+
+        ABILITY_DATABASE.forEach(ability => {
+
+            const data = abilities[ability.id];
+
+            if(
+                data &&
+                data.owned &&
+                data.active &&
+                isRunning(ability.id)
+            ){
+
+                multiplier *=
+                    Number(ability.comboMultiplier || 1);
+
+            }
+
+        });
+
+        return multiplier;
+
+    },
+
+    getEnergyCostMultiplier:function(){
+
+        let multiplier = 1;
+
+        ABILITY_DATABASE.forEach(ability => {
+
+            const data = abilities[ability.id];
+
+            if(
+                data &&
+                data.owned &&
+                data.active &&
+                isRunning(ability.id)
+            ){
+
+                multiplier *=
+                    Number(
+                        ability.energyCostMultiplier || 1
+                    );
+
+            }
+
+        });
+
+        return multiplier;
+
+    },
+
+    getDatabase:function(){
+
+        return ABILITY_DATABASE;
+
+    }
+
+};
+
+/* =========================================================
+   LIVE UPDATE
+   ========================================================= */
+
+setInterval(() => {
+
+    updateExpiredAbilities();
+
+    renderWallet();
+
+    renderActive();
+
+    renderAbilities();
+
+},1000);
+
+/* =========================================================
+   STORAGE SYNC
+   ========================================================= */
+
+window.addEventListener("storage",function(event){
+
+    if(
+        event.key === COINS_KEY ||
+        event.key === STORAGE_KEY ||
+        event.key === XP_KEY ||
+        event.key === REBIRTH_KEY
+    ){
+
+        loadState();
+
+        render();
+
+    }
+
+});
+
+/* =========================================================
+   START
+   ========================================================= */
+
+loadState();
+
+render();
+
+</script>
+
+</body>
+</html>

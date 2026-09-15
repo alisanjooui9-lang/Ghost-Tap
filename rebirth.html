@@ -1,0 +1,2288 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#080b12">
+
+<title>Ghost Tap | Rebirth</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+    --bg:#080b12;
+    --panel:#101722;
+    --panel2:#141d2a;
+    --border:#29364b;
+    --text:#fff;
+    --muted:#8e9aae;
+    --green:#35e58c;
+    --blue:#4da6ff;
+    --purple:#a66cff;
+    --gold:#ffd84d;
+    --red:#ff6078;
+    --cyan:#38e8ff;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(166,108,255,.12),
+            transparent 35%
+        ),
+        var(--bg);
+    color:var(--text);
+    font-family:Tahoma,Arial,sans-serif;
+    padding-bottom:90px;
+}
+
+button{
+    font-family:inherit;
+}
+
+.app{
+    width:100%;
+    max-width:540px;
+    margin:auto;
+    padding:14px;
+}
+
+/* HEADER */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.logo-icon{
+    width:43px;
+    height:43px;
+    border-radius:14px;
+    background:
+        linear-gradient(
+            145deg,
+            #29203e,
+            #111521
+        );
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+}
+
+.logo-text{
+    font-size:18px;
+    font-weight:900;
+}
+
+.logo-text small{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    margin-top:3px;
+}
+
+.back-btn{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    border:1px solid var(--border);
+    background:var(--panel);
+    color:white;
+    font-size:19px;
+}
+
+/* WALLET */
+
+.wallet{
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(166,108,255,.12),
+            transparent 32%
+        ),
+        linear-gradient(
+            145deg,
+            #151d2b,
+            #0d131d
+        );
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:16px;
+    margin-bottom:14px;
+}
+
+.wallet-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.wallet-label{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.wallet-value{
+    font-size:25px;
+    font-weight:900;
+    margin-top:3px;
+}
+
+.wallet-icon{
+    font-size:30px;
+}
+
+.wallet-footer{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:8px;
+    margin-top:13px;
+}
+
+.wallet-stat{
+    padding:8px;
+    border-radius:11px;
+    background:#0c131d;
+    border:1px solid #202c3e;
+    text-align:center;
+}
+
+.wallet-stat span{
+    display:block;
+    color:var(--muted);
+    font-size:8px;
+}
+
+.wallet-stat strong{
+    display:block;
+    font-size:11px;
+    margin-top:3px;
+}
+
+/* TITLE */
+
+.page-title{
+    font-size:22px;
+    font-weight:900;
+    margin:18px 2px 5px;
+}
+
+.page-subtitle{
+    color:var(--muted);
+    font-size:10px;
+    line-height:1.9;
+    margin:0 2px 15px;
+}
+
+/* MAIN REBIRTH */
+
+.rebirth-card{
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(166,108,255,.15),
+            transparent 48%
+        ),
+        linear-gradient(
+            145deg,
+            #151c2a,
+            #0d131d
+        );
+    border:1px solid #39445b;
+    border-radius:24px;
+    padding:20px 15px;
+    text-align:center;
+    overflow:hidden;
+}
+
+.rebirth-icon{
+    width:82px;
+    height:82px;
+    border-radius:50%;
+    margin:2px auto 12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:39px;
+    background:
+        radial-gradient(
+            circle,
+            #2d2050,
+            #121522
+        );
+    border:5px solid #4c3d6d;
+    box-shadow:
+        0 0 35px rgba(166,108,255,.14);
+}
+
+.rebirth-title{
+    font-size:21px;
+    font-weight:900;
+}
+
+.rebirth-level{
+    color:var(--purple);
+    font-size:11px;
+    font-weight:900;
+    margin-top:5px;
+}
+
+.rebirth-description{
+    color:var(--muted);
+    font-size:10px;
+    line-height:1.9;
+    margin:9px auto 17px;
+    max-width:410px;
+}
+
+/* MULTIPLIERS */
+
+.multiplier-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin-bottom:13px;
+}
+
+.multiplier-box{
+    background:#0c131d;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:12px 8px;
+}
+
+.multiplier-label{
+    color:var(--muted);
+    font-size:8px;
+}
+
+.multiplier-value{
+    font-size:22px;
+    font-weight:900;
+    margin-top:4px;
+}
+
+.current{
+    color:var(--blue);
+}
+
+.next{
+    color:var(--purple);
+}
+
+/* REQUIREMENT */
+
+.requirement{
+    background:#0c131d;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:13px;
+    margin-top:5px;
+}
+
+.requirement-title{
+    font-size:10px;
+    font-weight:900;
+}
+
+.requirement-values{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:7px;
+}
+
+.requirement-current{
+    color:var(--muted);
+    font-size:9px;
+}
+
+.requirement-target{
+    color:var(--gold);
+    font-size:11px;
+    font-weight:900;
+}
+
+.progress{
+    height:9px;
+    background:#080d14;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:9px;
+    border:1px solid #202c3e;
+}
+
+.progress-fill{
+    height:100%;
+    width:0%;
+    border-radius:20px;
+    background:
+        linear-gradient(
+            90deg,
+            #7d56e8,
+            #b184ff
+        );
+    transition:width .4s ease;
+}
+
+/* REBIRTH BUTTON */
+
+.rebirth-button{
+    width:100%;
+    border:0;
+    border-radius:16px;
+    padding:15px;
+    margin-top:14px;
+    background:
+        linear-gradient(
+            135deg,
+            #7952d8,
+            #4d3392
+        );
+    color:white;
+    font-size:13px;
+    font-weight:900;
+    box-shadow:
+        0 10px 30px rgba(100,65,180,.18);
+}
+
+.rebirth-button:active{
+    transform:scale(.97);
+}
+
+.rebirth-button:disabled{
+    opacity:.4;
+}
+
+/* BENEFITS */
+
+.section-title{
+    font-size:14px;
+    font-weight:900;
+    margin:17px 2px 9px;
+}
+
+.benefits{
+    display:grid;
+    gap:8px;
+}
+
+.benefit{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#101722;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:11px;
+}
+
+.benefit-icon{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    background:#172033;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    flex:none;
+}
+
+.benefit-info{
+    flex:1;
+}
+
+.benefit-title{
+    font-size:10px;
+    font-weight:900;
+}
+
+.benefit-text{
+    color:var(--muted);
+    font-size:8px;
+    line-height:1.7;
+    margin-top:2px;
+}
+
+/* ROADMAP */
+
+.roadmap{
+    display:grid;
+    gap:7px;
+}
+
+.road{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:#101722;
+}
+
+.road-number{
+    width:35px;
+    height:35px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#182234;
+    color:var(--purple);
+    font-size:10px;
+    font-weight:900;
+}
+
+.road-info{
+    flex:1;
+}
+
+.road-title{
+    font-size:9px;
+    font-weight:900;
+}
+
+.road-multiplier{
+    color:var(--muted);
+    font-size:8px;
+    margin-top:2px;
+}
+
+.road.active{
+    border-color:#5d448b;
+    background:#171426;
+}
+
+.road.completed{
+    opacity:.55;
+}
+
+/* WARNING */
+
+.warning{
+    margin-top:14px;
+    background:
+        rgba(255,96,120,.06);
+    border:1px solid rgba(255,96,120,.25);
+    border-radius:15px;
+    padding:12px;
+    color:#ff9aaa;
+    font-size:9px;
+    line-height:1.9;
+}
+
+.warning strong{
+    color:#ff7389;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(8px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:200;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:410px;
+    background:#111925;
+    border:1px solid #39445b;
+    border-radius:22px;
+    padding:20px;
+    text-align:center;
+}
+
+.modal-icon{
+    font-size:42px;
+}
+
+.modal-title{
+    font-size:18px;
+    font-weight:900;
+    margin-top:8px;
+}
+
+.modal-text{
+    color:var(--muted);
+    font-size:10px;
+    line-height:1.9;
+    margin-top:8px;
+}
+
+.modal-stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:14px;
+}
+
+.modal-stat{
+    background:#0b121c;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:10px;
+}
+
+.modal-stat span{
+    display:block;
+    color:var(--muted);
+    font-size:8px;
+}
+
+.modal-stat strong{
+    display:block;
+    font-size:14px;
+    margin-top:4px;
+}
+
+.modal-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:15px;
+}
+
+.modal-btn{
+    border:0;
+    border-radius:13px;
+    padding:12px;
+    font-weight:900;
+    font-size:10px;
+}
+
+.cancel-btn{
+    background:#1a2331;
+    color:white;
+    border:1px solid var(--border);
+}
+
+.confirm-btn{
+    background:
+        linear-gradient(
+            135deg,
+            #7952d8,
+            #4d3392
+        );
+    color:white;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:88px;
+    transform:translateX(-50%) translateY(20px);
+    background:#172131;
+    border:1px solid #314158;
+    border-radius:13px;
+    padding:11px 16px;
+    font-size:10px;
+    font-weight:900;
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+    z-index:300;
+    white-space:nowrap;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+/* NAV */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:72px;
+    background:rgba(8,11,18,.95);
+    backdrop-filter:blur(15px);
+    border-top:1px solid #202b3c;
+    display:flex;
+    justify-content:center;
+    z-index:50;
+}
+
+.nav-inner{
+    width:100%;
+    max-width:540px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.nav-item{
+    color:#69778d;
+    text-decoration:none;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    font-size:8px;
+}
+
+.nav-item span:first-child{
+    font-size:20px;
+}
+
+.nav-item.active{
+    color:var(--purple);
+}
+
+.nav-item:active{
+    transform:scale(.92);
+}
+
+/* MOBILE */
+
+@media(max-width:370px){
+
+    .wallet-footer{
+        gap:5px;
+    }
+
+    .wallet-stat{
+        padding:7px 3px;
+    }
+
+    .rebirth-card{
+        padding:17px 11px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                ♻️
+            </div>
+
+            <div class="logo-text">
+
+                Ghost Tap
+
+                <small>
+                    سیستم Rebirth
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="back-btn"
+            onclick="location.href='index.html'">
+
+            ←
+
+        </button>
+
+    </div>
+
+
+    <!-- WALLET -->
+
+    <div class="wallet">
+
+        <div class="wallet-row">
+
+            <div>
+
+                <div class="wallet-label">
+                    سکه فعلی
+                </div>
+
+                <div
+                    class="wallet-value"
+                    id="coins">
+
+                    0
+
+                </div>
+
+            </div>
+
+            <div class="wallet-icon">
+                🪙
+            </div>
+
+        </div>
+
+
+        <div class="wallet-footer">
+
+            <div class="wallet-stat">
+
+                <span>
+                    Rebirth
+                </span>
+
+                <strong id="rebirths">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="wallet-stat">
+
+                <span>
+                    ضریب
+                </span>
+
+                <strong id="multiplier">
+                    ×1
+                </strong>
+
+            </div>
+
+
+            <div class="wallet-stat">
+
+                <span>
+                    Level
+                </span>
+
+                <strong id="level">
+                    1
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TITLE -->
+
+    <div class="page-title">
+        ♻️ Rebirth
+    </div>
+
+    <div class="page-subtitle">
+
+        پیشرفت معمولی خودت را ریست کن و در عوض
+        یک ضریب دائمی قدرتمند بگیر.
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <div class="rebirth-card">
+
+        <div class="rebirth-icon">
+            ♻️
+        </div>
+
+
+        <div class="rebirth-title">
+            تولد دوباره
+        </div>
+
+
+        <div
+            class="rebirth-level"
+            id="rebirthTitle">
+
+            Rebirth #1
+
+        </div>
+
+
+        <div class="rebirth-description">
+
+            با Rebirth، سکه‌ها و ارتقاهای معمولی
+            از اول شروع می‌شوند؛ اما کارت‌ها،
+            توانایی‌ها و جایزه‌های دائمی گردونه
+            حفظ خواهند شد.
+
+        </div>
+
+
+        <div class="multiplier-grid">
+
+            <div class="multiplier-box">
+
+                <div class="multiplier-label">
+                    ضریب فعلی
+                </div>
+
+                <div
+                    class="multiplier-value current"
+                    id="currentMultiplier">
+
+                    ×1
+
+                </div>
+
+            </div>
+
+
+            <div class="multiplier-box">
+
+                <div class="multiplier-label">
+                    ضریب بعدی
+                </div>
+
+                <div
+                    class="multiplier-value next"
+                    id="nextMultiplier">
+
+                    ×2
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="requirement">
+
+            <div class="requirement-title">
+                💰 هزینه Rebirth بعدی
+            </div>
+
+
+            <div class="requirement-values">
+
+                <div
+                    class="requirement-current"
+                    id="currentCoins">
+
+                    0 سکه
+
+                </div>
+
+
+                <div
+                    class="requirement-target"
+                    id="requiredCoins">
+
+                    1M سکه
+
+                </div>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div
+                    class="progress-fill"
+                    id="progressFill">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="rebirth-button"
+            id="rebirthButton"
+            onclick="openConfirm()">
+
+            ♻️ انجام Rebirth
+
+        </button>
+
+    </div>
+
+
+    <!-- BENEFITS -->
+
+    <div class="section-title">
+        🟣 چه چیزهایی حفظ می‌شوند؟
+    </div>
+
+
+    <div class="benefits">
+
+        <div class="benefit">
+
+            <div class="benefit-icon">
+                🃏
+            </div>
+
+            <div class="benefit-info">
+
+                <div class="benefit-title">
+                    کارت‌ها
+                </div>
+
+                <div class="benefit-text">
+                    کارت‌های خریداری‌شده و فعال باقی می‌مانند.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="benefit">
+
+            <div class="benefit-icon">
+                ⚡
+            </div>
+
+            <div class="benefit-info">
+
+                <div class="benefit-title">
+                    توانایی‌ها
+                </div>
+
+                <div class="benefit-text">
+                    تمام Abilityهای خریداری‌شده حفظ می‌شوند.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="benefit">
+
+            <div class="benefit-icon">
+                    🎡
+            </div>
+
+            <div class="benefit-info">
+
+                <div class="benefit-title">
+                    جایزه‌های گردونه
+                </div>
+
+                <div class="benefit-text">
+                    جایزه‌های Legendary و Mythic دائمی هستند.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="benefit">
+
+            <div class="benefit-icon">
+                ♻️
+            </div>
+
+            <div class="benefit-info">
+
+                <div class="benefit-title">
+                    ضریب Rebirth
+                </div>
+
+                <div class="benefit-text">
+                    هر Rebirth ضریب قدرتمندتری برای پیشرفت می‌دهد.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ROADMAP -->
+
+    <div class="section-title">
+        🏆 مسیر Rebirth
+    </div>
+
+
+    <div
+        class="roadmap"
+        id="roadmap">
+    </div>
+
+
+    <!-- WARNING -->
+
+    <div class="warning">
+
+        <strong>
+            ⚠️ توجه:
+        </strong>
+
+        <br>
+
+        با انجام Rebirth، سکه فعلی، قدرت ضربه،
+        ظرفیت انرژی و سطح ارتقاهای معمولی صفر می‌شوند.
+
+        <br>
+
+        اما کارت‌ها، Abilityها، آیتم‌های گردونه،
+        آمار کلی و تعداد Rebirthها حذف نمی‌شوند.
+
+    </div>
+
+</div>
+
+
+<!-- CONFIRM MODAL -->
+
+<div
+    class="modal"
+    id="confirmModal">
+
+    <div class="modal-box">
+
+        <div class="modal-icon">
+            ♻️
+        </div>
+
+
+        <div class="modal-title">
+            انجام Rebirth؟
+        </div>
+
+
+        <div class="modal-text">
+
+            مطمئنی می‌خواهی پیشرفت معمولی را
+            ریست کنی و ضریب دائمی بگیری؟
+
+        </div>
+
+
+        <div class="modal-stats">
+
+            <div class="modal-stat">
+
+                <span>
+                    سکه فعلی
+                </span>
+
+                <strong id="modalCoins">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="modal-stat">
+
+                <span>
+                    ضریب جدید
+                </span>
+
+                <strong id="modalMultiplier">
+                    ×2
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="modal-btn cancel-btn"
+                onclick="closeConfirm()">
+
+                لغو
+
+            </button>
+
+
+            <button
+                class="modal-btn confirm-btn"
+                onclick="performRebirth()">
+
+                بله، Rebirth
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+<!-- NAV -->
+
+<div class="bottom-nav">
+
+    <div class="nav-inner">
+
+        <a
+            class="nav-item"
+            href="index.html">
+
+            <span>👻</span>
+            <span>بازی</span>
+
+        </a>
+
+
+        <a
+            class="nav-item"
+            href="cards.html">
+
+            <span>🃏</span>
+            <span>کارت‌ها</span>
+
+        </a>
+
+
+        <a
+            class="nav-item"
+            href="abilities.html">
+
+            <span>⚡</span>
+            <span>توانایی</span>
+
+        </a>
+
+
+        <a
+            class="nav-item"
+            href="wheel.html">
+
+            <span>🎡</span>
+            <span>گردونه</span>
+
+        </a>
+
+
+        <a
+            class="nav-item active"
+            href="profile.html">
+
+            <span>👤</span>
+            <span>پروفایل</span>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   GHOST TAP REBIRTH SYSTEM
+===================================================== */
+
+
+/* STORAGE KEYS */
+
+const COINS_KEY =
+    "ghostCoins";
+
+const REBIRTH_KEY =
+    "ghostRebirths";
+
+const XP_KEY =
+    "ghostXP";
+
+const TAP_POWER_KEY =
+    "ghostTapPower";
+
+const MAX_ENERGY_KEY =
+    "ghostMaxEnergy";
+
+const ENERGY_KEY =
+    "ghostEnergy";
+
+const TAP_LEVEL_KEY =
+    "ghostTapLevel";
+
+const ENERGY_LEVEL_KEY =
+    "ghostEnergyLevel";
+
+const RECHARGE_LEVEL_KEY =
+    "ghostRechargeLevel";
+
+const TOTAL_TAPS_KEY =
+    "ghostTotalTaps";
+
+const TOTAL_COINS_KEY =
+    "ghostTotalCoins";
+
+const LAST_REBIRTH_KEY =
+    "ghostLastRebirth";
+
+
+/* =====================================================
+   DEFAULT VALUES
+===================================================== */
+
+const DEFAULTS = {
+
+    coins:0,
+
+    rebirths:0,
+
+    xp:0,
+
+    tapPower:1,
+
+    maxEnergy:100,
+
+    energy:100,
+
+    tapLevel:0,
+
+    energyLevel:0,
+
+    rechargeLevel:0,
+
+    totalTaps:0,
+
+    totalCoins:0
+
+};
+
+
+/* =====================================================
+   GAME STATE
+===================================================== */
+
+let state = {};
+
+
+/* =====================================================
+   LOAD STATE
+===================================================== */
+
+function loadState(){
+
+    state = {
+
+        coins:
+            getNumber(
+                COINS_KEY,
+                DEFAULTS.coins
+            ),
+
+        rebirths:
+            getNumber(
+                REBIRTH_KEY,
+                DEFAULTS.rebirths
+            ),
+
+        xp:
+            getNumber(
+                XP_KEY,
+                DEFAULTS.xp
+            ),
+
+        tapPower:
+            getNumber(
+                TAP_POWER_KEY,
+                DEFAULTS.tapPower
+            ),
+
+        maxEnergy:
+            getNumber(
+                MAX_ENERGY_KEY,
+                DEFAULTS.maxEnergy
+            ),
+
+        energy:
+            getNumber(
+                ENERGY_KEY,
+                DEFAULTS.energy
+            ),
+
+        tapLevel:
+            getNumber(
+                TAP_LEVEL_KEY,
+                DEFAULTS.tapLevel
+            ),
+
+        energyLevel:
+            getNumber(
+                ENERGY_LEVEL_KEY,
+                DEFAULTS.energyLevel
+            ),
+
+        rechargeLevel:
+            getNumber(
+                RECHARGE_LEVEL_KEY,
+                DEFAULTS.rechargeLevel
+            ),
+
+        totalTaps:
+            getNumber(
+                TOTAL_TAPS_KEY,
+                DEFAULTS.totalTaps
+            ),
+
+        totalCoins:
+            getNumber(
+                TOTAL_COINS_KEY,
+                DEFAULTS.totalCoins
+            )
+
+    };
+
+}
+
+
+/* =====================================================
+   NUMBER READER
+===================================================== */
+
+function getNumber(key,defaultValue){
+
+    const value =
+        localStorage.getItem(key);
+
+
+    if(
+        value === null ||
+        value === ""
+    ){
+
+        return defaultValue;
+
+    }
+
+
+    const number =
+        Number(value);
+
+
+    return Number.isFinite(number)
+        ? number
+        : defaultValue;
+
+}
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+function saveState(){
+
+    localStorage.setItem(
+        COINS_KEY,
+        String(state.coins)
+    );
+
+
+    localStorage.setItem(
+        REBIRTH_KEY,
+        String(state.rebirths)
+    );
+
+
+    localStorage.setItem(
+        XP_KEY,
+        String(state.xp)
+    );
+
+
+    localStorage.setItem(
+        TAP_POWER_KEY,
+        String(state.tapPower)
+    );
+
+
+    localStorage.setItem(
+        MAX_ENERGY_KEY,
+        String(state.maxEnergy)
+    );
+
+
+    localStorage.setItem(
+        ENERGY_KEY,
+        String(state.energy)
+    );
+
+
+    localStorage.setItem(
+        TAP_LEVEL_KEY,
+        String(state.tapLevel)
+    );
+
+
+    localStorage.setItem(
+        ENERGY_LEVEL_KEY,
+        String(state.energyLevel)
+    );
+
+
+    localStorage.setItem(
+        RECHARGE_LEVEL_KEY,
+        String(state.rechargeLevel)
+    );
+
+
+    localStorage.setItem(
+        LAST_REBIRTH_KEY,
+        String(Date.now())
+    );
+
+}
+
+
+/* =====================================================
+   FORMAT NUMBER
+===================================================== */
+
+function formatNumber(number){
+
+    number =
+        Number(number) || 0;
+
+
+    if(number >= 1e18){
+
+        return (
+            number / 1e18
+        ).toFixed(2) + "E";
+
+    }
+
+
+    if(number >= 1e15){
+
+        return (
+            number / 1e15
+        ).toFixed(2) + "Q";
+
+    }
+
+
+    if(number >= 1e12){
+
+        return (
+            number / 1e12
+        ).toFixed(2) + "T";
+
+    }
+
+
+    if(number >= 1e9){
+
+        return (
+            number / 1e9
+        ).toFixed(2) + "B";
+
+    }
+
+
+    if(number >= 1e6){
+
+        return (
+            number / 1e6
+        ).toFixed(2) + "M";
+
+    }
+
+
+    if(number >= 1e3){
+
+        return (
+            number / 1e3
+        ).toFixed(2) + "K";
+
+    }
+
+
+    return Math.floor(number)
+        .toLocaleString("en-US");
+
+}
+
+
+/* =====================================================
+   REBIRTH MULTIPLIER
+===================================================== */
+
+function getRebirthMultiplier(
+    rebirthCount = state.rebirths
+){
+
+    if(rebirthCount <= 0){
+
+        return 1;
+
+    }
+
+
+    if(rebirthCount === 1){
+
+        return 2;
+
+    }
+
+
+    if(rebirthCount === 2){
+
+        return 3;
+
+    }
+
+
+    if(rebirthCount === 3){
+
+        return 5;
+
+    }
+
+
+    if(rebirthCount === 4){
+
+        return 10;
+
+    }
+
+
+    return (
+        10 +
+        ((rebirthCount - 4) * 5)
+    );
+
+}
+
+
+/* =====================================================
+   REQUIRED COINS
+===================================================== */
+
+function getRequiredCoins(){
+
+    const next =
+        state.rebirths + 1;
+
+
+    /*
+       Rebirth 1 = 1M
+       Rebirth 2 = 10M
+       Rebirth 3 = 100M
+       Rebirth 4 = 1B
+       ...
+    */
+
+    return (
+        1000000 *
+        Math.pow(
+            10,
+            next - 1
+        )
+    );
+
+}
+
+
+/* =====================================================
+   NEXT MULTIPLIER
+===================================================== */
+
+function getNextMultiplier(){
+
+    return getRebirthMultiplier(
+        state.rebirths + 1
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE WALLET
+===================================================== */
+
+function updateWallet(){
+
+    document.getElementById(
+        "coins"
+    ).textContent =
+        formatNumber(
+            state.coins
+        );
+
+
+    document.getElementById(
+        "rebirths"
+    ).textContent =
+        state.rebirths;
+
+
+    document.getElementById(
+        "multiplier"
+    ).textContent =
+        "×" +
+        getRebirthMultiplier();
+
+
+    document.getElementById(
+        "level"
+    ).textContent =
+        Math.floor(
+            state.xp / 100
+        ) + 1;
+
+}
+
+
+/* =====================================================
+   UPDATE MAIN
+===================================================== */
+
+function updateMain(){
+
+    const required =
+        getRequiredCoins();
+
+
+    const current =
+        state.coins;
+
+
+    const percentage =
+        Math.min(
+            100,
+            (current / required) * 100
+        );
+
+
+    document.getElementById(
+        "currentMultiplier"
+    ).textContent =
+        "×" +
+        getRebirthMultiplier();
+
+
+    document.getElementById(
+        "nextMultiplier"
+    ).textContent =
+        "×" +
+        getNextMultiplier();
+
+
+    document.getElementById(
+        "rebirthTitle"
+    ).textContent =
+        "Rebirth #" +
+        (state.rebirths + 1);
+
+
+    document.getElementById(
+        "currentCoins"
+    ).textContent =
+        formatNumber(current) +
+        " سکه";
+
+
+    document.getElementById(
+        "requiredCoins"
+    ).textContent =
+        formatNumber(required) +
+        " سکه";
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        percentage + "%";
+
+
+    const button =
+        document.getElementById(
+            "rebirthButton"
+        );
+
+
+    if(current >= required){
+
+        button.disabled = false;
+
+        button.textContent =
+            "♻️ انجام Rebirth";
+
+    }else{
+
+        button.disabled = true;
+
+        button.textContent =
+            "🔒 هنوز آماده نیست";
+
+    }
+
+}
+
+
+/* =====================================================
+   ROADMAP
+===================================================== */
+
+function renderRoadmap(){
+
+    const roadmap =
+        document.getElementById(
+            "roadmap"
+        );
+
+
+    roadmap.innerHTML = "";
+
+
+    const milestones = [
+
+        {
+            number:1,
+            multiplier:2,
+            cost:"1M"
+        },
+
+        {
+            number:2,
+            multiplier:3,
+            cost:"10M"
+        },
+
+        {
+            number:3,
+            multiplier:5,
+            cost:"100M"
+        },
+
+        {
+            number:4,
+            multiplier:10,
+            cost:"1B"
+        },
+
+        {
+            number:5,
+            multiplier:15,
+            cost:"10B"
+        },
+
+        {
+            number:6,
+            multiplier:20,
+            cost:"100B"
+        }
+
+    ];
+
+
+    milestones.forEach(item => {
+
+        const road =
+            document.createElement(
+                "div"
+            );
+
+
+        let className =
+            "road";
+
+
+        if(
+            state.rebirths >= item.number
+        ){
+
+            className +=
+                " completed";
+
+        }else if(
+            state.rebirths + 1 ===
+            item.number
+        ){
+
+            className +=
+                " active";
+
+        }
+
+
+        road.className =
+            className;
+
+
+        road.innerHTML = `
+
+            <div class="road-number">
+                ${item.number}
+            </div>
+
+            <div class="road-info">
+
+                <div class="road-title">
+                    Rebirth ${item.number}
+                </div>
+
+                <div class="road-multiplier">
+                    هزینه: ${item.cost}
+                    ·
+                    ضریب ×${item.multiplier}
+                </div>
+
+            </div>
+
+            <div>
+                ${
+                    state.rebirths >= item.number
+                    ? "✅"
+                    : state.rebirths + 1 === item.number
+                    ? "🔥"
+                    : "🔒"
+                }
+            </div>
+
+        `;
+
+
+        roadmap.appendChild(
+            road
+        );
+
+    });
+
+
+    /*
+       After Rebirth 6,
+       the system continues automatically.
+    */
+
+    if(state.rebirths >= 6){
+
+        const extra =
+            document.createElement(
+                "div"
+            );
+
+
+        extra.className =
+            "road active";
+
+
+        extra.innerHTML = `
+
+            <div class="road-number">
+                ∞
+            </div>
+
+            <div class="road-info">
+
+                <div class="road-title">
+                    Rebirth ${state.rebirths + 1}
+                </div>
+
+                <div class="road-multiplier">
+                    ضریب بعدی:
+                    ×${getNextMultiplier()}
+                </div>
+
+            </div>
+
+            <div>
+                🔥
+            </div>
+
+        `;
+
+
+        roadmap.appendChild(
+            extra
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   OPEN CONFIRM
+===================================================== */
+
+function openConfirm(){
+
+    const required =
+        getRequiredCoins();
+
+
+    if(state.coins < required){
+
+        showToast(
+            "🪙 هنوز سکه کافی نداری."
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "modalCoins"
+    ).textContent =
+        formatNumber(
+            state.coins
+        );
+
+
+    document.getElementById(
+        "modalMultiplier"
+    ).textContent =
+        "×" +
+        getNextMultiplier();
+
+
+    document.getElementById(
+        "confirmModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   CLOSE CONFIRM
+===================================================== */
+
+function closeConfirm(){
+
+    document.getElementById(
+        "confirmModal"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   PERFORM REBIRTH
+===================================================== */
+
+function performRebirth(){
+
+    const required =
+        getRequiredCoins();
+
+
+    if(state.coins < required){
+
+        closeConfirm();
+
+        showToast(
+            "❌ سکه کافی نیست."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       IMPORTANT:
+
+       We do NOT touch:
+       - ghostCards
+       - ghostAbilities
+       - ghostWheel
+       - ghostWheelItems
+       - ghostTotalTaps
+       - ghostTotalCoins
+       - ghostXP
+
+       These are permanent/profile progress.
+    */
+
+
+    state.rebirths++;
+
+
+    /*
+       Reset normal progression.
+    */
+
+    state.coins = 0;
+
+    state.tapPower = 1;
+
+    state.maxEnergy = 100;
+
+    state.energy = 100;
+
+    state.tapLevel = 0;
+
+    state.energyLevel = 0;
+
+    state.rechargeLevel = 0;
+
+
+    saveState();
+
+
+    closeConfirm();
+
+
+    showToast(
+        "🔥 Rebirth موفق! ضریب ×" +
+        getRebirthMultiplier()
+    );
+
+
+    updateWallet();
+
+    updateMain();
+
+    renderRoadmap();
+
+
+    setTimeout(() => {
+
+        location.href =
+            "profile.html";
+
+    },1800);
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer = null;
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(() => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },2400);
+
+}
+
+
+/* =====================================================
+   PUBLIC API
+===================================================== */
+
+window.GhostRebirth = {
+
+    getCount:function(){
+
+        return state.rebirths;
+
+    },
+
+
+    getMultiplier:function(){
+
+        return getRebirthMultiplier();
+
+    },
+
+
+    getNextMultiplier:function(){
+
+        return getNextMultiplier();
+
+    },
+
+
+    getRequiredCoins:function(){
+
+        return getRequiredCoins();
+
+    },
+
+
+    canRebirth:function(){
+
+        return (
+            state.coins >=
+            getRequiredCoins()
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   STORAGE SYNC
+===================================================== */
+
+window.addEventListener(
+    "storage",
+    function(event){
+
+        if(
+
+            event.key === COINS_KEY ||
+
+            event.key === REBIRTH_KEY ||
+
+            event.key === XP_KEY ||
+
+            event.key === TAP_POWER_KEY ||
+
+            event.key === MAX_ENERGY_KEY ||
+
+            event.key === ENERGY_KEY ||
+
+            event.key === TAP_LEVEL_KEY ||
+
+            event.key === ENERGY_LEVEL_KEY ||
+
+            event.key === RECHARGE_LEVEL_KEY
+
+        ){
+
+            loadState();
+
+            updateWallet();
+
+            updateMain();
+
+            renderRoadmap();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   LIVE UPDATE
+===================================================== */
+
+setInterval(() => {
+
+    loadState();
+
+    updateWallet();
+
+    updateMain();
+
+},1000);
+
+
+/* =====================================================
+   CLOSE MODAL WHEN CLICK OUTSIDE
+===================================================== */
+
+document
+    .getElementById(
+        "confirmModal"
+    )
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(
+                event.target === this
+            ){
+
+                closeConfirm();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadState();
+
+updateWallet();
+
+updateMain();
+
+renderRoadmap();
+
+</script>
+
+</body>
+                  </html>

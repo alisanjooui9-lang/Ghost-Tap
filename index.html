@@ -1,0 +1,1489 @@
+<!DOCTYPE html><html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#08080d">
+<meta name="description" content="Ghost Tap - Tap, Upgrade, Rebirth, Become GOD">
+<title>Ghost Tap 👻</title><style>
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+    margin:0;
+    padding:0;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+    background:#08080d;
+    color:#fff;
+    font-family:Arial,Tahoma,sans-serif;
+}
+
+body{
+    overflow-x:hidden;
+    user-select:none;
+}
+
+button{
+    font-family:inherit;
+    border:none;
+    outline:none;
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.app{
+    width:100%;
+    max-width:520px;
+    min-height:100vh;
+    margin:auto;
+    padding:14px 14px 100px;
+    position:relative;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.brand-icon{
+    width:45px;
+    height:45px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(145deg,#252536,#101019);
+    border:1px solid #38384d;
+    font-size:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,.4);
+}
+
+.brand-text h1{
+    font-size:18px;
+    font-weight:900;
+}
+
+.brand-text span{
+    display:block;
+    color:#8e8e9f;
+    font-size:11px;
+    margin-top:3px;
+}
+
+.profile-mini{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:linear-gradient(145deg,#303047,#151520);
+    border:1px solid #4b4b65;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+/* =========================
+   COIN CARD
+========================= */
+
+.coin-card{
+    background:
+        radial-gradient(circle at top right,rgba(255,255,255,.08),transparent 35%),
+        linear-gradient(145deg,#171720,#0d0d13);
+    border:1px solid #292936;
+    border-radius:25px;
+    padding:18px;
+    box-shadow:0 15px 45px rgba(0,0,0,.35);
+    margin-bottom:14px;
+}
+
+.coin-title{
+    color:#8d8d9e;
+    font-size:12px;
+    margin-bottom:7px;
+}
+
+.coin-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.coin-value{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:29px;
+    font-weight:900;
+    letter-spacing:-1px;
+}
+
+.coin-icon{
+    font-size:26px;
+}
+
+.level-badge{
+    padding:8px 12px;
+    border-radius:13px;
+    background:#20202d;
+    border:1px solid #353547;
+    color:#c9c9d8;
+    font-size:12px;
+    font-weight:bold;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-bottom:14px;
+}
+
+.stat{
+    background:#111119;
+    border:1px solid #252531;
+    border-radius:17px;
+    padding:12px 7px;
+    text-align:center;
+}
+
+.stat-icon{
+    font-size:18px;
+    margin-bottom:5px;
+}
+
+.stat-label{
+    color:#777789;
+    font-size:9px;
+}
+
+.stat-value{
+    font-size:13px;
+    font-weight:900;
+    margin-top:3px;
+}
+
+/* =========================
+   ENERGY
+========================= */
+
+.energy-box{
+    background:#111119;
+    border:1px solid #272733;
+    border-radius:19px;
+    padding:13px;
+    margin-bottom:15px;
+}
+
+.energy-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+    font-size:12px;
+}
+
+.energy-label{
+    color:#aaaabb;
+}
+
+.energy-number{
+    font-weight:900;
+}
+
+.energy-bar{
+    width:100%;
+    height:10px;
+    background:#22222c;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.energy-fill{
+    width:100%;
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,#7777ff,#a66cff);
+    transition:width .2s ease;
+}
+
+/* =========================
+   TAP AREA
+========================= */
+
+.tap-section{
+    text-align:center;
+    padding-top:5px;
+}
+
+.combo{
+    min-height:28px;
+    font-size:16px;
+    font-weight:900;
+    color:#a9a9ff;
+    opacity:0;
+    transform:translateY(5px);
+    transition:.2s;
+}
+
+.combo.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.tap-zone{
+    width:270px;
+    height:270px;
+    max-width:75vw;
+    max-height:75vw;
+    margin:5px auto 15px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.tap-ring{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    border:1px solid #34344a;
+    box-shadow:
+        0 0 30px rgba(119,119,255,.08),
+        inset 0 0 35px rgba(119,119,255,.05);
+}
+
+.tap-ring::before,
+.tap-ring::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    border:1px solid #252537;
+}
+
+.tap-ring::before{
+    inset:18px;
+}
+
+.tap-ring::after{
+    inset:36px;
+}
+
+.ghost-button{
+    width:185px;
+    height:185px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle at 35% 25%,#ffffff,#c9c9ff 15%,#7777c8 38%,#373755 70%,#191923);
+    box-shadow:
+        0 0 25px rgba(135,135,255,.22),
+        0 20px 45px rgba(0,0,0,.5),
+        inset 0 -15px 25px rgba(0,0,0,.28);
+    position:relative;
+    transition:transform .08s,filter .15s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:85px;
+    z-index:3;
+}
+
+.ghost-button:active{
+    transform:scale(.91);
+    filter:brightness(1.25);
+}
+
+.ghost-button.disabled{
+    filter:grayscale(1);
+    opacity:.5;
+}
+
+.tap-hint{
+    color:#696979;
+    font-size:11px;
+}
+
+/* =========================
+   FLOATING COINS
+========================= */
+
+.float{
+    position:fixed;
+    pointer-events:none;
+    z-index:999;
+    font-size:18px;
+    font-weight:900;
+    color:#ddd;
+    animation:floatUp .8s ease-out forwards;
+}
+
+@keyframes floatUp{
+    0%{
+        opacity:1;
+        transform:translate(-50%,0) scale(1);
+    }
+    100%{
+        opacity:0;
+        transform:translate(-50%,-90px) scale(1.35);
+    }
+}
+
+/* =========================
+   UPGRADE
+========================= */
+
+.upgrade-card{
+    margin-top:16px;
+    background:linear-gradient(145deg,#15151e,#0e0e14);
+    border:1px solid #292936;
+    border-radius:22px;
+    padding:15px;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:12px;
+}
+
+.section-title h2{
+    font-size:15px;
+}
+
+.section-title span{
+    color:#77778a;
+    font-size:10px;
+}
+
+.upgrade-list{
+    display:grid;
+    gap:9px;
+}
+
+.upgrade{
+    width:100%;
+    background:#1a1a24;
+    border:1px solid #292937;
+    border-radius:16px;
+    padding:12px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    color:#fff;
+    text-align:right;
+}
+
+.upgrade:active{
+    transform:scale(.98);
+}
+
+.upgrade-icon{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    background:#252535;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+}
+
+.upgrade-info{
+    flex:1;
+}
+
+.upgrade-name{
+    font-size:12px;
+    font-weight:900;
+}
+
+.upgrade-desc{
+    color:#707083;
+    font-size:9px;
+    margin-top:3px;
+}
+
+.upgrade-cost{
+    color:#cfcfff;
+    font-size:10px;
+    font-weight:900;
+}
+
+/* =========================
+   QUICK MENU
+========================= */
+
+.quick-menu{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-top:14px;
+}
+
+.quick{
+    min-height:72px;
+    background:#111119;
+    border:1px solid #252531;
+    border-radius:17px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    font-size:20px;
+}
+
+.quick span{
+    font-size:9px;
+    color:#858597;
+}
+
+.quick:active{
+    transform:scale(.96);
+}
+
+/* =========================
+   NAV
+========================= */
+
+.bottom-nav{
+    position:fixed;
+    z-index:100;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:520px;
+    padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+    background:rgba(8,8,13,.94);
+    backdrop-filter:blur(15px);
+    border-top:1px solid #242430;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.nav-item{
+    text-align:center;
+    color:#696979;
+    font-size:9px;
+    padding:5px 0;
+}
+
+.nav-item div{
+    font-size:20px;
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:#c3c3ff;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    z-index:1000;
+    top:20px;
+    left:50%;
+    transform:translate(-50%,-20px);
+    opacity:0;
+    pointer-events:none;
+    background:#20202c;
+    border:1px solid #3a3a4e;
+    border-radius:14px;
+    padding:11px 16px;
+    font-size:11px;
+    font-weight:bold;
+    transition:.25s;
+    box-shadow:0 12px 35px rgba(0,0,0,.45);
+    white-space:nowrap;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:360px){
+    .app{
+        padding-left:10px;
+        padding-right:10px;
+    }
+
+    .ghost-button{
+        width:160px;
+        height:160px;
+        font-size:70px;
+    }
+
+    .tap-zone{
+        width:235px;
+        height:235px;
+    }
+
+    .coin-value{
+        font-size:25px;
+    }
+}
+
+@media(min-width:700px){
+    .app{
+        padding-top:25px;
+    }
+}
+</style></head><body><div class="app"><header class="header">
+    <div class="brand">
+        <div class="brand-icon">👻</div>
+        <div class="brand-text">
+            <h1>Ghost Tap</h1>
+            <span>Tap • Upgrade • Rebirth</span>
+        </div>
+    </div>
+
+    <a href="profile.html" class="profile-mini">👤</a>
+</header>
+
+<section class="coin-card">
+    <div class="coin-title">موجودی سکه</div>
+
+    <div class="coin-row">
+        <div class="coin-value">
+            <span class="coin-icon">🪙</span>
+            <span id="coins">0</span>
+        </div>
+
+        <div class="level-badge">
+            LVL <span id="level">1</span>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+
+    <div class="stat">
+        <div class="stat-icon">👆</div>
+        <div class="stat-label">قدرت Tap</div>
+        <div class="stat-value">+<span id="tapPower">1</span></div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-icon">🔥</div>
+        <div class="stat-label">Combo</div>
+        <div class="stat-value">x<span id="combo">1</span></div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-icon">🔄</div>
+        <div class="stat-label">Rebirth</div>
+        <div class="stat-value"><span id="rebirth">0</span></div>
+    </div>
+
+</section>
+
+<section class="energy-box">
+
+    <div class="energy-head">
+        <span class="energy-label">⚡ انرژی</span>
+        <span class="energy-number">
+            <span id="energy">100</span>/<span id="maxEnergy">100</span>
+        </span>
+    </div>
+
+    <div class="energy-bar">
+        <div class="energy-fill" id="energyFill"></div>
+    </div>
+
+</section>
+
+<section class="tap-section">
+
+    <div class="combo" id="comboText">
+        🔥 COMBO x<span id="comboTextValue">1</span>
+    </div>
+
+    <div class="tap-zone" id="tapZone">
+        <div class="tap-ring"></div>
+
+        <button class="ghost-button" id="tapButton" aria-label="Tap">
+            👻
+        </button>
+    </div>
+
+    <div class="tap-hint">
+        برای دریافت سکه روی گوست بزن!
+    </div>
+
+</section>
+
+<section class="upgrade-card">
+
+    <div class="section-title">
+        <h2>⚡ ارتقاها</h2>
+        <span>قدرتت رو بیشتر کن</span>
+    </div>
+
+    <div class="upgrade-list">
+
+        <button class="upgrade" onclick="buyUpgrade('tap')">
+            <div class="upgrade-icon">👆</div>
+
+            <div class="upgrade-info">
+                <div class="upgrade-name">قدرت Tap</div>
+                <div class="upgrade-desc">
+                    سکه بیشتری در هر Tap
+                </div>
+            </div>
+
+            <div class="upgrade-cost">
+                🪙 <span id="tapCost">25</span>
+            </div>
+        </button>
+
+        <button class="upgrade" onclick="buyUpgrade('energy')">
+            <div class="upgrade-icon">⚡</div>
+
+            <div class="upgrade-info">
+                <div class="upgrade-name">ظرفیت انرژی</div>
+                <div class="upgrade-desc">
+                    افزایش حداکثر انرژی
+                </div>
+            </div>
+
+            <div class="upgrade-cost">
+                🪙 <span id="energyCost">100</span>
+            </div>
+        </button>
+
+        <button class="upgrade" onclick="buyUpgrade('recharge')">
+            <div class="upgrade-icon">🔋</div>
+
+            <div class="upgrade-info">
+                <div class="upgrade-name">شارژ سریع</div>
+                <div class="upgrade-desc">
+                    انرژی سریع‌تر برگردد
+                </div>
+            </div>
+
+            <div class="upgrade-cost">
+                🪙 <span id="rechargeCost">150</span>
+            </div>
+        </button>
+
+    </div>
+
+</section>
+
+<section class="quick-menu">
+
+    <a class="quick" href="cards.html">
+        🃏
+        <span>کارت‌ها</span>
+    </a>
+
+    <a class="quick" href="abilities.html">
+        ✨
+        <span>Ability</span>
+    </a>
+
+    <a class="quick" href="wheel.html">
+        🎡
+        <span>گردونه</span>
+    </a>
+
+    <a class="quick" href="rebirth.html">
+        🔄
+        <span>Rebirth</span>
+    </a>
+
+</section>
+
+</div><nav class="bottom-nav"><a class="nav-item active" href="index.html">
+    <div>👻</div>
+    خانه
+</a>
+
+<a class="nav-item" href="cards.html">
+    <div>🃏</div>
+    کارت‌ها
+</a>
+
+<a class="nav-item" href="abilities.html">
+    <div>✨</div>
+    Ability
+</a>
+
+<a class="nav-item" href="wheel.html">
+    <div>🎡</div>
+    گردونه
+</a>
+
+<a class="nav-item" href="profile.html">
+    <div>👤</div>
+    پروفایل
+</a>
+
+</nav><div class="toast" id="toast"></div><script>
+/* =========================================================
+   GHOST TAP - CORE GAME SYSTEM
+========================================================= */
+
+const DEFAULTS = {
+    coins: 0,
+    energy: 100,
+    maxEnergy: 100,
+
+    tapPower: 1,
+    combo: 1,
+
+    rebirth: 0,
+    xp: 0,
+
+    tapLevel: 0,
+    energyLevel: 0,
+    rechargeLevel: 0,
+
+    totalTaps: 0,
+    totalCoins: 0,
+
+    cards: {},
+    abilities: {},
+    inventory: {}
+};
+
+/* =========================================================
+   SAFE STORAGE
+========================================================= */
+
+function getNumber(key, fallback){
+    const value = Number(localStorage.getItem(key));
+
+    if(Number.isFinite(value)){
+        return value;
+    }
+
+    localStorage.setItem(key, fallback);
+    return fallback;
+}
+
+function setNumber(key, value){
+    localStorage.setItem(key, String(Math.max(0, Number(value) || 0)));
+}
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+function initializeGame(){
+
+    const values = {
+        ghostCoins: DEFAULTS.coins,
+        ghostEnergy: DEFAULTS.energy,
+        ghostMaxEnergy: DEFAULTS.maxEnergy,
+
+        ghostTapPower: DEFAULTS.tapPower,
+        ghostCombo: DEFAULTS.combo,
+
+        ghostRebirths: DEFAULTS.rebirth,
+        ghostXP: DEFAULTS.xp,
+
+        ghostTapLevel: DEFAULTS.tapLevel,
+        ghostEnergyLevel: DEFAULTS.energyLevel,
+        ghostRechargeLevel: DEFAULTS.rechargeLevel,
+
+        ghostTotalTaps: DEFAULTS.totalTaps,
+        ghostTotalCoins: DEFAULTS.totalCoins
+    };
+
+    Object.keys(values).forEach(key=>{
+        if(localStorage.getItem(key) === null){
+            localStorage.setItem(key,String(values[key]));
+        }
+    });
+
+    if(localStorage.getItem("ghostCards") === null){
+        localStorage.setItem("ghostCards","{}");
+    }
+
+    if(localStorage.getItem("ghostAbilities") === null){
+        localStorage.setItem("ghostAbilities","{}");
+    }
+
+    if(localStorage.getItem("ghostInventory") === null){
+        localStorage.setItem("ghostInventory","{}");
+    }
+}
+
+/* =========================================================
+   GAME STATE
+========================================================= */
+
+let coins = 0;
+let energy = 100;
+let maxEnergy = 100;
+
+let tapPower = 1;
+let combo = 1;
+let rebirth = 0;
+
+let xp = 0;
+
+let tapLevel = 0;
+let energyLevel = 0;
+let rechargeLevel = 0;
+
+let totalTaps = 0;
+let totalCoins = 0;
+
+let comboTimer = null;
+
+/* =========================================================
+   LOAD STATE
+========================================================= */
+
+function loadGame(){
+
+    coins = getNumber("ghostCoins",0);
+    energy = getNumber("ghostEnergy",100);
+    maxEnergy = getNumber("ghostMaxEnergy",100);
+
+    tapPower = getNumber("ghostTapPower",1);
+    combo = getNumber("ghostCombo",1);
+
+    rebirth = getNumber("ghostRebirths",0);
+    xp = getNumber("ghostXP",0);
+
+    tapLevel = getNumber("ghostTapLevel",0);
+    energyLevel = getNumber("ghostEnergyLevel",0);
+    rechargeLevel = getNumber("ghostRechargeLevel",0);
+
+    totalTaps = getNumber("ghostTotalTaps",0);
+    totalCoins = getNumber("ghostTotalCoins",0);
+
+    if(energy > maxEnergy){
+        energy = maxEnergy;
+    }
+
+    updateUI();
+}
+
+/* =========================================================
+   SAVE STATE
+========================================================= */
+
+function saveGame(){
+
+    setNumber("ghostCoins",coins);
+    setNumber("ghostEnergy",energy);
+    setNumber("ghostMaxEnergy",maxEnergy);
+
+    setNumber("ghostTapPower",tapPower);
+    setNumber("ghostCombo",combo);
+
+    setNumber("ghostRebirths",rebirth);
+    setNumber("ghostXP",xp);
+
+    setNumber("ghostTapLevel",tapLevel);
+    setNumber("ghostEnergyLevel",energyLevel);
+    setNumber("ghostRechargeLevel",rechargeLevel);
+
+    setNumber("ghostTotalTaps",totalTaps);
+    setNumber("ghostTotalCoins",totalCoins);
+}
+
+/* =========================================================
+   REBIRTH MULTIPLIER
+========================================================= */
+
+function getRebirthMultiplier(){
+
+    if(rebirth <= 0) return 1;
+    if(rebirth === 1) return 2;
+    if(rebirth === 2) return 3;
+    if(rebirth === 3) return 5;
+    if(rebirth === 4) return 10;
+
+    return 10 + ((rebirth - 4) * 5);
+}
+
+/* =========================================================
+   CARD MULTIPLIER HOOK
+   این تابع بعداً با cards.html متصل می‌شود.
+========================================================= */
+
+function getCardMultiplier(){
+    let multiplier = 1;
+
+    try{
+        const cards = JSON.parse(
+            localStorage.getItem("ghostCards") || "{}"
+        );
+
+        Object.keys(cards).forEach(id=>{
+            const card = cards[id];
+
+            if(card && card.active && Number(card.multiplier)){
+                multiplier += Number(card.multiplier);
+            }
+        });
+
+    }catch(error){
+        console.warn("Card data error:",error);
+    }
+
+    return multiplier;
+}
+
+/* =========================================================
+   ABILITY MULTIPLIER HOOK
+========================================================= */
+
+function getAbilityMultiplier(){
+
+    let multiplier = 1;
+
+    try{
+        const abilities = JSON.parse(
+            localStorage.getItem("ghostAbilities") || "{}"
+        );
+
+        Object.keys(abilities).forEach(id=>{
+            const ability = abilities[id];
+
+            if(
+                ability &&
+                ability.active &&
+                Number(ability.tapMultiplier)
+            ){
+                multiplier += Number(ability.tapMultiplier);
+            }
+        });
+
+    }catch(error){
+        console.warn("Ability data error:",error);
+    }
+
+    return multiplier;
+}
+
+/* =========================================================
+   TOTAL TAP REWARD
+========================================================= */
+
+function calculateTapReward(){
+
+    const rebirthMultiplier = getRebirthMultiplier();
+    const cardMultiplier = getCardMultiplier();
+    const abilityMultiplier = getAbilityMultiplier();
+
+    let reward =
+        tapPower *
+        combo *
+        rebirthMultiplier *
+        cardMultiplier *
+        abilityMultiplier;
+
+    reward = Math.max(1,Math.floor(reward));
+
+    return reward;
+}
+
+/* =========================================================
+   TAP
+========================================================= */
+
+function tap(event){
+
+    if(energy <= 0){
+        showToast("⚡ انرژی نداری!");
+        return;
+    }
+
+    energy -= 1;
+
+    totalTaps += 1;
+
+    combo = Math.min(combo + 1,100);
+
+    const reward = calculateTapReward();
+
+    coins += reward;
+    totalCoins += reward;
+
+    xp += Math.max(1,Math.floor(reward / 5));
+
+    showFloatingCoins(
+        event,
+        "+" + formatNumber(reward)
+    );
+
+    showCombo();
+
+    updateUI();
+
+    saveGame();
+
+    clearTimeout(comboTimer);
+
+    comboTimer = setTimeout(()=>{
+        combo = 1;
+        updateUI();
+        saveGame();
+    },1800);
+}
+
+/* =========================================================
+   FLOATING REWARD
+========================================================= */
+
+function showFloatingCoins(event,text){
+
+    const element = document.createElement("div");
+
+    element.className = "float";
+    element.textContent = "🪙 " + text;
+
+    let x = window.innerWidth / 2;
+    let y = window.innerHeight / 2;
+
+    if(event && event.clientX){
+        x = event.clientX;
+        y = event.clientY;
+    }
+
+    element.style.left = x + "px";
+    element.style.top = y + "px";
+
+    document.body.appendChild(element);
+
+    setTimeout(()=>{
+        element.remove();
+    },800);
+}
+
+/* =========================================================
+   COMBO
+========================================================= */
+
+function showCombo(){
+
+    const box = document.getElementById("comboText");
+    const value = document.getElementById("comboTextValue");
+
+    value.textContent = combo;
+
+    box.classList.add("show");
+
+    setTimeout(()=>{
+        if(combo <= 1){
+            box.classList.remove("show");
+        }
+    },300);
+}
+
+/* =========================================================
+   UPGRADE COSTS
+========================================================= */
+
+function getTapUpgradeCost(){
+
+    return Math.floor(
+        25 * Math.pow(1.65,tapLevel)
+    );
+}
+
+function getEnergyUpgradeCost(){
+
+    return Math.floor(
+        100 * Math.pow(1.75,energyLevel)
+    );
+}
+
+function getRechargeUpgradeCost(){
+
+    return Math.floor(
+        150 * Math.pow(1.8,rechargeLevel)
+    );
+}
+
+/* =========================================================
+   UPGRADE
+========================================================= */
+
+function buyUpgrade(type){
+
+    let cost = 0;
+
+    if(type === "tap"){
+
+        cost = getTapUpgradeCost();
+
+        if(coins < cost){
+            showToast("🪙 سکه کافی نیست!");
+            return;
+        }
+
+        coins -= cost;
+
+        tapLevel += 1;
+
+        tapPower += 1;
+
+        xp += 10;
+
+        showToast("👆 قدرت Tap افزایش یافت!");
+
+    }
+
+    else if(type === "energy"){
+
+        cost = getEnergyUpgradeCost();
+
+        if(coins < cost){
+            showToast("🪙 سکه کافی نیست!");
+            return;
+        }
+
+        coins -= cost;
+
+        energyLevel += 1;
+
+        maxEnergy += 10;
+
+        energy = Math.min(maxEnergy,energy + 10);
+
+        xp += 15;
+
+        showToast("⚡ ظرفیت انرژی افزایش یافت!");
+
+    }
+
+    else if(type === "recharge"){
+
+        cost = getRechargeUpgradeCost();
+
+        if(coins < cost){
+            showToast("🪙 سکه کافی نیست!");
+            return;
+        }
+
+        coins -= cost;
+
+        rechargeLevel += 1;
+
+        xp += 20;
+
+        showToast("🔋 سرعت شارژ افزایش یافت!");
+
+    }
+
+    updateUI();
+    saveGame();
+}
+
+/* =========================================================
+   ENERGY REGEN
+========================================================= */
+
+function regenerateEnergy(){
+
+    if(energy >= maxEnergy){
+        return;
+    }
+
+    let amount = 1;
+
+    if(rechargeLevel >= 1){
+        amount += Math.floor(rechargeLevel / 2);
+    }
+
+    energy = Math.min(
+        maxEnergy,
+        energy + amount
+    );
+
+    updateUI();
+    saveGame();
+}
+
+setInterval(regenerateEnergy,1000);
+
+/* =========================================================
+   LEVEL SYSTEM
+========================================================= */
+
+function getLevel(){
+
+    return Math.floor(
+        xp / 100
+    ) + 1;
+}
+
+/* =========================================================
+   NUMBER FORMAT
+========================================================= */
+
+function formatNumber(number){
+
+    number = Math.floor(Number(number) || 0);
+
+    if(number >= 1000000000000){
+        return (number / 1000000000000).toFixed(2) + "T";
+    }
+
+    if(number >= 1000000000){
+        return (number / 1000000000).toFixed(2) + "B";
+    }
+
+    if(number >= 1000000){
+        return (number / 1000000).toFixed(2) + "M";
+    }
+
+    if(number >= 1000){
+        return (number / 1000).toFixed(2) + "K";
+    }
+
+    return number.toLocaleString("en-US");
+}
+
+/* =========================================================
+   UI
+========================================================= */
+
+function updateUI(){
+
+    const coinsEl = document.getElementById("coins");
+    const energyEl = document.getElementById("energy");
+    const maxEnergyEl = document.getElementById("maxEnergy");
+
+    const tapPowerEl = document.getElementById("tapPower");
+    const comboEl = document.getElementById("combo");
+    const rebirthEl = document.getElementById("rebirth");
+
+    const levelEl = document.getElementById("level");
+    const energyFill = document.getElementById("energyFill");
+
+    const tapCost = document.getElementById("tapCost");
+    const energyCost = document.getElementById("energyCost");
+    const rechargeCost = document.getElementById("rechargeCost");
+
+    if(coinsEl){
+        coinsEl.textContent = formatNumber(coins);
+    }
+
+    if(energyEl){
+        energyEl.textContent = Math.floor(energy);
+    }
+
+    if(maxEnergyEl){
+        maxEnergyEl.textContent = Math.floor(maxEnergy);
+    }
+
+    if(tapPowerEl){
+        tapPowerEl.textContent = formatNumber(tapPower);
+    }
+
+    if(comboEl){
+        comboEl.textContent = combo;
+    }
+
+    if(rebirthEl){
+        rebirthEl.textContent = rebirth;
+    }
+
+    if(levelEl){
+        levelEl.textContent = getLevel();
+    }
+
+    if(energyFill){
+
+        const percent =
+            Math.max(
+                0,
+                Math.min(
+                    100,
+                    (energy / maxEnergy) * 100
+                )
+            );
+
+        energyFill.style.width = percent + "%";
+    }
+
+    if(tapCost){
+        tapCost.textContent =
+            formatNumber(getTapUpgradeCost());
+    }
+
+    if(energyCost){
+        energyCost.textContent =
+            formatNumber(getEnergyUpgradeCost());
+    }
+
+    if(rechargeCost){
+        rechargeCost.textContent =
+            formatNumber(getRechargeUpgradeCost());
+    }
+
+    const button = document.getElementById("tapButton");
+
+    if(button){
+
+        if(energy <= 0){
+            button.classList.add("disabled");
+        }else{
+            button.classList.remove("disabled");
+        }
+    }
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer = null;
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    if(!toast) return;
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(()=>{
+        toast.classList.remove("show");
+    },1600);
+}
+
+/* =========================================================
+   TAP BUTTON EVENTS
+========================================================= */
+
+const tapButton =
+    document.getElementById("tapButton");
+
+tapButton.addEventListener(
+    "pointerdown",
+    function(event){
+
+        event.preventDefault();
+
+        tap(event);
+    }
+);
+
+/* =========================================================
+   PREVENT DOUBLE ZOOM
+========================================================= */
+
+document.addEventListener(
+    "dblclick",
+    function(event){
+        event.preventDefault();
+    },
+    {passive:false}
+);
+
+/* =========================================================
+   VISIBILITY SAVE
+========================================================= */
+
+document.addEventListener(
+    "visibilitychange",
+    function(){
+
+        if(document.hidden){
+            saveGame();
+        }
+    }
+);
+
+/* =========================================================
+   PAGE CLOSE SAVE
+========================================================= */
+
+window.addEventListener(
+    "beforeunload",
+    function(){
+        saveGame();
+    }
+);
+
+/* =========================================================
+   START
+========================================================= */
+
+initializeGame();
+loadGame();
+
+/* =========================================================
+   DEBUG ACCESS
+   فقط برای توسعه
+========================================================= */
+
+window.GhostTap = {
+
+    getState:function(){
+
+        return {
+            coins,
+            energy,
+            maxEnergy,
+            tapPower,
+            combo,
+            rebirth,
+            xp,
+            tapLevel,
+            energyLevel,
+            rechargeLevel,
+            totalTaps,
+            totalCoins,
+            level:getLevel(),
+            rebirthMultiplier:getRebirthMultiplier()
+        };
+
+    },
+
+    save:saveGame,
+
+    reload:function(){
+        loadGame();
+    }
+
+};
+
+</script></body>
+  </html>

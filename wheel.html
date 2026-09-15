@@ -1,0 +1,2466 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#080b12">
+
+<title>Ghost Tap | Wheel</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+    --bg:#080b12;
+    --panel:#101722;
+    --panel2:#141d2a;
+    --border:#29364b;
+    --text:#fff;
+    --muted:#8e9aae;
+    --green:#35e58c;
+    --blue:#4da6ff;
+    --purple:#a66cff;
+    --gold:#ffd84d;
+    --red:#ff6078;
+    --cyan:#38e8ff;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 50% -10%,rgba(255,216,77,.10),transparent 32%),
+        var(--bg);
+    color:var(--text);
+    font-family:Tahoma,Arial,sans-serif;
+    padding-bottom:90px;
+}
+
+button{
+    font-family:inherit;
+}
+
+.app{
+    width:100%;
+    max-width:540px;
+    margin:auto;
+    padding:14px;
+}
+
+/* HEADER */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:14px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.logo-icon{
+    width:43px;
+    height:43px;
+    border-radius:14px;
+    background:linear-gradient(145deg,#242134,#111521);
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+}
+
+.logo-text{
+    font-size:18px;
+    font-weight:900;
+}
+
+.logo-text small{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    margin-top:3px;
+}
+
+.back-btn{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    border:1px solid var(--border);
+    background:var(--panel);
+    color:white;
+    font-size:19px;
+}
+
+/* WALLET */
+
+.wallet{
+    background:
+        radial-gradient(circle at 90% 20%,rgba(255,216,77,.09),transparent 30%),
+        linear-gradient(145deg,#151d2b,#0d131d);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:16px;
+    margin-bottom:15px;
+}
+
+.wallet-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.wallet-label{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.wallet-coins{
+    font-size:25px;
+    font-weight:900;
+    margin-top:3px;
+}
+
+.coin-icon{
+    font-size:29px;
+}
+
+.wallet-bottom{
+    display:flex;
+    justify-content:space-between;
+    color:var(--muted);
+    font-size:10px;
+    margin-top:12px;
+}
+
+.wallet-bottom strong{
+    color:white;
+}
+
+/* TITLE */
+
+.page-title{
+    font-size:22px;
+    font-weight:900;
+    margin:17px 2px 5px;
+}
+
+.page-subtitle{
+    color:var(--muted);
+    font-size:10px;
+    line-height:1.9;
+    margin:0 2px 15px;
+}
+
+/* WHEEL SELECTOR */
+
+.wheel-tabs{
+    display:flex;
+    gap:7px;
+    overflow-x:auto;
+    padding-bottom:4px;
+    margin-bottom:15px;
+}
+
+.wheel-tabs::-webkit-scrollbar{
+    display:none;
+}
+
+.wheel-tab{
+    flex:0 0 auto;
+    padding:9px 12px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:var(--panel);
+    color:var(--muted);
+    font-size:9px;
+    font-weight:900;
+}
+
+.wheel-tab.active{
+    color:var(--gold);
+    border-color:#66551f;
+    background:#241f11;
+}
+
+/* WHEEL BOX */
+
+.wheel-box{
+    background:
+        radial-gradient(circle at 50% 30%,rgba(255,216,77,.08),transparent 38%),
+        linear-gradient(145deg,#111925,#0c121b);
+    border:1px solid var(--border);
+    border-radius:23px;
+    padding:18px 12px 20px;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* WHEEL */
+
+.wheel-wrap{
+    position:relative;
+    width:285px;
+    height:285px;
+    margin:5px auto 17px;
+}
+
+.pointer{
+    position:absolute;
+    top:-2px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:20;
+    width:0;
+    height:0;
+    border-left:15px solid transparent;
+    border-right:15px solid transparent;
+    border-top:34px solid var(--gold);
+    filter:drop-shadow(0 4px 4px rgba(0,0,0,.5));
+}
+
+.wheel{
+    position:absolute;
+    inset:10px;
+    border-radius:50%;
+    border:8px solid #242f41;
+    background:
+        conic-gradient(
+            #77621e 0deg 4deg,
+            #1d2b3c 4deg 7deg,
+            #77621e 7deg 11deg,
+            #1d2b3c 11deg 14deg,
+            #77621e 14deg 18deg,
+            #1d2b3c 18deg 21deg,
+            #77621e 21deg 25deg,
+            #1d2b3c 25deg 28deg,
+            #77621e 28deg 32deg,
+            #1d2b3c 32deg 35deg,
+            #77621e 35deg 39deg,
+            #1d2b3c 39deg 42deg,
+            #77621e 42deg 46deg,
+            #1d2b3c 46deg 49deg,
+            #77621e 49deg 53deg,
+            #1d2b3c 53deg 56deg,
+            #77621e 56deg 60deg,
+            #1d2b3c 60deg 63deg,
+            #77621e 63deg 67deg,
+            #1d2b3c 67deg 70deg,
+            #77621e 70deg 74deg,
+            #1d2b3c 74deg 77deg,
+            #77621e 77deg 81deg,
+            #1d2b3c 81deg 84deg,
+            #77621e 84deg 88deg,
+            #1d2b3c 88deg 91deg,
+            #77621e 91deg 95deg,
+            #1d2b3c 95deg 98deg,
+            #77621e 98deg 102deg,
+            #1d2b3c 102deg 105deg,
+            #77621e 105deg 109deg,
+            #1d2b3c 109deg 112deg,
+            #77621e 112deg 116deg,
+            #1d2b3c 116deg 119deg,
+            #77621e 119deg 123deg,
+            #1d2b3c 123deg 126deg,
+            #77621e 126deg 130deg,
+            #1d2b3c 130deg 133deg,
+            #77621e 133deg 137deg,
+            #1d2b3c 137deg 140deg,
+            #77621e 140deg 144deg,
+            #1d2b3c 144deg 147deg,
+            #77621e 147deg 151deg,
+            #1d2b3c 151deg 154deg,
+            #77621e 154deg 158deg,
+            #1d2b3c 158deg 161deg,
+            #77621e 161deg 165deg,
+            #1d2b3c 165deg 168deg,
+            #77621e 168deg 172deg,
+            #1d2b3c 172deg 175deg,
+            #77621e 175deg 179deg,
+            #1d2b3c 179deg 182deg,
+            #77621e 182deg 186deg,
+            #1d2b3c 186deg 189deg,
+            #77621e 189deg 193deg,
+            #1d2b3c 193deg 196deg,
+            #77621e 196deg 200deg,
+            #1d2b3c 200deg 203deg,
+            #77621e 203deg 207deg,
+            #1d2b3c 207deg 210deg,
+            #77621e 210deg 214deg,
+            #1d2b3c 214deg 217deg,
+            #77621e 217deg 221deg,
+            #1d2b3c 221deg 224deg,
+            #77621e 224deg 228deg,
+            #1d2b3c 228deg 231deg,
+            #77621e 231deg 235deg,
+            #1d2b3c 235deg 238deg,
+            #77621e 238deg 242deg,
+            #1d2b3c 242deg 245deg,
+            #77621e 245deg 249deg,
+            #1d2b3c 249deg 252deg,
+            #77621e 252deg 256deg,
+            #1d2b3c 256deg 259deg,
+            #77621e 259deg 263deg,
+            #1d2b3c 263deg 266deg,
+            #77621e 266deg 270deg,
+            #1d2b3c 270deg 273deg,
+            #77621e 273deg 277deg,
+            #1d2b3c 277deg 280deg,
+            #77621e 280deg 284deg,
+            #1d2b3c 284deg 287deg,
+            #77621e 287deg 291deg,
+            #1d2b3c 291deg 294deg,
+            #77621e 294deg 298deg,
+            #1d2b3c 298deg 301deg,
+            #77621e 301deg 305deg,
+            #1d2b3c 305deg 308deg,
+            #77621e 308deg 312deg,
+            #1d2b3c 312deg 315deg,
+            #77621e 315deg 319deg,
+            #1d2b3c 319deg 322deg,
+            #77621e 322deg 326deg,
+            #1d2b3c 326deg 329deg,
+            #77621e 329deg 333deg,
+            #1d2b3c 333deg 336deg,
+            #77621e 336deg 340deg,
+            #1d2b3c 340deg 343deg,
+            #77621e 343deg 347deg,
+            #1d2b3c 347deg 350deg,
+            #77621e 350deg 354deg,
+            #1d2b3c 354deg 357deg,
+            #77621e 357deg 360deg
+        );
+    box-shadow:
+        0 0 0 5px #101722,
+        0 20px 45px rgba(0,0,0,.4);
+
+    transition:
+        transform 4.5s cubic-bezier(.12,.7,.12,1);
+}
+
+.wheel::after{
+    content:"";
+    position:absolute;
+    inset:24px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.wheel-center{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:74px;
+    height:74px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle,#1e293b,#0c121b);
+    border:5px solid #35445b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:29px;
+    z-index:5;
+    box-shadow:0 5px 20px rgba(0,0,0,.4);
+}
+
+/* WHEEL LABELS */
+
+.wheel-label{
+    position:absolute;
+    z-index:4;
+    font-size:8px;
+    font-weight:900;
+    text-align:center;
+    pointer-events:none;
+}
+
+.label-top{
+    top:32px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.label-right{
+    right:34px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.label-bottom{
+    bottom:32px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.label-left{
+    left:34px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.label-legendary{
+    color:var(--gold);
+}
+
+.label-mythic{
+    color:#ff7085;
+}
+
+/* ODDS */
+
+.odds{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:5px;
+}
+
+.odd{
+    background:#0c131d;
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:10px;
+}
+
+.odd-name{
+    font-size:10px;
+    font-weight:900;
+}
+
+.odd-percent{
+    font-size:18px;
+    font-weight:900;
+    margin-top:2px;
+}
+
+.legendary .odd-percent{
+    color:var(--gold);
+}
+
+.mythic .odd-percent{
+    color:#ff7085;
+}
+
+/* SPIN BUTTON */
+
+.spin-button{
+    width:100%;
+    border:0;
+    border-radius:15px;
+    padding:14px;
+    margin-top:13px;
+    background:
+        linear-gradient(
+            135deg,
+            #8d741e,
+            #625013
+        );
+    color:#fff7d1;
+    font-size:13px;
+    font-weight:900;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.spin-button:active{
+    transform:scale(.97);
+}
+
+.spin-button:disabled{
+    opacity:.45;
+}
+
+/* INFO */
+
+.info{
+    margin-top:13px;
+    padding:13px;
+    background:#101722;
+    border:1px solid var(--border);
+    border-radius:15px;
+    color:var(--muted);
+    font-size:9px;
+    line-height:1.9;
+}
+
+.info strong{
+    color:white;
+}
+
+/* WHEEL LOCK */
+
+.locked-box{
+    padding:25px 15px;
+    text-align:center;
+}
+
+.lock-icon{
+    font-size:43px;
+    margin-bottom:8px;
+}
+
+.lock-title{
+    font-size:16px;
+    font-weight:900;
+}
+
+.lock-text{
+    color:var(--muted);
+    font-size:10px;
+    line-height:1.9;
+    margin-top:5px;
+}
+
+/* RESULT */
+
+.result{
+    display:none;
+    margin-top:13px;
+    padding:16px;
+    border-radius:18px;
+    background:
+        radial-gradient(circle at 50% 0%,rgba(255,216,77,.12),transparent 55%),
+        #101722;
+    border:1px solid #3c4050;
+    text-align:center;
+}
+
+.result.show{
+    display:block;
+}
+
+.result-icon{
+    font-size:45px;
+}
+
+.result-rarity{
+    margin-top:4px;
+    font-size:11px;
+    font-weight:900;
+}
+
+.result-name{
+    font-size:18px;
+    font-weight:900;
+    margin-top:4px;
+}
+
+.result-effect{
+    color:var(--muted);
+    font-size:10px;
+    line-height:1.8;
+    margin-top:5px;
+}
+
+/* HISTORY */
+
+.history{
+    margin-top:15px;
+}
+
+.history-title{
+    font-size:14px;
+    font-weight:900;
+    margin-bottom:9px;
+}
+
+.history-list{
+    display:grid;
+    gap:8px;
+}
+
+.history-item{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:10px;
+    background:#101722;
+    border:1px solid var(--border);
+    border-radius:13px;
+}
+
+.history-icon{
+    width:39px;
+    height:39px;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#182234;
+    font-size:19px;
+}
+
+.history-info{
+    flex:1;
+}
+
+.history-name{
+    font-size:10px;
+    font-weight:900;
+}
+
+.history-rarity{
+    color:var(--muted);
+    font-size:8px;
+    margin-top:2px;
+}
+
+.history-time{
+    color:#59677a;
+    font-size:8px;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:88px;
+    transform:translateX(-50%) translateY(20px);
+    background:#172131;
+    border:1px solid #314158;
+    border-radius:13px;
+    padding:11px 16px;
+    font-size:10px;
+    font-weight:900;
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+    z-index:100;
+    white-space:nowrap;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+/* NAV */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:72px;
+    background:rgba(8,11,18,.95);
+    backdrop-filter:blur(15px);
+    border-top:1px solid #202b3c;
+    display:flex;
+    justify-content:center;
+    z-index:50;
+}
+
+.nav-inner{
+    width:100%;
+    max-width:540px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.nav-item{
+    color:#69778d;
+    text-decoration:none;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    font-size:8px;
+}
+
+.nav-item span:first-child{
+    font-size:20px;
+}
+
+.nav-item.active{
+    color:var(--gold);
+}
+
+.nav-item:active{
+    transform:scale(.92);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:390px){
+
+    .wheel-wrap{
+        width:245px;
+        height:245px;
+    }
+
+    .wheel{
+        inset:7px;
+    }
+
+    .label-top{
+        top:27px;
+    }
+
+    .label-right{
+        right:27px;
+    }
+
+    .label-bottom{
+        bottom:27px;
+    }
+
+    .label-left{
+        left:27px;
+    }
+
+}
+
+@media(max-width:340px){
+
+    .wheel-wrap{
+        width:220px;
+        height:220px;
+    }
+
+    .wheel-center{
+        width:62px;
+        height:62px;
+        font-size:24px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="header">
+
+        <div class="logo">
+            <div class="logo-icon">🎡</div>
+
+            <div class="logo-text">
+                Ghost Tap
+                <small>گردونه شانس</small>
+            </div>
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="location.href='index.html'">
+            ←
+        </button>
+
+    </div>
+
+
+    <div class="wallet">
+
+        <div class="wallet-top">
+
+            <div>
+                <div class="wallet-label">
+                    موجودی سکه
+                </div>
+
+                <div
+                    class="wallet-coins"
+                    id="coins">
+                    0
+                </div>
+            </div>
+
+            <div class="coin-icon">
+                🪙
+            </div>
+
+        </div>
+
+        <div class="wallet-bottom">
+
+            <span>
+                کل چرخش‌ها
+            </span>
+
+            <strong id="totalSpins">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="page-title">
+        🎡 گردونه Ghost Tap
+    </div>
+
+    <div class="page-subtitle">
+        با سکه‌های داخل بازی گردونه را بچرخان و جایزه دائمی دریافت کن.
+        همه جوایز روی پیشرفت واقعی بازی تأثیر دارند.
+    </div>
+
+
+    <div class="wheel-tabs" id="wheelTabs"></div>
+
+
+    <div class="wheel-box" id="wheelBox">
+
+        <div class="wheel-wrap">
+
+            <div class="pointer"></div>
+
+            <div
+                class="wheel"
+                id="wheel">
+
+                <div class="wheel-label label-top label-legendary">
+                    LEGENDARY
+                </div>
+
+                <div class="wheel-label label-right label-legendary">
+                    LEGENDARY
+                </div>
+
+                <div class="wheel-label label-bottom label-mythic">
+                    MYTHIC
+                </div>
+
+                <div class="wheel-label label-left label-legendary">
+                    LEGENDARY
+                </div>
+
+                <div class="wheel-center">
+                    👻
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="odds">
+
+            <div class="odd legendary">
+
+                <div class="odd-name">
+                    🟡 Legendary
+                </div>
+
+                <div
+                    class="odd-percent"
+                    id="legendaryOdds">
+                    97%
+                </div>
+
+            </div>
+
+
+            <div class="odd mythic">
+
+                <div class="odd-name">
+                    🔴 Mythic
+                </div>
+
+                <div
+                    class="odd-percent"
+                    id="mythicOdds">
+                    3%
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="spin-button"
+            id="spinButton"
+            onclick="spinWheel()">
+
+            🎡 چرخاندن ·
+            <span id="spinCost">
+                100K
+            </span>
+            🪙
+
+        </button>
+
+
+        <div
+            class="result"
+            id="result">
+
+            <div
+                class="result-icon"
+                id="resultIcon">
+                👑
+            </div>
+
+            <div
+                class="result-rarity"
+                id="resultRarity">
+                LEGENDARY
+            </div>
+
+            <div
+                class="result-name"
+                id="resultName">
+                —
+            </div>
+
+            <div
+                class="result-effect"
+                id="resultEffect">
+                —
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="info">
+
+        <strong>🎯 قوانین گردونه:</strong>
+
+        <br>
+
+        • تمام هزینه‌ها با سکه داخل بازی پرداخت می‌شوند.
+
+        <br>
+
+        • جایزه‌ها دائمی هستند و در قدرت بازی تأثیر می‌گذارند.
+
+        <br>
+
+        • گردونه اول در پیشرفت 1B باز می‌شود.
+
+        <br>
+
+        • شانس گردونه اول:
+        97٪ Legendary و 3٪ Mythic.
+
+        <br>
+
+        • گردونه‌های بالاتر شانس Mythic بیشتری دارند.
+
+    </div>
+
+
+    <div class="history">
+
+        <div class="history-title">
+            🏆 آخرین جوایز
+        </div>
+
+        <div
+            class="history-list"
+            id="historyList">
+        </div>
+
+    </div>
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+<div class="bottom-nav">
+
+    <div class="nav-inner">
+
+        <a
+            class="nav-item"
+            href="index.html">
+
+            <span>👻</span>
+            <span>بازی</span>
+
+        </a>
+
+
+        <a
+            class="nav-item"
+            href="cards.html">
+
+            <span>🃏</span>
+            <span>کارت‌ها</span>
+
+        </a>
+
+
+        <a
+            class="nav-item"
+            href="abilities.html">
+
+            <span>⚡</span>
+            <span>توانایی</span>
+
+        </a>
+
+
+        <a
+            class="nav-item active"
+            href="wheel.html">
+
+            <span>🎡</span>
+            <span>گردونه</span>
+
+        </a>
+
+
+        <a
+            class="nav-item"
+            href="profile.html">
+
+            <span>👤</span>
+            <span>پروفایل</span>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   GHOST TAP WHEEL SYSTEM
+===================================================== */
+
+
+/* STORAGE */
+
+const COINS_KEY = "ghostCoins";
+
+const TOTAL_COINS_KEY =
+    "ghostTotalCoins";
+
+const WHEEL_KEY =
+    "ghostWheel";
+
+const WHEEL_ITEMS_KEY =
+    "ghostWheelItems";
+
+const REBIRTH_KEY =
+    "ghostRebirths";
+
+const XP_KEY =
+    "ghostXP";
+
+
+/* STATE */
+
+let coins = 0;
+
+let totalCoins = 0;
+
+let rebirths = 0;
+
+let xp = 0;
+
+let wheelState = {};
+
+let wheelItems = {};
+
+let selectedWheel = 1;
+
+let spinning = false;
+
+let rotation = 0;
+
+
+/* =====================================================
+   WHEEL DATABASE
+===================================================== */
+
+const WHEELS = [
+
+    {
+        id:1,
+
+        name:"Ghost Wheel",
+
+        unlock:1000000000,
+
+        cost:100000,
+
+        legendary:97,
+
+        mythic:3,
+
+        legendaryItems:[
+            {
+                id:"legend_coin_core",
+                name:"Legend Coin Core",
+                icon:"🟡",
+                rarity:"Legendary",
+                multiplier:1.50,
+                effect:"+50٪ قدرت سکه‌سازی"
+            },
+            {
+                id:"legend_shadow_hand",
+                name:"Legend Shadow Hand",
+                icon:"👑",
+                rarity:"Legendary",
+                multiplier:1.75,
+                effect:"+75٪ قدرت ضربه"
+            },
+            {
+                id:"legend_ghost_eye",
+                name:"Legend Ghost Eye",
+                icon:"👁️",
+                rarity:"Legendary",
+                multiplier:2.00,
+                effect:"+100٪ قدرت ضربه"
+            }
+        ],
+
+        mythicItems:[
+            {
+                id:"mythic_void_core",
+                name:"Mythic Void Core",
+                icon:"💠",
+                rarity:"Mythic",
+                multiplier:3.00,
+                effect:"×3 قدرت کلی"
+            },
+            {
+                id:"mythic_ghost_soul",
+                name:"Mythic Ghost Soul",
+                icon:"🔮",
+                rarity:"Mythic",
+                multiplier:4.00,
+                effect:"×4 قدرت کلی"
+            }
+        ]
+    },
+
+
+    {
+        id:2,
+
+        name:"Shadow Wheel",
+
+        unlock:5000000000,
+
+        cost:500000,
+
+        legendary:90,
+
+        mythic:10,
+
+        legendaryItems:[
+            {
+                id:"shadow_legend",
+                name:"Shadow Legend",
+                icon:"🌑",
+                rarity:"Legendary",
+                multiplier:3.00,
+                effect:"×3 قدرت"
+            },
+            {
+                id:"dark_crown",
+                name:"Dark Crown",
+                icon:"👑",
+                rarity:"Legendary",
+                multiplier:3.50,
+                effect:"×3.5 قدرت"
+            }
+        ],
+
+        mythicItems:[
+            {
+                id:"shadow_mythic",
+                name:"Shadow Mythic",
+                icon:"💜",
+                rarity:"Mythic",
+                multiplier:6.00,
+                effect:"×6 قدرت کلی"
+            },
+            {
+                id:"void_heart",
+                name:"Void Heart",
+                icon:"🖤",
+                rarity:"Mythic",
+                multiplier:7.00,
+                effect:"×7 قدرت کلی"
+            }
+        ]
+    },
+
+
+    {
+        id:3,
+
+        name:"Mythic Wheel",
+
+        unlock:25000000000,
+
+        cost:2500000,
+
+        legendary:80,
+
+        mythic:20,
+
+        legendaryItems:[
+            {
+                id:"mythic_legend",
+                name:"Mythic Legend",
+                icon:"🔥",
+                rarity:"Legendary",
+                multiplier:5.00,
+                effect:"×5 قدرت"
+            },
+            {
+                id:"king_energy",
+                name:"King Energy",
+                icon:"⚡",
+                rarity:"Legendary",
+                multiplier:6.00,
+                effect:"×6 قدرت"
+            }
+        ],
+
+        mythicItems:[
+            {
+                id:"absolute_void",
+                name:"Absolute Void",
+                icon:"🌀",
+                rarity:"Mythic",
+                multiplier:10.00,
+                effect:"×10 قدرت کلی"
+            },
+            {
+                id:"mythic_overlord",
+                name:"Mythic Overlord",
+                icon:"💎",
+                rarity:"Mythic",
+                multiplier:15.00,
+                effect:"×15 قدرت کلی"
+            }
+        ]
+    },
+
+
+    {
+        id:4,
+
+        name:"GOD Wheel",
+
+        unlock:100000000000,
+
+        cost:10000000,
+
+        legendary:70,
+
+        mythic:30,
+
+        legendaryItems:[
+            {
+                id:"god_legend",
+                name:"God Legend",
+                icon:"🌟",
+                rarity:"Legendary",
+                multiplier:10.00,
+                effect:"×10 قدرت"
+            },
+            {
+                id:"celestial_hand",
+                name:"Celestial Hand",
+                icon:"✋",
+                rarity:"Legendary",
+                multiplier:12.00,
+                effect:"×12 قدرت"
+            }
+        ],
+
+        mythicItems:[
+            {
+                id:"god_mythic",
+                name:"God Mythic",
+                icon:"☄️",
+                rarity:"Mythic",
+                multiplier:25.00,
+                effect:"×25 قدرت کلی"
+            },
+            {
+                id:"absolute_god",
+                name:"Absolute God",
+                icon:"👑",
+                rarity:"Mythic",
+                multiplier:50.00,
+                effect:"×50 قدرت کلی"
+            }
+        ]
+    }
+
+];
+
+
+/* =====================================================
+   LOAD
+===================================================== */
+
+function loadState(){
+
+    coins =
+        Number(
+            localStorage.getItem(COINS_KEY)
+        ) || 0;
+
+
+    totalCoins =
+        Number(
+            localStorage.getItem(TOTAL_COINS_KEY)
+        ) || 0;
+
+
+    rebirths =
+        Number(
+            localStorage.getItem(REBIRTH_KEY)
+        ) || 0;
+
+
+    xp =
+        Number(
+            localStorage.getItem(XP_KEY)
+        ) || 0;
+
+
+    try{
+
+        wheelState =
+            JSON.parse(
+                localStorage.getItem(WHEEL_KEY)
+            ) || {};
+
+    }catch(e){
+
+        wheelState = {};
+
+    }
+
+
+    try{
+
+        wheelItems =
+            JSON.parse(
+                localStorage.getItem(WHEEL_ITEMS_KEY)
+            ) || {};
+
+    }catch(e){
+
+        wheelItems = {};
+
+    }
+
+
+    if(!wheelState.spins){
+
+        wheelState.spins = 0;
+
+    }
+
+
+    if(!Array.isArray(wheelState.history)){
+
+        wheelState.history = [];
+
+    }
+
+}
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+function saveState(){
+
+    localStorage.setItem(
+        COINS_KEY,
+        String(coins)
+    );
+
+
+    localStorage.setItem(
+        WHEEL_KEY,
+        JSON.stringify(wheelState)
+    );
+
+
+    localStorage.setItem(
+        WHEEL_ITEMS_KEY,
+        JSON.stringify(wheelItems)
+    );
+
+}
+
+
+/* =====================================================
+   FORMAT
+===================================================== */
+
+function formatNumber(number){
+
+    number =
+        Number(number) || 0;
+
+
+    if(number >= 1e15)
+        return (number / 1e15).toFixed(2)+"Q";
+
+
+    if(number >= 1e12)
+        return (number / 1e12).toFixed(2)+"T";
+
+
+    if(number >= 1e9)
+        return (number / 1e9).toFixed(2)+"B";
+
+
+    if(number >= 1e6)
+        return (number / 1e6).toFixed(2)+"M";
+
+
+    if(number >= 1e3)
+        return (number / 1e3).toFixed(2)+"K";
+
+
+    return Math.floor(number)
+        .toLocaleString("en-US");
+
+}
+
+
+/* =====================================================
+   LEVEL
+===================================================== */
+
+function getLevel(){
+
+    return Math.floor(xp / 100) + 1;
+
+}
+
+
+/* =====================================================
+   CHECK UNLOCK
+===================================================== */
+
+function isWheelUnlocked(wheel){
+
+    return totalCoins >= wheel.unlock;
+
+}
+
+
+/* =====================================================
+   BUILD TABS
+===================================================== */
+
+function renderTabs(){
+
+    const container =
+        document.getElementById("wheelTabs");
+
+    container.innerHTML = "";
+
+
+    WHEELS.forEach(wheel => {
+
+        const button =
+            document.createElement("button");
+
+        button.className =
+            "wheel-tab" +
+            (
+                selectedWheel === wheel.id
+                ? " active"
+                : ""
+            );
+
+
+        button.textContent =
+            wheel.name;
+
+
+        button.onclick = function(){
+
+            selectedWheel =
+                wheel.id;
+
+            renderTabs();
+
+            renderWheel();
+
+        };
+
+
+        container.appendChild(button);
+
+    });
+
+}
+
+
+/* =====================================================
+   GET SELECTED WHEEL
+===================================================== */
+
+function getSelectedWheel(){
+
+    return WHEELS.find(
+        wheel =>
+            wheel.id === selectedWheel
+    );
+
+}
+
+
+/* =====================================================
+   RENDER WHEEL
+===================================================== */
+
+function renderWheel(){
+
+    const wheel =
+        getSelectedWheel();
+
+
+    const box =
+        document.getElementById("wheelBox");
+
+
+    if(!wheel){
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "legendaryOdds"
+    ).textContent =
+        wheel.legendary + "%";
+
+
+    document.getElementById(
+        "mythicOdds"
+    ).textContent =
+        wheel.mythic + "%";
+
+
+    document.getElementById(
+        "spinCost"
+    ).textContent =
+        formatNumber(wheel.cost);
+
+
+    if(!isWheelUnlocked(wheel)){
+
+        box.innerHTML = `
+
+            <div class="locked-box">
+
+                <div class="lock-icon">
+                    🔒
+                </div>
+
+                <div class="lock-title">
+                    ${wheel.name}
+                </div>
+
+                <div class="lock-text">
+
+                    برای باز کردن این گردونه باید
+                    حداقل
+
+                    <strong>
+                        ${formatNumber(wheel.unlock)}
+                    </strong>
+
+                    سکه کل کسب کرده باشی.
+
+                    <br>
+
+                    پیشرفت فعلی:
+                    <strong>
+                        ${formatNumber(totalCoins)}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML = `
+
+        <div class="wheel-wrap">
+
+            <div class="pointer"></div>
+
+            <div
+                class="wheel"
+                id="wheel">
+
+                <div class="wheel-label label-top label-legendary">
+                    LEGENDARY
+                </div>
+
+                <div class="wheel-label label-right label-legendary">
+                    LEGENDARY
+                </div>
+
+                <div class="wheel-label label-bottom label-mythic">
+                    MYTHIC
+                </div>
+
+                <div class="wheel-label label-left label-legendary">
+                    LEGENDARY
+                </div>
+
+                <div class="wheel-center">
+                    👻
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="odds">
+
+            <div class="odd legendary">
+
+                <div class="odd-name">
+                    🟡 Legendary
+                </div>
+
+                <div
+                    class="odd-percent">
+                    ${wheel.legendary}%
+                </div>
+
+            </div>
+
+
+            <div class="odd mythic">
+
+                <div class="odd-name">
+                    🔴 Mythic
+                </div>
+
+                <div
+                    class="odd-percent">
+                    ${wheel.mythic}%
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="spin-button"
+            id="spinButton"
+            onclick="spinWheel()">
+
+            🎡 چرخاندن ·
+            ${formatNumber(wheel.cost)}
+            🪙
+
+        </button>
+
+
+        <div
+            class="result"
+            id="result">
+
+            <div
+                class="result-icon"
+                id="resultIcon">
+            </div>
+
+            <div
+                class="result-rarity"
+                id="resultRarity">
+            </div>
+
+            <div
+                class="result-name"
+                id="resultName">
+            </div>
+
+            <div
+                class="result-effect"
+                id="resultEffect">
+            </div>
+
+        </div>
+
+    `;
+
+
+    renderHistory();
+
+}
+
+
+/* =====================================================
+   PICK RARITY
+===================================================== */
+
+function pickRarity(wheel){
+
+    const random =
+        Math.random() * 100;
+
+
+    if(random < wheel.mythic){
+
+        return "Mythic";
+
+    }
+
+
+    return "Legendary";
+
+}
+
+
+/* =====================================================
+   PICK ITEM
+===================================================== */
+
+function pickItem(wheel,rarity){
+
+    const list =
+        rarity === "Mythic"
+        ? wheel.mythicItems
+        : wheel.legendaryItems;
+
+
+    if(!list || !list.length){
+
+        return null;
+
+    }
+
+
+    return list[
+        Math.floor(
+            Math.random() * list.length
+        )
+    ];
+
+}
+
+
+/* =====================================================
+   ADD PERMANENT REWARD
+===================================================== */
+
+function addReward(item){
+
+    if(!wheelItems[item.id]){
+
+        wheelItems[item.id] = {
+
+            id:item.id,
+
+            name:item.name,
+
+            icon:item.icon,
+
+            rarity:item.rarity,
+
+            multiplier:item.multiplier,
+
+            effect:item.effect,
+
+            owned:0,
+
+            totalWon:0
+
+        };
+
+    }
+
+
+    wheelItems[item.id].owned++;
+
+    wheelItems[item.id].totalWon++;
+
+
+    saveState();
+
+}
+
+
+/* =====================================================
+   TOTAL WHEEL MULTIPLIER
+===================================================== */
+
+function getWheelMultiplier(){
+
+    let multiplier = 1;
+
+
+    Object.values(wheelItems)
+        .forEach(item => {
+
+            if(item && item.owned){
+
+                multiplier *=
+                    Math.pow(
+                        Number(item.multiplier || 1),
+                        Math.min(
+                            Number(item.owned),
+                            5
+                        )
+                    );
+
+            }
+
+        });
+
+
+    return multiplier;
+
+}
+
+
+/* =====================================================
+   SPIN
+===================================================== */
+
+function spinWheel(){
+
+    if(spinning){
+
+        return;
+
+    }
+
+
+    const wheel =
+        getSelectedWheel();
+
+
+    if(!wheel){
+
+        return;
+
+    }
+
+
+    if(!isWheelUnlocked(wheel)){
+
+        showToast(
+            "🔒 این گردونه هنوز باز نشده است."
+        );
+
+        return;
+
+    }
+
+
+    if(coins < wheel.cost){
+
+        showToast(
+            "🪙 سکه کافی نداری!"
+        );
+
+        return;
+
+    }
+
+
+    spinning = true;
+
+
+    coins -= wheel.cost;
+
+
+    saveState();
+
+
+    const rarity =
+        pickRarity(wheel);
+
+
+    const item =
+        pickItem(
+            wheel,
+            rarity
+        );
+
+
+    if(!item){
+
+        spinning = false;
+
+        return;
+
+    }
+
+
+    const wheelElement =
+        document.getElementById("wheel");
+
+
+    const extraTurns =
+        5 + Math.floor(
+            Math.random() * 3
+        );
+
+
+    const finalDegree =
+        Math.floor(
+            Math.random() * 360
+        );
+
+
+    rotation +=
+        (extraTurns * 360) +
+        finalDegree;
+
+
+    wheelElement.style.transform =
+        "rotate(" +
+        rotation +
+        "deg)";
+
+
+    const button =
+        document.getElementById(
+            "spinButton"
+        );
+
+
+    if(button){
+
+        button.disabled = true;
+
+        button.textContent =
+            "🎡 در حال چرخش...";
+
+    }
+
+
+    setTimeout(() => {
+
+        addReward(item);
+
+        wheelState.spins =
+            Number(
+                wheelState.spins || 0
+            ) + 1;
+
+
+        const historyItem = {
+
+            id:item.id,
+
+            name:item.name,
+
+            icon:item.icon,
+
+            rarity:item.rarity,
+
+            effect:item.effect,
+
+            wheel:wheel.name,
+
+            time:Date.now()
+
+        };
+
+
+        wheelState.history.unshift(
+            historyItem
+        );
+
+
+        if(
+            wheelState.history.length > 12
+        ){
+
+            wheelState.history =
+                wheelState.history.slice(
+                    0,
+                    12
+                );
+
+        }
+
+
+        saveState();
+
+
+        showResult(item);
+
+
+        spinning = false;
+
+
+        updateWallet();
+
+
+        renderHistory();
+
+
+    },4600);
+
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+function showResult(item){
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    if(!result){
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "resultIcon"
+    ).textContent =
+        item.icon;
+
+
+    document.getElementById(
+        "resultRarity"
+    ).textContent =
+        item.rarity;
+
+
+    document.getElementById(
+        "resultName"
+    ).textContent =
+        item.name;
+
+
+    document.getElementById(
+        "resultEffect"
+    ).textContent =
+        item.effect +
+        " · دائمی";
+
+
+    result.classList.add(
+        "show"
+    );
+
+
+    if(item.rarity === "Mythic"){
+
+        result.style.borderColor =
+            "#ff6078";
+
+
+        showToast(
+            "🔥 MYTHIC! " +
+            item.name
+        );
+
+    }else{
+
+        result.style.borderColor =
+            "#66551f";
+
+
+        showToast(
+            "👑 LEGENDARY! " +
+            item.name
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   HISTORY
+===================================================== */
+
+function renderHistory(){
+
+    const container =
+        document.getElementById(
+            "historyList"
+        );
+
+
+    if(!container){
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    const history =
+        wheelState.history || [];
+
+
+    if(history.length === 0){
+
+        container.innerHTML = `
+
+            <div class="info">
+                هنوز جایزه‌ای از گردونه نگرفته‌ای.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    history
+        .slice(0,8)
+        .forEach(item => {
+
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+
+            element.className =
+                "history-item";
+
+
+            element.innerHTML = `
+
+                <div class="history-icon">
+                    ${item.icon}
+                </div>
+
+                <div class="history-info">
+
+                    <div class="history-name">
+                        ${item.name}
+                    </div>
+
+                    <div class="history-rarity">
+                        ${item.rarity}
+                        ·
+                        ${item.wheel}
+                    </div>
+
+                </div>
+
+                <div class="history-time">
+                    ${formatHistoryTime(item.time)}
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                element
+            );
+
+        });
+
+}
+
+
+/* =====================================================
+   HISTORY TIME
+===================================================== */
+
+function formatHistoryTime(time){
+
+    const diff =
+        Date.now() - Number(time);
+
+
+    const sec =
+        Math.floor(diff / 1000);
+
+
+    if(sec < 60){
+
+        return "همین الان";
+
+    }
+
+
+    const min =
+        Math.floor(sec / 60);
+
+
+    if(min < 60){
+
+        return min + " دقیقه";
+
+    }
+
+
+    const hour =
+        Math.floor(min / 60);
+
+
+    if(hour < 24){
+
+        return hour + " ساعت";
+
+    }
+
+
+    return Math.floor(hour / 24) +
+        " روز";
+
+}
+
+
+/* =====================================================
+   WALLET
+===================================================== */
+
+function updateWallet(){
+
+    const coinElement =
+        document.getElementById(
+            "coins"
+        );
+
+
+    if(coinElement){
+
+        coinElement.textContent =
+            formatNumber(coins);
+
+    }
+
+
+    const spinElement =
+        document.getElementById(
+            "totalSpins"
+        );
+
+
+    if(spinElement){
+
+        spinElement.textContent =
+            formatNumber(
+                wheelState.spins || 0
+            );
+
+    }
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer = null;
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    if(!toast){
+
+        return;
+
+    }
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(() => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },2400);
+
+}
+
+
+/* =====================================================
+   PUBLIC API
+===================================================== */
+
+window.GhostWheel = {
+
+    getItems:function(){
+
+        return wheelItems;
+
+    },
+
+
+    getMultiplier:function(){
+
+        return getWheelMultiplier();
+
+    },
+
+
+    getSpins:function(){
+
+        return Number(
+            wheelState.spins || 0
+        );
+
+    },
+
+
+    getUnlockedWheels:function(){
+
+        return WHEELS.filter(
+            wheel =>
+                isWheelUnlocked(wheel)
+        );
+
+    },
+
+
+    getDatabase:function(){
+
+        return WHEELS;
+
+    }
+
+};
+
+
+/* =====================================================
+   STORAGE SYNC
+===================================================== */
+
+window.addEventListener(
+    "storage",
+    function(event){
+
+        if(
+            event.key === COINS_KEY ||
+            event.key === TOTAL_COINS_KEY ||
+            event.key === WHEEL_KEY ||
+            event.key === WHEEL_ITEMS_KEY ||
+            event.key === XP_KEY
+        ){
+
+            loadState();
+
+            updateWallet();
+
+            renderTabs();
+
+            renderWheel();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   LIVE TOTAL COINS UPDATE
+===================================================== */
+
+setInterval(() => {
+
+    const latestCoins =
+        Number(
+            localStorage.getItem(
+                TOTAL_COINS_KEY
+            )
+        ) || 0;
+
+
+    if(latestCoins !== totalCoins){
+
+        totalCoins =
+            latestCoins;
+
+        renderTabs();
+
+        renderWheel();
+
+    }
+
+
+    updateWallet();
+
+},1000);
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadState();
+
+renderTabs();
+
+updateWallet();
+
+renderWheel();
+
+</script>
+
+</body>
+          </html>

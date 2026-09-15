@@ -1,0 +1,1095 @@
+<!DOCTYPE html><html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#08080d">
+<title>Ghost Tap | Cards</title><style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    min-height:100%;
+    background:#08080d;
+    color:#fff;
+    font-family:Tahoma,Arial,sans-serif;
+}
+
+body{
+    overflow-x:hidden;
+    user-select:none;
+}
+
+button,a{
+    font-family:inherit;
+}
+
+button{
+    border:0;
+    outline:0;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.app{
+    width:100%;
+    max-width:520px;
+    margin:auto;
+    min-height:100vh;
+    padding:15px 14px 100px;
+}
+
+/* HEADER */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.back{
+    width:43px;
+    height:43px;
+    border-radius:14px;
+    background:#15151f;
+    border:1px solid #292937;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+}
+
+.title{
+    text-align:center;
+    flex:1;
+}
+
+.title h1{
+    font-size:18px;
+}
+
+.title span{
+    display:block;
+    color:#747486;
+    font-size:10px;
+    margin-top:4px;
+}
+
+.header-space{
+    width:43px;
+}
+
+/* WALLET */
+
+.wallet{
+    background:linear-gradient(145deg,#181822,#0e0e14);
+    border:1px solid #2b2b39;
+    border-radius:22px;
+    padding:15px;
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.wallet-title{
+    color:#777789;
+    font-size:10px;
+}
+
+.wallet-value{
+    margin-top:5px;
+    font-size:21px;
+    font-weight:900;
+}
+
+.wallet-right{
+    text-align:left;
+}
+
+.card-count{
+    font-size:11px;
+    color:#aaaabd;
+}
+
+.card-count span{
+    color:#fff;
+    font-weight:900;
+}
+
+/* FILTER */
+
+.filters{
+    display:flex;
+    gap:7px;
+    overflow-x:auto;
+    padding-bottom:4px;
+    margin-bottom:14px;
+}
+
+.filters::-webkit-scrollbar{
+    display:none;
+}
+
+.filter{
+    flex:0 0 auto;
+    background:#111119;
+    color:#777789;
+    border:1px solid #272733;
+    border-radius:13px;
+    padding:9px 13px;
+    font-size:9px;
+}
+
+.filter.active{
+    background:#292943;
+    color:#d5d5ff;
+    border-color:#4b4b70;
+}
+
+/* CARD GRID */
+
+.cards{
+    display:grid;
+    gap:11px;
+}
+
+.card{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(145deg,#171720,#0f0f16);
+    border:1px solid #292936;
+    border-radius:22px;
+    padding:15px;
+}
+
+.card.locked{
+    opacity:.62;
+}
+
+.card.active{
+    border-color:#6565a0;
+    box-shadow:0 0 22px rgba(120,120,255,.09);
+}
+
+.card-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.card-icon{
+    width:58px;
+    height:58px;
+    border-radius:17px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:31px;
+    background:#242432;
+    border:1px solid #39394b;
+}
+
+.card-info{
+    flex:1;
+}
+
+.card-name{
+    font-size:13px;
+    font-weight:900;
+}
+
+.card-rarity{
+    display:inline-block;
+    margin-top:5px;
+    padding:4px 8px;
+    border-radius:8px;
+    font-size:8px;
+    font-weight:bold;
+    background:#252535;
+    color:#aaaabd;
+}
+
+.card-effect{
+    margin-top:11px;
+    color:#9696a9;
+    font-size:9px;
+    line-height:1.8;
+}
+
+.card-effect strong{
+    color:#d4d4ff;
+}
+
+.card-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    margin-top:13px;
+}
+
+.card-level{
+    color:#777789;
+    font-size:9px;
+}
+
+.card-level strong{
+    color:#fff;
+}
+
+.card-button{
+    min-width:105px;
+    padding:10px 12px;
+    border-radius:13px;
+    background:#292943;
+    color:#e0e0ff;
+    font-size:9px;
+    font-weight:bold;
+}
+
+.card-button:active{
+    transform:scale(.96);
+}
+
+.card-button.lock{
+    background:#181820;
+    color:#666678;
+}
+
+/* RARITY */
+
+.card[data-rarity="Common"]{
+    border-color:#292936;
+}
+
+.card[data-rarity="Rare"]{
+    border-color:#3b3b5a;
+}
+
+.card[data-rarity="Epic"]{
+    border-color:#4c3e61;
+}
+
+.card[data-rarity="Legendary"]{
+    border-color:#66543b;
+}
+
+.card[data-rarity="Mythic"]{
+    border-color:#633c61;
+}
+
+.card[data-rarity="GOD"]{
+    border-color:#8a713d;
+    box-shadow:0 0 25px rgba(255,205,100,.08);
+}
+
+/* INFO */
+
+.info{
+    margin-top:14px;
+    padding:14px;
+    border-radius:18px;
+    background:#101017;
+    border:1px solid #252531;
+    color:#777789;
+    font-size:9px;
+    line-height:2;
+}
+
+.info strong{
+    color:#c9c9dc;
+}
+
+/* NAV */
+
+.bottom-nav{
+    position:fixed;
+    z-index:100;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:520px;
+    padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+    background:rgba(8,8,13,.95);
+    backdrop-filter:blur(15px);
+    border-top:1px solid #242430;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.nav-item{
+    text-align:center;
+    color:#696979;
+    font-size:9px;
+    padding:5px 0;
+}
+
+.nav-item div{
+    font-size:20px;
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:#c3c3ff;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    z-index:999;
+    top:20px;
+    left:50%;
+    transform:translate(-50%,-20px);
+    opacity:0;
+    pointer-events:none;
+    background:#20202c;
+    border:1px solid #3a3a4e;
+    border-radius:14px;
+    padding:11px 16px;
+    font-size:11px;
+    font-weight:bold;
+    transition:.25s;
+    white-space:nowrap;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:360px){
+
+    .app{
+        padding-left:10px;
+        padding-right:10px;
+    }
+
+    .card-icon{
+        width:52px;
+        height:52px;
+    }
+
+    .card-button{
+        min-width:90px;
+    }
+}
+</style></head><body><div class="app"><header class="header"><a href="index.html" class="back">→</a>
+
+<div class="title">
+    <h1>🃏 کارت‌ها</h1>
+    <span>قدرت‌های واقعی بازی</span>
+</div>
+
+<div class="header-space"></div>
+
+</header><section class="wallet"><div>
+    <div class="wallet-title">
+        موجودی سکه
+    </div>
+
+    <div class="wallet-value">
+        🪙 <span id="coins">0</span>
+    </div>
+</div>
+
+<div class="wallet-right">
+    <div class="card-count">
+        کارت‌ها
+    </div>
+
+    <div class="card-count">
+        <span id="ownedCount">0</span> / <span id="totalCount">0</span>
+    </div>
+</div>
+
+</section><div class="filters"><button class="filter active" data-filter="all">
+    همه
+</button>
+
+<button class="filter" data-filter="Common">
+    Common
+</button>
+
+<button class="filter" data-filter="Rare">
+    Rare
+</button>
+
+<button class="filter" data-filter="Epic">
+    Epic
+</button>
+
+<button class="filter" data-filter="Legendary">
+    Legendary
+</button>
+
+<button class="filter" data-filter="Mythic">
+    Mythic
+</button>
+
+<button class="filter" data-filter="GOD">
+    GOD
+</button>
+
+</div><section class="cards" id="cards"></section><div class="info">
+    🃏 کارت‌ها <strong>کلکسیونی صرف نیستند.</strong>
+    هر کارت فعال می‌تواند روی قدرت Tap اثر واقعی بگذارد.
+    کارت‌های قوی‌تر با پیشرفت بازی و سیستم‌های بعدی قابل دریافت هستند.
+</div></div><nav class="bottom-nav"><a class="nav-item" href="index.html">
+    <div>👻</div>
+    خانه
+</a>
+
+<a class="nav-item active" href="cards.html">
+    <div>🃏</div>
+    کارت‌ها
+</a>
+
+<a class="nav-item" href="abilities.html">
+    <div>✨</div>
+    Ability
+</a>
+
+<a class="nav-item" href="wheel.html">
+    <div>🎡</div>
+    گردونه
+</a>
+
+<a class="nav-item" href="profile.html">
+    <div>👤</div>
+    پروفایل
+</a>
+
+</nav><div class="toast" id="toast"></div><script>
+/* =====================================================
+   GHOST TAP CARD SYSTEM
+===================================================== */
+
+const CARD_DATABASE = [
+
+    {
+        id:"ghost_hand",
+        name:"دست گوست",
+        icon:"👻",
+        rarity:"Common",
+        cost:0,
+        unlock:0,
+        multiplier:.05,
+        description:"+5% سکه در هر Tap"
+    },
+
+    {
+        id:"coin_eye",
+        name:"چشم سکه‌ای",
+        icon:"👁️",
+        rarity:"Common",
+        cost:500,
+        unlock:2,
+        multiplier:.08,
+        description:"+8% سکه در هر Tap"
+    },
+
+    {
+        id:"dark_coin",
+        name:"سکه تاریک",
+        icon:"🌑",
+        rarity:"Rare",
+        cost:2500,
+        unlock:5,
+        multiplier:.12,
+        description:"+12% سکه در هر Tap"
+    },
+
+    {
+        id:"ghost_fire",
+        name:"آتش گوست",
+        icon:"🔥",
+        rarity:"Rare",
+        cost:5000,
+        unlock:8,
+        multiplier:.16,
+        description:"+16% سکه در هر Tap"
+    },
+
+    {
+        id:"shadow_power",
+        name:"قدرت سایه",
+        icon:"🌘",
+        rarity:"Epic",
+        cost:15000,
+        unlock:15,
+        multiplier:.25,
+        description:"+25% سکه در هر Tap"
+    },
+
+    {
+        id:"soul_hunter",
+        name:"شکارچی روح",
+        icon:"💀",
+        rarity:"Epic",
+        cost:35000,
+        unlock:25,
+        multiplier:.35,
+        description:"+35% سکه در هر Tap"
+    },
+
+    {
+        id:"ghost_king",
+        name:"پادشاه گوست",
+        icon:"👑",
+        rarity:"Legendary",
+        cost:100000,
+        unlock:40,
+        multiplier:.50,
+        description:"+50% سکه در هر Tap"
+    },
+
+    {
+        id:"void_master",
+        name:"ارباب Void",
+        icon:"🌀",
+        rarity:"Legendary",
+        cost:500000,
+        unlock:60,
+        multiplier:.75,
+        description:"+75% سکه در هر Tap"
+    },
+
+    {
+        id:"mythic_ghost",
+        name:"Mythic Ghost",
+        icon:"🔮",
+        rarity:"Mythic",
+        cost:2000000,
+        unlock:100,
+        multiplier:1.00,
+        description:"+100% سکه در هر Tap"
+    },
+
+    {
+        id:"god_ghost",
+        name:"GOD Ghost",
+        icon:"⚜️",
+        rarity:"GOD",
+        cost:1000000000,
+        unlock:250,
+        multiplier:2.00,
+        description:"+200% سکه در هر Tap"
+    }
+
+];
+
+/* =====================================================
+   STORAGE
+===================================================== */
+
+function getCards(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem("ghostCards") || "{}"
+        );
+
+    }catch(error){
+
+        localStorage.setItem(
+            "ghostCards",
+            "{}"
+        );
+
+        return {};
+    }
+}
+
+function saveCards(cards){
+
+    localStorage.setItem(
+        "ghostCards",
+        JSON.stringify(cards)
+    );
+}
+
+/* =====================================================
+   PLAYER DATA
+===================================================== */
+
+function getNumber(key,fallback=0){
+
+    const value =
+        Number(localStorage.getItem(key));
+
+    return Number.isFinite(value)
+        ? value
+        : fallback;
+}
+
+function setNumber(key,value){
+
+    localStorage.setItem(
+        key,
+        String(Math.max(0,Number(value)||0))
+    );
+}
+
+function getLevel(){
+
+    const xp =
+        getNumber("ghostXP",0);
+
+    return Math.floor(xp / 100) + 1;
+}
+
+/* =====================================================
+   NUMBER FORMAT
+===================================================== */
+
+function formatNumber(value){
+
+    value = Math.floor(Number(value)||0);
+
+    if(value >= 1000000000000){
+        return (value/1000000000000).toFixed(2)+"T";
+    }
+
+    if(value >= 1000000000){
+        return (value/1000000000).toFixed(2)+"B";
+    }
+
+    if(value >= 1000000){
+        return (value/1000000).toFixed(2)+"M";
+    }
+
+    if(value >= 1000){
+        return (value/1000).toFixed(2)+"K";
+    }
+
+    return value.toLocaleString("en-US");
+}
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+let currentFilter = "all";
+
+function renderCards(){
+
+    const container =
+        document.getElementById("cards");
+
+    const cards =
+        getCards();
+
+    const level =
+        getLevel();
+
+    container.innerHTML = "";
+
+    const filtered =
+        CARD_DATABASE.filter(card=>{
+
+            if(currentFilter === "all"){
+                return true;
+            }
+
+            return card.rarity === currentFilter;
+
+        });
+
+    document.getElementById("totalCount").textContent =
+        CARD_DATABASE.length;
+
+    let ownedCount = 0;
+
+    CARD_DATABASE.forEach(card=>{
+
+        if(cards[card.id] && cards[card.id].owned){
+            ownedCount++;
+        }
+
+    });
+
+    document.getElementById("ownedCount").textContent =
+        ownedCount;
+
+    filtered.forEach(card=>{
+
+        const data =
+            cards[card.id] || {
+                owned:false,
+                active:false,
+                level:0
+            };
+
+        const locked =
+            level < card.unlock &&
+            !data.owned;
+
+        const element =
+            document.createElement("article");
+
+        element.className =
+            "card" +
+            (locked ? " locked" : "") +
+            (data.active ? " active" : "");
+
+        element.dataset.rarity =
+            card.rarity;
+
+        let buttonText = "";
+
+        if(locked){
+
+            buttonText =
+                "🔒 LVL " + card.unlock;
+
+        }else if(!data.owned){
+
+            buttonText =
+                "🪙 " + formatNumber(card.cost);
+
+        }else if(data.active){
+
+            buttonText =
+                "✓ فعال";
+
+        }else{
+
+            buttonText =
+                "فعال کردن";
+
+        }
+
+        element.innerHTML = `
+
+            <div class="card-top">
+
+                <div class="card-icon">
+                    ${card.icon}
+                </div>
+
+                <div class="card-info">
+
+                    <div class="card-name">
+                        ${card.name}
+                    </div>
+
+                    <div class="card-rarity">
+                        ${card.rarity}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card-effect">
+                ${card.description}
+                <br>
+                ضریب فعلی:
+                <strong>
+                    +${Math.round(card.multiplier*100)}%
+                </strong>
+            </div>
+
+            <div class="card-bottom">
+
+                <div class="card-level">
+                    Level:
+                    <strong>
+                        ${data.level || (data.owned ? 1 : 0)}
+                    </strong>
+                </div>
+
+                <button
+                    class="card-button ${locked ? "lock":""}"
+                    onclick="cardAction('${card.id}')"
+                    ${locked ? "disabled":""}
+                >
+                    ${buttonText}
+                </button>
+
+            </div>
+
+        `;
+
+        container.appendChild(element);
+
+    });
+
+}
+
+/* =====================================================
+   CARD ACTION
+===================================================== */
+
+function cardAction(id){
+
+    const card =
+        CARD_DATABASE.find(
+            item=>item.id===id
+        );
+
+    if(!card){
+        return;
+    }
+
+    const cards =
+        getCards();
+
+    const level =
+        getLevel();
+
+    const data =
+        cards[id] || {
+            owned:false,
+            active:false,
+            level:0
+        };
+
+    if(level < card.unlock && !data.owned){
+
+        showToast(
+            "🔒 ابتدا به Level " +
+            card.unlock +
+            " برس!"
+        );
+
+        return;
+    }
+
+    /* BUY */
+
+    if(!data.owned){
+
+        let coins =
+            getNumber("ghostCoins",0);
+
+        if(coins < card.cost){
+
+            showToast(
+                "🪙 سکه کافی نیست!"
+            );
+
+            return;
+        }
+
+        coins -= card.cost;
+
+        setNumber(
+            "ghostCoins",
+            coins
+        );
+
+        data.owned = true;
+        data.active = false;
+        data.level = 1;
+
+        cards[id] = data;
+
+        saveCards(cards);
+
+        showToast(
+            "🃏 کارت " +
+            card.name +
+            " دریافت شد!"
+        );
+
+        renderCards();
+        updateWallet();
+
+        return;
+    }
+
+    /* TOGGLE */
+
+    data.active =
+        !data.active;
+
+    cards[id] = data;
+
+    saveCards(cards);
+
+    if(data.active){
+
+        showToast(
+            "⚡ " +
+            card.name +
+            " فعال شد!"
+        );
+
+    }else{
+
+        showToast(
+            "⭕ " +
+            card.name +
+            " غیرفعال شد!"
+        );
+
+    }
+
+    renderCards();
+}
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+document
+    .querySelectorAll(".filter")
+    .forEach(button=>{
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                document
+                    .querySelectorAll(".filter")
+                    .forEach(item=>{
+                        item.classList.remove("active");
+                    });
+
+                this.classList.add("active");
+
+                currentFilter =
+                    this.dataset.filter;
+
+                renderCards();
+
+            }
+        );
+
+    });
+
+/* =====================================================
+   WALLET
+===================================================== */
+
+function updateWallet(){
+
+    document.getElementById("coins").textContent =
+        formatNumber(
+            getNumber("ghostCoins",0)
+        );
+}
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer;
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent =
+        message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(()=>{
+
+            toast.classList.remove("show");
+
+        },1700);
+}
+
+/* =====================================================
+   GLOBAL CARD MULTIPLIER
+   index.html از همین Storage استفاده می‌کند.
+===================================================== */
+
+window.GhostCards = {
+
+    getActiveMultiplier:function(){
+
+        const cards =
+            getCards();
+
+        let multiplier = 1;
+
+        CARD_DATABASE.forEach(card=>{
+
+            const data =
+                cards[card.id];
+
+            if(
+                data &&
+                data.owned &&
+                data.active
+            ){
+
+                multiplier +=
+                    card.multiplier;
+            }
+
+        });
+
+        return multiplier;
+    },
+
+    getOwned:function(){
+
+        const cards =
+            getCards();
+
+        return CARD_DATABASE.filter(
+            card =>
+                cards[card.id] &&
+                cards[card.id].owned
+        );
+
+    },
+
+    getActive:function(){
+
+        const cards =
+            getCards();
+
+        return CARD_DATABASE.filter(
+            card =>
+                cards[card.id] &&
+                cards[card.id].owned &&
+                cards[card.id].active
+        );
+
+    }
+
+};
+
+/* =====================================================
+   LIVE UPDATE
+===================================================== */
+
+setInterval(()=>{
+
+    updateWallet();
+    renderCards();
+
+},1000);
+
+/* =====================================================
+   START
+===================================================== */
+
+renderCards();
+updateWallet();
+
+</script></body>
+</html>

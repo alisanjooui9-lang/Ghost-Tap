@@ -1,0 +1,927 @@
+<!DOCTYPE html><html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#08080d">
+<title>Ghost Tap | پروفایل</title><style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    min-height:100%;
+    background:#08080d;
+    color:#fff;
+    font-family:Tahoma,Arial,sans-serif;
+}
+
+body{
+    overflow-x:hidden;
+    user-select:none;
+}
+
+button,a{
+    font-family:inherit;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.app{
+    width:100%;
+    max-width:520px;
+    min-height:100vh;
+    margin:auto;
+    padding:15px 14px 100px;
+}
+
+/* HEADER */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+}
+
+.back{
+    width:43px;
+    height:43px;
+    border-radius:14px;
+    background:#15151f;
+    border:1px solid #292937;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+}
+
+.title{
+    text-align:center;
+    flex:1;
+}
+
+.title h1{
+    font-size:18px;
+}
+
+.title span{
+    color:#777789;
+    font-size:10px;
+    display:block;
+    margin-top:4px;
+}
+
+.header-space{
+    width:43px;
+}
+
+/* PROFILE HERO */
+
+.profile-card{
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 0%,rgba(140,140,255,.18),transparent 45%),
+        linear-gradient(145deg,#181822,#0e0e14);
+    border:1px solid #2c2c3a;
+    border-radius:28px;
+    padding:25px 18px;
+    text-align:center;
+    box-shadow:0 18px 50px rgba(0,0,0,.4);
+}
+
+.profile-glow{
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:rgba(120,120,255,.08);
+    filter:blur(30px);
+    top:-80px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.avatar{
+    width:105px;
+    height:105px;
+    margin:0 auto 12px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:55px;
+    background:radial-gradient(circle at 35% 25%,#fff,#bdbdff 20%,#55559a 58%,#20202c);
+    border:4px solid #37374e;
+    box-shadow:0 0 35px rgba(120,120,255,.2);
+    position:relative;
+    z-index:2;
+}
+
+.player-name{
+    font-size:20px;
+    font-weight:900;
+    position:relative;
+    z-index:2;
+}
+
+.rank{
+    display:inline-block;
+    margin-top:8px;
+    padding:7px 13px;
+    border-radius:20px;
+    background:#222230;
+    border:1px solid #373748;
+    color:#c8c8dc;
+    font-size:10px;
+    position:relative;
+    z-index:2;
+}
+
+/* LEVEL */
+
+.level-box{
+    margin-top:18px;
+    text-align:right;
+    position:relative;
+    z-index:2;
+}
+
+.level-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:11px;
+    margin-bottom:7px;
+}
+
+.level-xp{
+    color:#8a8a9d;
+}
+
+.xp-bar{
+    height:11px;
+    background:#24242f;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.xp-fill{
+    height:100%;
+    width:0;
+    border-radius:20px;
+    background:linear-gradient(90deg,#6666d8,#aaaaff);
+    transition:width .5s ease;
+}
+
+/* REBIRTH */
+
+.rebirth-badge{
+    margin-top:16px;
+    background:#11111a;
+    border:1px solid #292936;
+    border-radius:17px;
+    padding:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.rebirth-left{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.rebirth-icon{
+    font-size:22px;
+}
+
+.rebirth-label{
+    font-size:10px;
+    color:#777789;
+}
+
+.rebirth-value{
+    font-size:14px;
+    font-weight:900;
+}
+
+.rebirth-multiplier{
+    font-size:12px;
+    color:#aaaaff;
+    font-weight:900;
+}
+
+/* STATS */
+
+.section{
+    margin-top:16px;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.section-title h2{
+    font-size:15px;
+}
+
+.section-title span{
+    color:#6f6f80;
+    font-size:9px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:9px;
+}
+
+.stat{
+    background:#111119;
+    border:1px solid #252531;
+    border-radius:18px;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.stat-icon{
+    width:43px;
+    height:43px;
+    border-radius:14px;
+    background:#20202d;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+}
+
+.stat-label{
+    color:#777789;
+    font-size:9px;
+}
+
+.stat-value{
+    font-size:14px;
+    font-weight:900;
+    margin-top:4px;
+}
+
+/* MILESTONES */
+
+.milestones{
+    display:grid;
+    gap:9px;
+}
+
+.milestone{
+    background:#111119;
+    border:1px solid #252531;
+    border-radius:17px;
+    padding:13px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.milestone-icon{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    background:#20202d;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+}
+
+.milestone-info{
+    flex:1;
+}
+
+.milestone-title{
+    font-size:11px;
+    font-weight:900;
+}
+
+.milestone-desc{
+    color:#727284;
+    font-size:9px;
+    margin-top:4px;
+}
+
+.progress{
+    width:65px;
+    text-align:left;
+}
+
+.progress-number{
+    color:#9999ad;
+    font-size:8px;
+    margin-bottom:4px;
+}
+
+.progress-bar{
+    height:6px;
+    border-radius:10px;
+    background:#24242e;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    width:0;
+    background:#7777dd;
+    border-radius:10px;
+}
+
+/* BUTTONS */
+
+.actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin-top:16px;
+}
+
+.action{
+    min-height:54px;
+    border-radius:16px;
+    background:#181822;
+    border:1px solid #2b2b38;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.action:active{
+    transform:scale(.97);
+}
+
+.action.primary{
+    background:linear-gradient(145deg,#34345d,#242440);
+}
+
+/* NAV */
+
+.bottom-nav{
+    position:fixed;
+    z-index:100;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:520px;
+    padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+    background:rgba(8,8,13,.95);
+    backdrop-filter:blur(15px);
+    border-top:1px solid #242430;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.nav-item{
+    text-align:center;
+    color:#696979;
+    font-size:9px;
+    padding:5px 0;
+}
+
+.nav-item div{
+    font-size:20px;
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:#c3c3ff;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    z-index:999;
+    top:20px;
+    left:50%;
+    transform:translate(-50%,-20px);
+    opacity:0;
+    background:#20202c;
+    border:1px solid #3a3a4e;
+    border-radius:14px;
+    padding:11px 16px;
+    font-size:11px;
+    transition:.25s;
+    pointer-events:none;
+    white-space:nowrap;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+</style></head><body><div class="app"><header class="header"><a href="index.html" class="back">→</a>
+
+<div class="title">
+    <h1>👤 پروفایل</h1>
+    <span>وضعیت و پیشرفت بازیکن</span>
+</div>
+
+<div class="header-space"></div>
+
+</header><!-- PROFILE --><section class="profile-card"><div class="profile-glow"></div>
+
+<div class="avatar">👻</div>
+
+<div class="player-name">
+    کاربر نمونه
+</div>
+
+<div class="rank" id="rank">
+    👻 تازه‌کار
+</div>
+
+<div class="level-box">
+
+    <div class="level-head">
+        <strong>
+            Level <span id="level">1</span>
+        </strong>
+
+        <span class="level-xp">
+            <span id="currentXP">0</span> / <span id="nextXP">100</span> XP
+        </span>
+    </div>
+
+    <div class="xp-bar">
+        <div class="xp-fill" id="xpFill"></div>
+    </div>
+
+</div>
+
+<div class="rebirth-badge">
+
+    <div class="rebirth-left">
+        <div class="rebirth-icon">🔄</div>
+
+        <div>
+            <div class="rebirth-label">
+                Rebirth
+            </div>
+
+            <div class="rebirth-value">
+                <span id="rebirth">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="rebirth-multiplier">
+        ×<span id="rebirthMultiplier">1</span> Power
+    </div>
+
+</div>
+
+</section><!-- MAIN STATS --><section class="section"><div class="section-title">
+    <h2>📊 آمار بازی</h2>
+    <span>اطلاعات واقعی</span>
+</div>
+
+<div class="stats">
+
+    <div class="stat">
+        <div class="stat-icon">🪙</div>
+
+        <div>
+            <div class="stat-label">
+                سکه فعلی
+            </div>
+
+            <div class="stat-value" id="coins">
+                0
+            </div>
+        </div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-icon">⚡</div>
+
+        <div>
+            <div class="stat-label">
+                قدرت Tap
+            </div>
+
+            <div class="stat-value" id="tapPower">
+                1
+            </div>
+        </div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-icon">👆</div>
+
+        <div>
+            <div class="stat-label">
+                تعداد Tap
+            </div>
+
+            <div class="stat-value" id="totalTaps">
+                0
+            </div>
+        </div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-icon">💰</div>
+
+        <div>
+            <div class="stat-label">
+                کل سکه کسب‌شده
+            </div>
+
+            <div class="stat-value" id="totalCoins">
+                0
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</section><!-- PROGRESSION --><section class="section"><div class="section-title">
+    <h2>🏆 مسیر پیشرفت</h2>
+    <span>ادامه بده!</span>
+</div>
+
+<div class="milestones">
+
+    <div class="milestone">
+
+        <div class="milestone-icon">
+            👆
+        </div>
+
+        <div class="milestone-info">
+            <div class="milestone-title">
+                استاد Tap
+            </div>
+
+            <div class="milestone-desc">
+                1000 بار Tap کن
+            </div>
+        </div>
+
+        <div class="progress">
+
+            <div class="progress-number">
+                <span id="tapProgressText">0</span>/1000
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="tapProgress"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="milestone">
+
+        <div class="milestone-icon">
+            🪙
+        </div>
+
+        <div class="milestone-info">
+            <div class="milestone-title">
+                ثروتمند
+            </div>
+
+            <div class="milestone-desc">
+                1M سکه کسب کن
+            </div>
+        </div>
+
+        <div class="progress">
+
+            <div class="progress-number">
+                <span id="coinProgressText">0</span>/1M
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="coinProgress"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="milestone">
+
+        <div class="milestone-icon">
+            🔄
+        </div>
+
+        <div class="milestone-info">
+            <div class="milestone-title">
+                تولد دوباره
+            </div>
+
+            <div class="milestone-desc">
+                اولین Rebirth
+            </div>
+        </div>
+
+        <div class="progress">
+
+            <div class="progress-number">
+                <span id="rebirthProgressText">0</span>/1
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="rebirthProgress"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section><!-- ACTIONS --><div class="actions"><a href="cards.html" class="action primary">
+    🃏 کارت‌ها
+</a>
+
+<a href="rebirth.html" class="action">
+    🔄 Rebirth
+</a>
+
+</div></div><nav class="bottom-nav"><a class="nav-item" href="index.html">
+    <div>👻</div>
+    خانه
+</a>
+
+<a class="nav-item" href="cards.html">
+    <div>🃏</div>
+    کارت‌ها
+</a>
+
+<a class="nav-item" href="abilities.html">
+    <div>✨</div>
+    Ability
+</a>
+
+<a class="nav-item" href="wheel.html">
+    <div>🎡</div>
+    گردونه
+</a>
+
+<a class="nav-item active" href="profile.html">
+    <div>👤</div>
+    پروفایل
+</a>
+
+</nav><div class="toast" id="toast"></div><script>
+/* =====================================================
+   GHOST TAP PROFILE
+===================================================== */
+
+function number(key, fallback = 0){
+
+    const value =
+        Number(localStorage.getItem(key));
+
+    return Number.isFinite(value)
+        ? value
+        : fallback;
+}
+
+/* =========================
+   NUMBER FORMAT
+========================= */
+
+function formatNumber(value){
+
+    value = Math.floor(Number(value) || 0);
+
+    if(value >= 1000000000000){
+        return (value / 1000000000000).toFixed(2) + "T";
+    }
+
+    if(value >= 1000000000){
+        return (value / 1000000000).toFixed(2) + "B";
+    }
+
+    if(value >= 1000000){
+        return (value / 1000000).toFixed(2) + "M";
+    }
+
+    if(value >= 1000){
+        return (value / 1000).toFixed(2) + "K";
+    }
+
+    return value.toLocaleString("en-US");
+}
+
+/* =========================
+   REBIRTH MULTIPLIER
+========================= */
+
+function getRebirthMultiplier(rebirth){
+
+    if(rebirth <= 0) return 1;
+    if(rebirth === 1) return 2;
+    if(rebirth === 2) return 3;
+    if(rebirth === 3) return 5;
+    if(rebirth === 4) return 10;
+
+    return 10 + ((rebirth - 4) * 5);
+}
+
+/* =========================
+   RANK
+========================= */
+
+function getRank(level, rebirth){
+
+    if(rebirth >= 20){
+        return "👑 GOD";
+    }
+
+    if(rebirth >= 10){
+        return "💎 Mythic Ghost";
+    }
+
+    if(rebirth >= 5){
+        return "🔥 Ghost Legend";
+    }
+
+    if(level >= 100){
+        return "⚡ Ghost Master";
+    }
+
+    if(level >= 50){
+        return "🏆 Ghost Pro";
+    }
+
+    if(level >= 25){
+        return "👑 Ghost Elite";
+    }
+
+    if(level >= 10){
+        return "🔥 Ghost Hunter";
+    }
+
+    if(level >= 5){
+        return "👻 Ghost Player";
+    }
+
+    return "🌑 تازه‌کار";
+}
+
+/* =========================
+   UPDATE PROFILE
+========================= */
+
+function updateProfile(){
+
+    const coins =
+        number("ghostCoins");
+
+    const xp =
+        number("ghostXP");
+
+    const tapPower =
+        number("ghostTapPower",1);
+
+    const rebirth =
+        number("ghostRebirths");
+
+    const totalTaps =
+        number("ghostTotalTaps");
+
+    const totalCoins =
+        number("ghostTotalCoins");
+
+    const level =
+        Math.floor(xp / 100) + 1;
+
+    const currentLevelXP =
+        xp % 100;
+
+    const nextXP =
+        100;
+
+    const multiplier =
+        getRebirthMultiplier(rebirth);
+
+    document.getElementById("coins").textContent =
+        formatNumber(coins);
+
+    document.getElementById("tapPower").textContent =
+        formatNumber(tapPower);
+
+    document.getElementById("totalTaps").textContent =
+        formatNumber(totalTaps);
+
+    document.getElementById("totalCoins").textContent =
+        formatNumber(totalCoins);
+
+    document.getElementById("level").textContent =
+        level;
+
+    document.getElementById("currentXP").textContent =
+        currentLevelXP;
+
+    document.getElementById("nextXP").textContent =
+        nextXP;
+
+    document.getElementById("rebirth").textContent =
+        rebirth;
+
+    document.getElementById("rebirthMultiplier").textContent =
+        multiplier;
+
+    document.getElementById("rank").textContent =
+        getRank(level,rebirth);
+
+    const xpPercent =
+        Math.min(100,(currentLevelXP / nextXP) * 100);
+
+    document.getElementById("xpFill").style.width =
+        xpPercent + "%";
+
+    /* TAP MILESTONE */
+
+    const tapPercent =
+        Math.min(100,(totalTaps / 1000) * 100);
+
+    document.getElementById("tapProgress").style.width =
+        tapPercent + "%";
+
+    document.getElementById("tapProgressText").textContent =
+        formatNumber(Math.min(totalTaps,1000));
+
+    /* COIN MILESTONE */
+
+    const coinPercent =
+        Math.min(100,(totalCoins / 1000000) * 100);
+
+    document.getElementById("coinProgress").style.width =
+        coinPercent + "%";
+
+    document.getElementById("coinProgressText").textContent =
+        formatNumber(Math.min(totalCoins,1000000));
+
+    /* REBIRTH MILESTONE */
+
+    const rebirthPercent =
+        rebirth >= 1 ? 100 : 0;
+
+    document.getElementById("rebirthProgress").style.width =
+        rebirthPercent + "%";
+
+    document.getElementById("rebirthProgressText").textContent =
+        rebirth >= 1 ? "1" : "0";
+}
+
+/* =========================
+   LIVE UPDATE
+========================= */
+
+setInterval(updateProfile,500);
+
+/* =========================
+   PAGE VISIBILITY
+========================= */
+
+document.addEventListener(
+    "visibilitychange",
+    function(){
+
+        if(!document.hidden){
+            updateProfile();
+        }
+
+    }
+);
+
+/* =========================
+   START
+========================= */
+
+updateProfile();
+</script></body>
+  </html>

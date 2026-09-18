@@ -2,1665 +2,1697 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080b12">
-<title>Ghost Tap 👻</title>
+
+<title>Ghost Tap</title>
 
 <style>
+
 *{
   box-sizing:border-box;
-  margin:0;
-  padding:0;
   -webkit-tap-highlight-color:transparent;
 }
 
+html,
 body{
+  margin:0;
+  padding:0;
+  width:100%;
+  min-height:100%;
   background:#080b12;
   color:#fff;
-  font-family:Tahoma,Arial,sans-serif;
-  min-height:100vh;
-  padding-bottom:85px;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+button,
+a{
+  -webkit-tap-highlight-color:transparent;
 }
 
 button{
   font-family:inherit;
 }
 
-.container{
+
+/* =========================
+   BAN SCREEN
+========================= */
+
+#banScreen{
+  display:none;
+
+  position:fixed;
+  inset:0;
+
   width:100%;
-  max-width:520px;
-  margin:auto;
-  padding:14px;
+  height:100%;
+
+  z-index:2147483647;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      #ff5555 0%,
+      #d40000 42%,
+      #650000 100%
+    );
+
+  color:#fff;
+
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  padding:20px;
+
+  overflow:hidden;
+
+  user-select:none;
+  touch-action:none;
 }
 
-/* HEADER */
-.header{
+#banScreen.active{
   display:flex;
-  justify-content:space-between;
-  align-items:center;
+}
+
+.banBox{
+  width:100%;
+  max-width:430px;
+
+  background:rgba(55,0,0,.65);
+
+  border:2px solid rgba(255,255,255,.25);
+
+  border-radius:28px;
+
+  padding:30px 20px;
+
+  box-shadow:
+    0 20px 80px rgba(0,0,0,.55);
+
+  backdrop-filter:blur(12px);
+
+  pointer-events:none;
+}
+
+.banIcon{
+  font-size:70px;
   margin-bottom:14px;
 }
 
-.logo{
-  font-size:22px;
+.banTitle{
+  font-size:30px;
   font-weight:900;
+  margin-bottom:18px;
 }
 
-.logo span{
-  color:#7c5cff;
+.banText{
+  font-size:14px;
+  line-height:2;
+  color:#ffe8e8;
 }
 
-.profile-btn{
-  text-decoration:none;
-  color:#fff;
-  background:#171c29;
-  border:1px solid #292f40;
-  border-radius:13px;
-  padding:9px 13px;
-  font-size:13px;
+.banEmail{
+  margin-top:20px;
+
+  padding:14px 10px;
+
+  border-radius:14px;
+
+  background:rgba(0,0,0,.3);
+
+  border:1px solid rgba(255,255,255,.25);
+
+  font-size:14px;
+
+  font-weight:900;
+
+  direction:ltr;
+
+  word-break:break-word;
 }
 
-/* COIN */
-.coin-card{
-  background:linear-gradient(145deg,#151a29,#0f131d);
-  border:1px solid #282f42;
-  border-radius:22px;
-  padding:20px;
+.banNote{
+  margin-top:16px;
+
+  color:#ffcaca;
+
+  font-size:11px;
+
+  line-height:1.8;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.app{
+  width:100%;
+  max-width:650px;
+  margin:auto;
+
+  min-height:100vh;
+
+  padding:
+    20px
+    15px
+    100px;
+}
+
+
+/* HEADER */
+
+.header{
   text-align:center;
-  box-shadow:0 15px 40px rgba(0,0,0,.25);
+  margin-bottom:20px;
 }
 
-.coin-label{
+.logo{
+  font-size:48px;
+}
+
+.title{
+  font-size:27px;
+  font-weight:900;
+  margin-top:5px;
+}
+
+.subtitle{
+  color:#8791a5;
+  font-size:12px;
+  margin-top:5px;
+}
+
+
+/* COINS */
+
+.coins{
+  background:#111621;
+
+  border:1px solid #202838;
+
+  border-radius:20px;
+
+  padding:18px;
+
+  text-align:center;
+
+  margin-bottom:15px;
+}
+
+.coins-label{
   color:#8d96a8;
   font-size:12px;
 }
 
-.coins{
-  font-size:34px;
+.coins-value{
+  font-size:30px;
   font-weight:900;
-  margin-top:5px;
-  direction:ltr;
+  margin-top:7px;
 }
 
-.coin-symbol{
-  font-size:22px;
-}
 
 /* STATS */
+
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin-top:10px;
+
+  gap:9px;
+
+  margin-bottom:15px;
 }
 
 .stat{
   background:#111621;
-  border:1px solid #232a3a;
-  border-radius:15px;
-  padding:12px 6px;
+
+  border:1px solid #202838;
+
+  border-radius:17px;
+
+  padding:13px 5px;
+
   text-align:center;
 }
 
-.stat-title{
-  color:#7f899c;
+.stat-name{
+  color:#8d96a8;
   font-size:10px;
 }
 
 .stat-value{
-  font-size:15px;
+  font-size:18px;
   font-weight:900;
-  margin-top:5px;
+  margin-top:6px;
 }
 
+
 /* ENERGY */
-.energy-box{
-  margin-top:12px;
+
+.energy-card{
   background:#111621;
-  border:1px solid #232a3a;
-  border-radius:16px;
-  padding:12px;
+
+  border:1px solid #202838;
+
+  border-radius:20px;
+
+  padding:16px;
+
+  margin-bottom:15px;
 }
 
 .energy-top{
   display:flex;
   justify-content:space-between;
-  color:#aeb6c5;
+
   font-size:12px;
-  margin-bottom:8px;
+
+  margin-bottom:9px;
 }
 
 .energy-bar{
-  height:10px;
-  background:#252b38;
-  border-radius:99px;
+  width:100%;
+  height:12px;
+
+  background:#080b12;
+
+  border-radius:20px;
+
   overflow:hidden;
 }
 
 .energy-fill{
   height:100%;
   width:100%;
-  background:linear-gradient(90deg,#48d7ff,#7c5cff);
+
+  background:linear-gradient(
+    90deg,
+    #4d68ff,
+    #7b5cff
+  );
+
+  border-radius:20px;
+
   transition:.2s;
 }
 
+
 /* TAP */
+
 .tap-area{
-  text-align:center;
-  padding:25px 0 20px;
-}
+  display:flex;
 
-.combo{
-  color:#9da7ba;
-  font-size:13px;
-  margin-bottom:13px;
-}
+  justify-content:center;
+  align-items:center;
 
-.combo strong{
-  color:#fff;
+  margin:25px 0;
 }
 
 .tap-button{
-  width:190px;
-  height:190px;
-  border:none;
+  width:210px;
+  height:210px;
+
   border-radius:50%;
-  cursor:pointer;
-  background:radial-gradient(circle at 35% 25%,#a99aff,#654cff 45%,#3925a5);
+
+  border:8px solid #202a46;
+
+  background:
+    radial-gradient(
+      circle,
+      #6677ff 0%,
+      #3949b8 45%,
+      #202862 100%
+    );
+
+  color:#fff;
+
+  font-size:28px;
+
+  font-weight:900;
+
   box-shadow:
-    0 0 0 8px rgba(124,92,255,.08),
-    0 0 50px rgba(124,92,255,.28);
-  font-size:75px;
+    0 0 0 8px #111621,
+    0 15px 45px rgba(69,84,255,.3);
+
+  cursor:pointer;
+
   user-select:none;
+
   transition:.08s;
 }
 
 .tap-button:active{
-  transform:scale(.91);
+  transform:scale(.94);
 }
 
-.tap-button.disabled{
-  filter:grayscale(1);
-  opacity:.55;
-}
-
-.tap-hint{
-  margin-top:15px;
-  color:#70798b;
-  font-size:11px;
-}
 
 /* MULTIPLIERS */
-.multiplier-box{
-  margin-top:5px;
-  background:#101520;
-  border:1px solid #242b3b;
-  border-radius:16px;
-  padding:12px;
-}
 
-.multiplier-title{
-  font-size:11px;
-  color:#8993a7;
-  margin-bottom:8px;
-}
-
-.multiplier-grid{
+.multipliers{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:7px;
+  grid-template-columns:repeat(4,1fr);
+
+  gap:8px;
+
+  margin-bottom:15px;
 }
 
-.mult{
-  background:#171d2a;
-  border-radius:10px;
-  padding:8px;
-  font-size:10px;
-  color:#aab3c2;
+.multiplier{
+  background:#111621;
+
+  border:1px solid #202838;
+
+  border-radius:14px;
+
+  padding:11px 4px;
+
+  text-align:center;
 }
 
-.mult b{
-  color:#fff;
-  display:block;
-  margin-top:3px;
+.multiplier-name{
+  color:#7f899c;
+  font-size:9px;
 }
+
+.multiplier-value{
+  font-size:13px;
+  font-weight:900;
+
+  margin-top:5px;
+}
+
 
 /* UPGRADES */
-.section-title{
-  margin:20px 0 10px;
-  font-size:17px;
-  font-weight:900;
-}
 
-.upgrades{
-  display:grid;
-  gap:9px;
+.section-title{
+  font-size:18px;
+  font-weight:900;
+
+  margin:20px 0 10px;
 }
 
 .upgrade{
   background:#111621;
-  border:1px solid #242b3b;
+
+  border:1px solid #202838;
+
   border-radius:17px;
+
   padding:14px;
+
+  margin-bottom:9px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
 }
 
-.upgrade-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.upgrade-info{
+  min-width:0;
 }
 
 .upgrade-name{
   font-size:14px;
-  font-weight:800;
-}
-
-.level{
-  color:#7d8799;
-  font-size:10px;
-}
-
-.upgrade-desc{
-  color:#7d8799;
-  font-size:10px;
-  margin:6px 0 10px;
-}
-
-.buy{
-  width:100%;
-  border:none;
-  border-radius:11px;
-  padding:11px;
-  background:#242bff;
-  color:#fff;
   font-weight:900;
-  cursor:pointer;
 }
 
-.buy:disabled{
-  background:#252a35;
-  color:#666e7d;
+.upgrade-level{
+  color:#7f899c;
+  font-size:10px;
+
+  margin-top:5px;
 }
 
-/* QUICK */
-.quick{
+.upgrade button{
+  border:0;
+
+  border-radius:11px;
+
+  padding:11px 13px;
+
+  background:#4657e6;
+
+  color:#fff;
+
+  font-weight:900;
+
+  font-size:11px;
+}
+
+
+/* LINKS */
+
+.links{
   display:grid;
   grid-template-columns:repeat(2,1fr);
+
   gap:9px;
+
+  margin-top:15px;
 }
 
-.quick a{
-  text-decoration:none;
-  color:#fff;
-  background:#111621;
-  border:1px solid #242b3b;
-  border-radius:15px;
-  padding:15px 10px;
-  text-align:center;
-  font-size:12px;
-}
-
-.quick-icon{
+.link{
   display:block;
-  font-size:23px;
-  margin-bottom:5px;
-}
 
-/* FLOAT */
-.float-coin{
-  position:fixed;
-  pointer-events:none;
-  font-weight:900;
-  color:#ffd95a;
-  animation:floatUp .8s ease-out forwards;
-  z-index:9999;
-}
+  text-decoration:none;
 
-@keyframes floatUp{
-  from{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
-  to{
-    opacity:0;
-    transform:translateY(-85px) scale(1.15);
-  }
-}
-
-/* TOAST */
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:85px;
-  transform:translateX(-50%) translateY(20px);
-  background:#171d29;
-  border:1px solid #30384a;
   color:#fff;
-  padding:11px 15px;
-  border-radius:13px;
-  font-size:11px;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-  z-index:9999;
-  white-space:nowrap;
+
+  background:#111621;
+
+  border:1px solid #202838;
+
+  border-radius:16px;
+
+  padding:16px 10px;
+
+  text-align:center;
+
+  font-size:12px;
+
+  font-weight:900;
 }
 
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
-}
 
 /* NAV */
+
 .bottom-nav{
   position:fixed;
+
   bottom:0;
   left:0;
   right:0;
-  height:70px;
-  background:rgba(9,12,18,.96);
-  border-top:1px solid #222938;
-  display:flex;
-  justify-content:center;
+
   z-index:1000;
+
+  background:#0d111a;
+
+  border-top:1px solid #202838;
+
+  padding:
+    9px
+    10px
+    calc(9px + env(safe-area-inset-bottom));
 }
 
 .nav-inner{
   width:100%;
-  max-width:520px;
+  max-width:650px;
+
+  margin:auto;
+
   display:grid;
+
   grid-template-columns:repeat(5,1fr);
+
+  gap:5px;
 }
 
-.bottom-nav a{
-  color:#687286;
+.nav-item{
   text-decoration:none;
-  text-align:center;
-  font-size:9px;
-  padding-top:10px;
-}
 
-.bottom-nav a.active{
-  color:#9b8cff;
+  color:#8d96a8;
+
+  text-align:center;
+
+  font-size:9px;
+
+  padding:6px 2px;
+
+  border-radius:10px;
 }
 
 .nav-icon{
-  display:block;
-  font-size:21px;
+  font-size:18px;
   margin-bottom:3px;
 }
 
-@media(max-width:350px){
-  .tap-button{
-    width:165px;
-    height:165px;
+.nav-item.active{
+  color:#fff;
+
+  background:#171e2d;
+}
+
+
+/* MOBILE */
+
+@media(max-width:420px){
+
+  .app{
+    padding-left:10px;
+    padding-right:10px;
   }
 
-  .coins{
-    font-size:29px;
+  .tap-button{
+    width:185px;
+    height:185px;
   }
+
+  .title{
+    font-size:24px;
+  }
+
+  .stats{
+    gap:6px;
+  }
+
+  .stat{
+    padding:11px 3px;
+  }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
-<div class="container">
 
-  <div class="header">
-    <div class="logo">Ghost <span>Tap</span> 👻</div>
-    <a class="profile-btn" href="profile.html">پروفایل 👤</a>
-  </div>
+<!-- =========================
+     BAN SCREEN
+========================= -->
 
-  <div class="coin-card">
-    <div class="coin-label">سکه‌های شما</div>
-    <div class="coins">
-      <span id="coins">0</span> 🪙
-    </div>
-  </div>
+<div
+  id="banScreen"
+  aria-hidden="true"
+>
 
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-title">قدرت Tap</div>
-      <div class="stat-value" id="tapPower">1</div>
+  <div class="banBox">
+
+    <div class="banIcon">
+      🚫
     </div>
 
-    <div class="stat">
-      <div class="stat-title">Combo</div>
-      <div class="stat-value" id="combo">0</div>
+    <div class="banTitle">
+      شما بن شده‌اید!
     </div>
 
-    <div class="stat">
-      <div class="stat-title">Rebirth</div>
-      <div class="stat-value" id="rebirth">0</div>
-    </div>
-  </div>
+    <div class="banText">
 
-  <div class="energy-box">
-    <div class="energy-top">
-      <span>⚡ انرژی</span>
-      <span id="energyText">100 / 100</span>
-    </div>
+      دسترسی شما به Ghost Tap
+      به دلیل مسدود شدن حساب،
+      در حال حاضر امکان‌پذیر نیست.
 
-    <div class="energy-bar">
-      <div class="energy-fill" id="energyFill"></div>
-    </div>
-  </div>
+      <br><br>
 
-  <div class="tap-area">
-
-    <div class="combo">
-      Combo:
-      <strong id="comboText">×1</strong>
-    </div>
-
-    <button id="tapButton" class="tap-button">
-      👻
-    </button>
-
-    <div class="tap-hint">
-      برای دریافت سکه روی روح بزن
-    </div>
-
-  </div>
-
-  <div class="multiplier-box">
-
-    <div class="multiplier-title">
-      ⚡ قدرت‌های فعال
-    </div>
-
-    <div class="multiplier-grid">
-
-      <div class="mult">
-        Rebirth
-        <b id="rebirthMult">×1</b>
-      </div>
-
-      <div class="mult">
-        کارت‌ها
-        <b id="cardMult">×1</b>
-      </div>
-
-      <div class="mult">
-        قابلیت Tap
-        <b id="abilityTapMult">×1</b>
-      </div>
-
-      <div class="mult">
-        گردونه
-        <b id="wheelMult">×1</b>
-      </div>
+      اگر فکر می‌کنید این مسدودیت اشتباه است،
+      برای بررسی و درخواست رفع مسدودیت
+      با پشتیبانی رسمی Ghost Academy تماس بگیرید.
 
     </div>
-  </div>
 
-  <div class="section-title">⬆️ ارتقاها</div>
-
-  <div class="upgrades">
-
-    <div class="upgrade">
-      <div class="upgrade-top">
-        <div class="upgrade-name">👆 قدرت Tap</div>
-        <div class="level" id="tapLevel">Lv.0</div>
-      </div>
-
-      <div class="upgrade-desc">
-        قدرت پایه هر Tap را افزایش می‌دهد.
-      </div>
-
-      <button class="buy" id="tapUpgrade">
-        خرید — 25 🪙
-      </button>
+    <div class="banEmail">
+      📧 ghostacademysupport@gmail.com
     </div>
 
-    <div class="upgrade">
-      <div class="upgrade-top">
-        <div class="upgrade-name">⚡ ظرفیت انرژی</div>
-        <div class="level" id="energyLevel">Lv.0</div>
-      </div>
+    <div class="banNote">
 
-      <div class="upgrade-desc">
-        ظرفیت انرژی را بیشتر می‌کند.
-      </div>
+      پس از بررسی درخواست شما،
+      در صورت تأیید، مسدودیت برداشته خواهد شد.
 
-      <button class="buy" id="energyUpgrade">
-        خرید — 100 🪙
-      </button>
     </div>
-
-    <div class="upgrade">
-      <div class="upgrade-top">
-        <div class="upgrade-name">🔋 شارژ سریع</div>
-        <div class="level" id="rechargeLevel">Lv.0</div>
-      </div>
-
-      <div class="upgrade-desc">
-        سرعت برگشت انرژی را افزایش می‌دهد.
-      </div>
-
-      <button class="buy" id="rechargeUpgrade">
-        خرید — 150 🪙
-      </button>
-    </div>
-
-  </div>
-
-  <div class="section-title">🚀 بخش‌ها</div>
-
-  <div class="quick">
-
-    <a href="cards.html">
-      <span class="quick-icon">🃏</span>
-      کارت‌ها
-    </a>
-
-    <a href="abilities.html">
-      <span class="quick-icon">⚡</span>
-      قابلیت‌ها
-    </a>
-
-    <a href="wheel.html">
-      <span class="quick-icon">🎡</span>
-      گردونه
-    </a>
-
-    <a href="rebirth.html">
-      <span class="quick-icon">♻️</span>
-      Rebirth
-    </a>
 
   </div>
 
 </div>
 
-<div class="toast" id="toast"></div>
+
+<!-- =========================
+     GAME
+========================= -->
+
+<div class="app">
+
+
+  <div class="header">
+
+    <div class="logo">
+      👻
+    </div>
+
+    <div class="title">
+      Ghost Tap
+    </div>
+
+    <div class="subtitle">
+      Tap • Upgrade • Rebirth
+    </div>
+
+  </div>
+
+
+  <!-- COINS -->
+
+  <div class="coins">
+
+    <div class="coins-label">
+      🪙 سکه
+    </div>
+
+    <div
+      class="coins-value"
+      id="coins"
+    >
+      0
+    </div>
+
+  </div>
+
+
+  <!-- STATS -->
+
+  <div class="stats">
+
+    <div class="stat">
+
+      <div class="stat-name">
+        قدرت ضربه
+      </div>
+
+      <div
+        class="stat-value"
+        id="tapPower"
+      >
+        1
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-name">
+        Combo
+      </div>
+
+      <div
+        class="stat-value"
+        id="combo"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-name">
+        Rebirth
+      </div>
+
+      <div
+        class="stat-value"
+        id="rebirths"
+      >
+        0
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ENERGY -->
+
+  <div class="energy-card">
+
+    <div class="energy-top">
+
+      <span>
+        ⚡ انرژی
+      </span>
+
+      <span>
+        <span id="energy">100</span>
+        /
+        <span id="maxEnergy">100</span>
+      </span>
+
+    </div>
+
+    <div class="energy-bar">
+
+      <div
+        class="energy-fill"
+        id="energyFill"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- TAP -->
+
+  <div class="tap-area">
+
+    <button
+      class="tap-button"
+      id="tapButton"
+    >
+      TAP
+    </button>
+
+  </div>
+
+
+  <!-- MULTIPLIERS -->
+
+  <div class="multipliers">
+
+    <div class="multiplier">
+
+      <div class="multiplier-name">
+        Rebirth
+      </div>
+
+      <div
+        class="multiplier-value"
+        id="rebirthMultiplier"
+      >
+        ×1
+      </div>
+
+    </div>
+
+
+    <div class="multiplier">
+
+      <div class="multiplier-name">
+        Cards
+      </div>
+
+      <div
+        class="multiplier-value"
+        id="cardsMultiplier"
+      >
+        ×1
+      </div>
+
+    </div>
+
+
+    <div class="multiplier">
+
+      <div class="multiplier-name">
+        Ability
+      </div>
+
+      <div
+        class="multiplier-value"
+        id="abilityMultiplier"
+      >
+        ×1
+      </div>
+
+    </div>
+
+
+    <div class="multiplier">
+
+      <div class="multiplier-name">
+        Wheel
+      </div>
+
+      <div
+        class="multiplier-value"
+        id="wheelMultiplier"
+      >
+        ×1
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- UPGRADES -->
+
+  <div class="section-title">
+    ⚡ ارتقاها
+  </div>
+
+
+  <div class="upgrade">
+
+    <div class="upgrade-info">
+
+      <div class="upgrade-name">
+        Tap Power
+      </div>
+
+      <div
+        class="upgrade-level"
+        id="tapLevel"
+      >
+        Level 0
+      </div>
+
+    </div>
+
+    <button id="upgradeTap">
+      Upgrade
+    </button>
+
+  </div>
+
+
+  <div class="upgrade">
+
+    <div class="upgrade-info">
+
+      <div class="upgrade-name">
+        Energy Capacity
+      </div>
+
+      <div
+        class="upgrade-level"
+        id="energyLevel"
+      >
+        Level 0
+      </div>
+
+    </div>
+
+    <button id="upgradeEnergy">
+      Upgrade
+    </button>
+
+  </div>
+
+
+  <div class="upgrade">
+
+    <div class="upgrade-info">
+
+      <div class="upgrade-name">
+        Recharge
+      </div>
+
+      <div
+        class="upgrade-level"
+        id="rechargeLevel"
+      >
+        Level 0
+      </div>
+
+    </div>
+
+    <button id="upgradeRecharge">
+      Upgrade
+    </button>
+
+  </div>
+
+
+  <!-- LINKS -->
+
+  <div class="section-title">
+    👻 بخش‌ها
+  </div>
+
+
+  <div class="links">
+
+    <a
+      class="link"
+      href="cards.html"
+    >
+      🃏 کارت‌ها
+    </a>
+
+    <a
+      class="link"
+      href="abilities.html"
+    >
+      ⚡ قابلیت‌ها
+    </a>
+
+    <a
+      class="link"
+      href="wheel.html"
+    >
+      🎡 Wheel
+    </a>
+
+    <a
+      class="link"
+      href="rebirth.html"
+    >
+      ♻️ Rebirth
+    </a>
+
+    <a
+      class="link"
+      href="profile.html"
+    >
+      👤 پروفایل
+    </a>
+
+  </div>
+
+
+</div>
+
+
+<!-- =========================
+     BOTTOM NAV
+========================= -->
 
 <div class="bottom-nav">
 
   <div class="nav-inner">
 
-    <a href="index.html" class="active">
-      <span class="nav-icon">🏠</span>
+    <a
+      class="nav-item active"
+      href="index.html"
+    >
+
+      <div class="nav-icon">
+        🏠
+      </div>
+
       خانه
+
     </a>
 
-    <a href="cards.html">
-      <span class="nav-icon">🃏</span>
-      کارت
+
+    <a
+      class="nav-item"
+      href="cards.html"
+    >
+
+      <div class="nav-icon">
+        🃏
+      </div>
+
+      کارت‌ها
+
     </a>
 
-    <a href="abilities.html">
-      <span class="nav-icon">⚡</span>
-      قابلیت
+
+    <a
+      class="nav-item"
+      href="abilities.html"
+    >
+
+      <div class="nav-icon">
+        ⚡
+      </div>
+
+      قابلیت‌ها
+
     </a>
 
-    <a href="wheel.html">
-      <span class="nav-icon">🎡</span>
-      گردونه
+
+    <a
+      class="nav-item"
+      href="wheel.html"
+    >
+
+      <div class="nav-icon">
+        🎡
+      </div>
+
+      Wheel
+
     </a>
 
-    <a href="profile.html">
-      <span class="nav-icon">👤</span>
+
+    <a
+      class="nav-item"
+      href="profile.html"
+    >
+
+      <div class="nav-icon">
+        👤
+      </div>
+
       پروفایل
+
     </a>
 
   </div>
 
 </div>
 
+
 <script>
 
-/* =========================================================
-   GHOST TAP — CORE ENGINE
-   ========================================================= */
+/* =========================
+   STORAGE
+========================= */
 
 const STORAGE = {
 
-  coins: "ghostCoins",
-  energy: "ghostEnergy",
-  maxEnergy: "ghostMaxEnergy",
+  coins:"ghostCoins",
 
-  tapPower: "ghostTapPower",
+  energy:"ghostEnergy",
 
-  combo: "ghostCombo",
+  maxEnergy:"ghostMaxEnergy",
 
-  rebirths: "ghostRebirths",
+  tapPower:"ghostTapPower",
 
-  xp: "ghostXP",
+  combo:"ghostCombo",
 
-  tapLevel: "ghostTapLevel",
-  energyLevel: "ghostEnergyLevel",
-  rechargeLevel: "ghostRechargeLevel",
+  rebirths:"ghostRebirths",
 
-  totalTaps: "ghostTotalTaps",
-  totalCoins: "ghostTotalCoins",
+  xp:"ghostXP",
 
-  cards: "ghostCards",
-  abilities: "ghostAbilities",
+  tapLevel:"ghostTapLevel",
 
-  wheelItems: "ghostWheelItems"
+  energyLevel:"ghostEnergyLevel",
+
+  rechargeLevel:"ghostRechargeLevel",
+
+  totalTaps:"ghostTotalTaps",
+
+  totalCoins:"ghostTotalCoins",
+
+  cards:"ghostCards",
+
+  abilities:"ghostAbilities",
+
+  wheelItems:"ghostWheelItems"
 
 };
 
-
-/* =========================================================
-   DEFAULT VALUES
-   ========================================================= */
 
 const DEFAULTS = {
 
-  coins: 0,
-  energy: 100,
-  maxEnergy: 100,
+  coins:0,
 
-  tapPower: 1,
+  energy:100,
 
-  combo: 0,
+  maxEnergy:100,
 
-  rebirths: 0,
+  tapPower:1,
 
-  xp: 0,
+  combo:0,
 
-  tapLevel: 0,
-  energyLevel: 0,
-  rechargeLevel: 0,
+  rebirths:0,
 
-  totalTaps: 0,
-  totalCoins: 0
+  xp:0,
+
+  tapLevel:0,
+
+  energyLevel:0,
+
+  rechargeLevel:0,
+
+  totalTaps:0,
+
+  totalCoins:0
 
 };
 
 
-/* =========================================================
+const BAN_KEY =
+  "ghostPlayerBanned";
+
+
+/* =========================
+   BAN SYSTEM
+========================= */
+
+function isBanned(){
+
+  return (
+    localStorage.getItem(BAN_KEY)
+    === "true"
+  );
+
+}
+
+
+function checkBan(){
+
+  const banScreen =
+    document.getElementById(
+      "banScreen"
+    );
+
+  if(!banScreen){
+    return false;
+  }
+
+  if(isBanned()){
+
+    banScreen.classList.add(
+      "active"
+    );
+
+    banScreen.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    document.body.style.overflow =
+      "hidden";
+
+    document.documentElement.style.overflow =
+      "hidden";
+
+    return true;
+
+  }
+
+
+  banScreen.classList.remove(
+    "active"
+  );
+
+  banScreen.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  document.body.style.overflow =
+    "";
+
+  document.documentElement.style.overflow =
+    "";
+
+  return false;
+
+}
+
+
+checkBan();
+
+
+/* اگر Admin در تب دیگری بن کند */
+
+window.addEventListener(
+  "storage",
+  function(event){
+
+    if(
+      event.key === BAN_KEY
+    ){
+
+      checkBan();
+
+    }
+
+  }
+);
+
+
+/* جلوگیری از تعامل با بازی هنگام بن */
+
+document.addEventListener(
+  "click",
+  function(event){
+
+    if(!isBanned()){
+      return;
+    }
+
+    const banScreen =
+      document.getElementById(
+        "banScreen"
+      );
+
+    if(
+      banScreen &&
+      !banScreen.contains(
+        event.target
+      )
+    ){
+
+      event.preventDefault();
+
+      event.stopPropagation();
+
+      event.stopImmediatePropagation();
+
+    }
+
+  },
+  true
+);
+
+
+document.addEventListener(
+  "touchstart",
+  function(event){
+
+    if(!isBanned()){
+      return;
+    }
+
+    const banScreen =
+      document.getElementById(
+        "banScreen"
+      );
+
+    if(
+      banScreen &&
+      !banScreen.contains(
+        event.target
+      )
+    ){
+
+      event.preventDefault();
+
+      event.stopPropagation();
+
+    }
+
+  },
+  {
+    capture:true,
+    passive:false
+  }
+);
+
+
+/* =========================
    HELPERS
-   ========================================================= */
+========================= */
 
-function getNumber(key, fallback = 0){
+function getNumber(
+  key,
+  fallback
+){
 
-  const value = Number(localStorage.getItem(key));
+  const value =
+    Number(
+      localStorage.getItem(key)
+    );
 
-  return Number.isFinite(value)
-    ? value
-    : fallback;
+  if(
+    !Number.isFinite(value)
+  ){
+
+    return fallback;
+
+  }
+
+  return value;
+
 }
 
 
-function setNumber(key, value){
+function setNumber(
+  key,
+  value
+){
 
-  localStorage.setItem(key, String(value));
+  if(
+    !Number.isFinite(value)
+  ){
+
+    return;
+
+  }
+
+  localStorage.setItem(
+    key,
+    String(value)
+  );
 
 }
 
 
-function formatNumber(number){
-
-  number = Number(number) || 0;
-
-  if(number >= 1e18)
-    return (number / 1e18).toFixed(2) + "Qi";
-
-  if(number >= 1e15)
-    return (number / 1e15).toFixed(2) + "Qa";
-
-  if(number >= 1e12)
-    return (number / 1e12).toFixed(2) + "T";
-
-  if(number >= 1e9)
-    return (number / 1e9).toFixed(2) + "B";
-
-  if(number >= 1e6)
-    return (number / 1e6).toFixed(2) + "M";
-
-  if(number >= 1e3)
-    return (number / 1e3).toFixed(2) + "K";
-
-  return Math.floor(number).toLocaleString("en-US");
-}
-
-
-/* =========================================================
-   INITIALIZE
-   ========================================================= */
+/* =========================
+   INITIAL DATA
+========================= */
 
 function initializeGame(){
 
-  Object.keys(DEFAULTS).forEach(keyName => {
-
-    const storageKey = STORAGE[keyName];
-
-    if(localStorage.getItem(storageKey) === null){
-
-      setNumber(
-        storageKey,
-        DEFAULTS[keyName]
-      );
-
-    }
-
-  });
-
-
-  if(localStorage.getItem(STORAGE.energy) === null){
+  if(
+    localStorage.getItem(
+      STORAGE.coins
+    ) === null
+  ){
 
     setNumber(
-      STORAGE.energy,
-      getNumber(STORAGE.maxEnergy,100)
+      STORAGE.coins,
+      DEFAULTS.coins
     );
 
   }
 
-}
 
+  if(
+    localStorage.getItem(
+      STORAGE.energy
+    ) === null
+  ){
 
-/* =========================================================
-   REBIRTH MULTIPLIER
-   ========================================================= */
-
-function getRebirthMultiplier(){
-
-  const rebirth = getNumber(
-    STORAGE.rebirths,
-    0
-  );
-
-  if(rebirth <= 0)
-    return 1;
-
-  if(rebirth === 1)
-    return 2;
-
-  if(rebirth === 2)
-    return 3;
-
-  if(rebirth === 3)
-    return 5;
-
-  if(rebirth === 4)
-    return 10;
-
-  return 10 + ((rebirth - 4) * 5);
-
-}
-
-
-/* =========================================================
-   CARDS
-   ========================================================= */
-
-function getCardMultiplier(){
-
-  try{
-
-    if(
-      window.GhostCards &&
-      typeof window.GhostCards.getActiveMultiplier === "function"
-    ){
-
-      return Number(
-        window.GhostCards.getActiveMultiplier()
-      ) || 1;
-
-    }
-
-  }catch(error){}
-
-  try{
-
-    const cards =
-      JSON.parse(
-        localStorage.getItem(STORAGE.cards) || "{}"
-      );
-
-    let multiplier = 1;
-
-    Object.values(cards).forEach(card => {
-
-      if(card && card.active){
-
-        const bonus =
-          Number(card.multiplier) || 0;
-
-        if(bonus > 0){
-
-          multiplier += bonus;
-
-        }
-
-      }
-
-    });
-
-    return multiplier;
-
-  }catch(error){
-
-    return 1;
+    setNumber(
+      STORAGE.energy,
+      DEFAULTS.energy
+    );
 
   }
 
-}
 
+  if(
+    localStorage.getItem(
+      STORAGE.maxEnergy
+    ) === null
+  ){
 
-/* =========================================================
-   WHEEL
-   ========================================================= */
-
-function getWheelMultiplier(){
-
-  try{
-
-    if(
-      window.GhostWheel &&
-      typeof window.GhostWheel.getMultiplier === "function"
-    ){
-
-      return Number(
-        window.GhostWheel.getMultiplier()
-      ) || 1;
-
-    }
-
-  }catch(error){}
-
-
-  try{
-
-    const items =
-      JSON.parse(
-        localStorage.getItem(STORAGE.wheelItems) || "{}"
-      );
-
-    let bonus = 0;
-
-    Object.values(items).forEach(item => {
-
-      if(!item)
-        return;
-
-      const level =
-        Number(item.level || 1);
-
-      const multiplier =
-        Number(
-          item.multiplier ||
-          item.bonus ||
-          0
-        );
-
-      bonus += multiplier * level;
-
-    });
-
-    return 1 + (bonus / 100);
-
-  }catch(error){
-
-    return 1;
+    setNumber(
+      STORAGE.maxEnergy,
+      DEFAULTS.maxEnergy
+    );
 
   }
 
-}
+
+  if(
+    localStorage.getItem(
+      STORAGE.tapPower
+    ) === null
+  ){
+
+    setNumber(
+      STORAGE.tapPower,
+      DEFAULTS.tapPower
+    );
+
+  }
 
 
-/* =========================================================
-   ABILITIES
-   ========================================================= */
-
-function getAbilityTapMultiplier(){
-
-  try{
-
-    if(
-      window.GhostAbilities &&
-      typeof window.GhostAbilities.getTapMultiplier === "function"
-    ){
-
-      return Number(
-        window.GhostAbilities.getTapMultiplier()
-      ) || 1;
-
-    }
-
-  }catch(error){}
-
-  return 1;
-
-}
-
-
-function getAbilityCoinMultiplier(){
-
-  try{
-
-    if(
-      window.GhostAbilities &&
-      typeof window.GhostAbilities.getCoinMultiplier === "function"
-    ){
-
-      return Number(
-        window.GhostAbilities.getCoinMultiplier()
-      ) || 1;
-
-    }
-
-  }catch(error){}
-
-  return 1;
-
-}
-
-
-function getAbilityComboMultiplier(){
-
-  try{
-
-    if(
-      window.GhostAbilities &&
-      typeof window.GhostAbilities.getComboMultiplier === "function"
-    ){
-
-      return Number(
-        window.GhostAbilities.getComboMultiplier()
-      ) || 1;
-
-    }
-
-  }catch(error){}
-
-  return 1;
-
-}
-
-
-function getEnergyCostMultiplier(){
-
-  try{
-
-    if(
-      window.GhostAbilities &&
-      typeof window.GhostAbilities.getEnergyCostMultiplier === "function"
-    ){
-
-      return Number(
-        window.GhostAbilities.getEnergyCostMultiplier()
-      ) || 1;
-
-    }
-
-  }catch(error){}
-
-  return 1;
-
-}
-
-
-/* =========================================================
-   COMBO
-   ========================================================= */
-
-let comboTimer = null;
-
-
-function getComboMultiplier(){
-
-  const combo =
-    getNumber(STORAGE.combo,0);
-
-  const ability =
-    getAbilityComboMultiplier();
-
-  const base =
-    1 + Math.min(combo,50) * 0.05;
-
-  return base * ability;
-
-}
-
-
-function increaseCombo(){
-
-  let combo =
-    getNumber(STORAGE.combo,0);
-
-  combo++;
-
-  if(combo > 50)
-    combo = 50;
-
-  setNumber(
-    STORAGE.combo,
-    combo
-  );
-
-  clearTimeout(comboTimer);
-
-  comboTimer = setTimeout(() => {
+  if(
+    localStorage.getItem(
+      STORAGE.combo
+    ) === null
+  ){
 
     setNumber(
       STORAGE.combo,
-      0
+      DEFAULTS.combo
     );
-
-    updateUI();
-
-  },1800);
-
-}
-
-
-/* =========================================================
-   TAP REWARD
-   ========================================================= */
-
-function calculateTapReward(){
-
-  const basePower =
-    getNumber(
-      STORAGE.tapPower,
-      1
-    );
-
-  const rebirth =
-    getRebirthMultiplier();
-
-  const cards =
-    getCardMultiplier();
-
-  const abilities =
-    getAbilityTapMultiplier();
-
-  const wheel =
-    getWheelMultiplier();
-
-  const combo =
-    getComboMultiplier();
-
-  const coinAbility =
-    getAbilityCoinMultiplier();
-
-  const reward =
-    basePower *
-    rebirth *
-    cards *
-    abilities *
-    wheel *
-    combo *
-    coinAbility;
-
-  return Math.max(
-    1,
-    Math.floor(reward)
-  );
-
-}
-
-
-/* =========================================================
-   TAP
-   ========================================================= */
-
-function tap(event){
-
-  let energy =
-    getNumber(
-      STORAGE.energy,
-      100
-    );
-
-  const energyCost =
-    getEnergyCostMultiplier();
-
-  const required =
-    Math.max(
-      0.1,
-      energyCost
-    );
-
-  if(energy < required){
-
-    showToast("⚡ انرژی کافی نیست");
-
-    return;
 
   }
 
 
-  energy -= required;
+  if(
+    localStorage.getItem(
+      STORAGE.rebirths
+    ) === null
+  ){
 
-  if(energy < 0)
-    energy = 0;
-
-
-  setNumber(
-    STORAGE.energy,
-    energy
-  );
-
-
-  increaseCombo();
-
-
-  const reward =
-    calculateTapReward();
-
-
-  let coins =
-    getNumber(
-      STORAGE.coins,
-      0
+    setNumber(
+      STORAGE.rebirths,
+      DEFAULTS.rebirths
     );
 
-  coins += reward;
-
-  setNumber(
-    STORAGE.coins,
-    coins
-  );
+  }
 
 
-  let totalCoins =
-    getNumber(
-      STORAGE.totalCoins,
-      0
-    );
+  if(
+    localStorage.getItem(
+      STORAGE.xp
+    ) === null
+  ){
 
-  totalCoins += reward;
-
-  setNumber(
-    STORAGE.totalCoins,
-    totalCoins
-  );
-
-
-  let totalTaps =
-    getNumber(
-      STORAGE.totalTaps,
-      0
-    );
-
-  totalTaps++;
-
-  setNumber(
-    STORAGE.totalTaps,
-    totalTaps
-  );
-
-
-  let xp =
-    getNumber(
+    setNumber(
       STORAGE.xp,
-      0
+      DEFAULTS.xp
     );
-
-  xp += Math.max(
-    1,
-    Math.floor(reward / 10)
-  );
-
-  setNumber(
-    STORAGE.xp,
-    xp
-  );
-
-
-  createFloatingCoin(
-    reward,
-    event
-  );
-
-
-  updateUI();
-
-}
-
-
-/* =========================================================
-   FLOATING COIN
-   ========================================================= */
-
-function createFloatingCoin(
-  amount,
-  event
-){
-
-  const element =
-    document.createElement("div");
-
-  element.className =
-    "float-coin";
-
-  element.textContent =
-    "+" + formatNumber(amount) + " 🪙";
-
-
-  let x =
-    window.innerWidth / 2;
-
-  let y =
-    window.innerHeight / 2;
-
-
-  if(event){
-
-    x =
-      event.clientX ||
-      x;
-
-    y =
-      event.clientY ||
-      y;
 
   }
 
 
-  element.style.left =
-    (x - 35) + "px";
+  if(
+    localStorage.getItem(
+      STORAGE.tapLevel
+    ) === null
+  ){
 
-  element.style.top =
-    (y - 20) + "px";
-
-
-  document.body.appendChild(
-    element
-  );
-
-
-  setTimeout(() => {
-
-    element.remove();
-
-  },850);
-
-}
-
-
-/* =========================================================
-   UPGRADE COSTS
-   ========================================================= */
-
-function getTapUpgradeCost(){
-
-  const level =
-    getNumber(
+    setNumber(
       STORAGE.tapLevel,
-      0
+      DEFAULTS.tapLevel
     );
-
-  return Math.floor(
-    25 * Math.pow(1.65,level)
-  );
-
-}
-
-
-function getEnergyUpgradeCost(){
-
-  const level =
-    getNumber(
-      STORAGE.energyLevel,
-      0
-    );
-
-  return Math.floor(
-    100 * Math.pow(1.75,level)
-  );
-
-}
-
-
-function getRechargeUpgradeCost(){
-
-  const level =
-    getNumber(
-      STORAGE.rechargeLevel,
-      0
-    );
-
-  return Math.floor(
-    150 * Math.pow(1.8,level)
-  );
-
-}
-
-
-/* =========================================================
-   BUY UPGRADE
-   ========================================================= */
-
-function spendCoins(cost){
-
-  let coins =
-    getNumber(
-      STORAGE.coins,
-      0
-    );
-
-  if(coins < cost){
-
-    showToast("🪙 سکه کافی نیست");
-
-    return false;
 
   }
 
-  coins -= cost;
 
-  setNumber(
-    STORAGE.coins,
-    coins
-  );
+  if(
+    localStorage.getItem(
+      STORAGE.energyLevel
+    ) === null
+  ){
 
-  return true;
-
-}
-
-
-function buyTapUpgrade(){
-
-  const cost =
-    getTapUpgradeCost();
-
-  if(!spendCoins(cost))
-    return;
-
-
-  let level =
-    getNumber(
-      STORAGE.tapLevel,
-      0
-    );
-
-  level++;
-
-  setNumber(
-    STORAGE.tapLevel,
-    level
-  );
-
-
-  let power =
-    getNumber(
-      STORAGE.tapPower,
-      1
-    );
-
-  power++;
-
-  setNumber(
-    STORAGE.tapPower,
-    power
-  );
-
-
-  showToast(
-    "👆 قدرت Tap افزایش یافت"
-  );
-
-  updateUI();
-
-}
-
-
-function buyEnergyUpgrade(){
-
-  const cost =
-    getEnergyUpgradeCost();
-
-  if(!spendCoins(cost))
-    return;
-
-
-  let level =
-    getNumber(
+    setNumber(
       STORAGE.energyLevel,
-      0
+      DEFAULTS.energyLevel
     );
 
-  level++;
-
-  setNumber(
-    STORAGE.energyLevel,
-    level
-  );
+  }
 
 
-  let max =
-    getNumber(
-      STORAGE.maxEnergy,
-      100
-    );
+  if(
+    localStorage.getItem(
+      STORAGE.rechargeLevel
+    ) === null
+  ){
 
-  max += 10;
-
-  setNumber(
-    STORAGE.maxEnergy,
-    max
-  );
-
-
-  let energy =
-    getNumber(
-      STORAGE.energy,
-      0
-    );
-
-  energy += 10;
-
-  if(energy > max)
-    energy = max;
-
-  setNumber(
-    STORAGE.energy,
-    energy
-  );
-
-
-  showToast(
-    "⚡ ظرفیت انرژی افزایش یافت"
-  );
-
-  updateUI();
-
-}
-
-
-function buyRechargeUpgrade(){
-
-  const cost =
-    getRechargeUpgradeCost();
-
-  if(!spendCoins(cost))
-    return;
-
-
-  let level =
-    getNumber(
+    setNumber(
       STORAGE.rechargeLevel,
+      DEFAULTS.rechargeLevel
+    );
+
+  }
+
+
+  if(
+    localStorage.getItem(
+      STORAGE.totalTaps
+    ) === null
+  ){
+
+    setNumber(
+      STORAGE.totalTaps,
+      DEFAULTS.totalTaps
+    );
+
+  }
+
+
+  if(
+    localStorage.getItem(
+      STORAGE.totalCoins
+    ) === null
+  ){
+
+    setNumber(
+      STORAGE.totalCoins,
+      DEFAULTS.totalCoins
+    );
+
+  }
+
+}
+
+
+initializeGame();
+
+
+/* =========================
+   MULTIPLIERS
+========================= */
+
+function getRebirthMultiplier(){
+
+  const rebirths =
+    getNumber(
+      STORAGE.rebirths,
       0
     );
 
-  level++;
+  if(rebirths <= 0)
+    return 1;
 
-  setNumber(
-    STORAGE.rechargeLevel,
-    level
-  );
+  if(rebirths === 1)
+    return 2;
 
+  if(rebirths === 2)
+    return 3;
 
-  showToast(
-    "🔋 شارژ انرژی سریع‌تر شد"
-  );
+  if(rebirths === 3)
+    return 5;
 
-  updateUI();
+  if(rebirths >= 4)
+    return 10;
 
-}
-
-
-/* =========================================================
-   ENERGY REGENERATION
-   ========================================================= */
-
-function regenerateEnergy(){
-
-  const max =
-    getNumber(
-      STORAGE.maxEnergy,
-      100
-    );
-
-  let energy =
-    getNumber(
-      STORAGE.energy,
-      max
-    );
-
-  if(energy >= max)
-    return;
-
-
-  const level =
-    getNumber(
-      STORAGE.rechargeLevel,
-      0
-    );
-
-
-  const amount =
-    1 +
-    Math.floor(level / 2);
-
-
-  energy += amount;
-
-
-  if(energy > max)
-    energy = max;
-
-
-  setNumber(
-    STORAGE.energy,
-    energy
-  );
-
-
-  updateUI();
+  return 1;
 
 }
 
 
-/* =========================================================
-   TOAST
-   ========================================================= */
+function getCardsMultiplier(){
 
-let toastTimer = null;
-
-
-function showToast(message){
-
-  const toast =
-    document.getElementById("toast");
-
-  toast.textContent =
-    message;
-
-  toast.classList.add("show");
-
-  clearTimeout(toastTimer);
-
-  toastTimer =
-    setTimeout(() => {
-
-      toast.classList.remove("show");
-
-    },1800);
+  return 1;
 
 }
 
 
-/* =========================================================
+function getAbilityMultiplier(){
+
+  return 1;
+
+}
+
+
+function getWheelMultiplier(){
+
+  return 1;
+
+}
+
+
+/* =========================
    UPDATE UI
-   ========================================================= */
+========================= */
 
 function updateUI(){
+
+  if(isBanned()){
+    return;
+  }
+
 
   const coins =
     getNumber(
       STORAGE.coins,
-      0
+      DEFAULTS.coins
     );
+
 
   const energy =
     getNumber(
       STORAGE.energy,
-      100
+      DEFAULTS.energy
     );
+
 
   const maxEnergy =
-    getNumber(
-      STORAGE.maxEnergy,
-      100
+    Math.max(
+      1,
+      getNumber(
+        STORAGE.maxEnergy,
+        DEFAULTS.maxEnergy
+      )
     );
 
-  const power =
+
+  const tapPower =
     getNumber(
       STORAGE.tapPower,
-      1
+      DEFAULTS.tapPower
     );
+
 
   const combo =
     getNumber(
       STORAGE.combo,
-      0
+      DEFAULTS.combo
     );
 
-  const rebirth =
+
+  const rebirths =
     getNumber(
       STORAGE.rebirths,
-      0
+      DEFAULTS.rebirths
+    );
+
+
+  const tapLevel =
+    getNumber(
+      STORAGE.tapLevel,
+      DEFAULTS.tapLevel
+    );
+
+
+  const energyLevel =
+    getNumber(
+      STORAGE.energyLevel,
+      DEFAULTS.energyLevel
+    );
+
+
+  const rechargeLevel =
+    getNumber(
+      STORAGE.rechargeLevel,
+      DEFAULTS.rechargeLevel
     );
 
 
   document.getElementById(
     "coins"
   ).textContent =
-    formatNumber(coins);
+    Math.floor(coins);
+
+
+  document.getElementById(
+    "energy"
+  ).textContent =
+    Math.floor(energy);
+
+
+  document.getElementById(
+    "maxEnergy"
+  ).textContent =
+    Math.floor(maxEnergy);
 
 
   document.getElementById(
     "tapPower"
   ).textContent =
-    formatNumber(power);
+    Math.floor(tapPower);
 
 
   document.getElementById(
     "combo"
   ).textContent =
-    combo;
+    Math.floor(combo);
 
 
   document.getElementById(
-    "comboText"
+    "rebirths"
   ).textContent =
-    "×" +
-    getComboMultiplier().toFixed(2);
+    Math.floor(rebirths);
 
 
   document.getElementById(
-    "rebirth"
+    "tapLevel"
   ).textContent =
-    rebirth;
+    "Level " + tapLevel;
 
 
   document.getElementById(
-    "energyText"
+    "energyLevel"
   ).textContent =
-    Math.floor(energy) +
-    " / " +
-    maxEnergy;
+    "Level " + energyLevel;
 
 
-  const percent =
+  document.getElementById(
+    "rechargeLevel"
+  ).textContent =
+    "Level " + rechargeLevel;
+
+
+  const percentage =
     Math.max(
       0,
       Math.min(
@@ -1673,150 +1705,179 @@ function updateUI(){
   document.getElementById(
     "energyFill"
   ).style.width =
-    percent + "%";
+    percentage + "%";
 
 
   document.getElementById(
-    "tapLevel"
-  ).textContent =
-    "Lv." +
-    getNumber(
-      STORAGE.tapLevel,
-      0
-    );
-
-
-  document.getElementById(
-    "energyLevel"
-  ).textContent =
-    "Lv." +
-    getNumber(
-      STORAGE.energyLevel,
-      0
-    );
-
-
-  document.getElementById(
-    "rechargeLevel"
-  ).textContent =
-    "Lv." +
-    getNumber(
-      STORAGE.rechargeLevel,
-      0
-    );
-
-
-  document.getElementById(
-    "rebirthMult"
+    "rebirthMultiplier"
   ).textContent =
     "×" +
-    getRebirthMultiplier().toFixed(2);
+    getRebirthMultiplier();
 
 
   document.getElementById(
-    "cardMult"
+    "cardsMultiplier"
   ).textContent =
     "×" +
-    getCardMultiplier().toFixed(2);
+    getCardsMultiplier();
 
 
   document.getElementById(
-    "abilityTapMult"
+    "abilityMultiplier"
   ).textContent =
     "×" +
-    getAbilityTapMultiplier().toFixed(2);
+    getAbilityMultiplier();
 
 
   document.getElementById(
-    "wheelMult"
+    "wheelMultiplier"
   ).textContent =
     "×" +
-    getWheelMultiplier().toFixed(2);
-
-
-  const tapCost =
-    getTapUpgradeCost();
-
-  const energyCost =
-    getEnergyUpgradeCost();
-
-  const rechargeCost =
-    getRechargeUpgradeCost();
-
-
-  updateBuyButton(
-    "tapUpgrade",
-    tapCost
-  );
-
-  updateBuyButton(
-    "energyUpgrade",
-    energyCost
-  );
-
-  updateBuyButton(
-    "rechargeUpgrade",
-    rechargeCost
-  );
-
-
-  const tapButton =
-    document.getElementById(
-      "tapButton"
-    );
-
-
-  if(energy < getEnergyCostMultiplier()){
-
-    tapButton.classList.add(
-      "disabled"
-    );
-
-  }else{
-
-    tapButton.classList.remove(
-      "disabled"
-    );
-
-  }
+    getWheelMultiplier();
 
 }
 
 
-function updateBuyButton(
-  id,
-  cost
-){
+/* =========================
+   TAP
+========================= */
 
-  const button =
-    document.getElementById(id);
+document
+.getElementById(
+  "tapButton"
+)
+.addEventListener(
+  "click",
+  function(){
 
-  const coins =
-    getNumber(
+    if(checkBan()){
+      return;
+    }
+
+
+    let energy =
+      getNumber(
+        STORAGE.energy,
+        100
+      );
+
+
+    if(energy <= 0){
+
+      return;
+
+    }
+
+
+    const power =
+      getNumber(
+        STORAGE.tapPower,
+        1
+      );
+
+
+    const combo =
+      getNumber(
+        STORAGE.combo,
+        0
+      );
+
+
+    const rebirthMultiplier =
+      getRebirthMultiplier();
+
+
+    const cardsMultiplier =
+      getCardsMultiplier();
+
+
+    const abilityMultiplier =
+      getAbilityMultiplier();
+
+
+    const wheelMultiplier =
+      getWheelMultiplier();
+
+
+    let reward =
+      power *
+      rebirthMultiplier *
+      cardsMultiplier *
+      abilityMultiplier *
+      wheelMultiplier;
+
+
+    if(combo > 0){
+
+      reward +=
+        Math.floor(
+          combo * .1
+        );
+
+    }
+
+
+    reward =
+      Math.max(
+        1,
+        Math.floor(reward)
+      );
+
+
+    const coins =
+      getNumber(
+        STORAGE.coins,
+        0
+      );
+
+
+    setNumber(
       STORAGE.coins,
-      0
+      coins + reward
     );
 
 
-  button.textContent =
-    "خرید — " +
-    formatNumber(cost) +
-    " 🪙";
+    setNumber(
+      STORAGE.totalCoins,
+      getNumber(
+        STORAGE.totalCoins,
+        0
+      ) + reward
+    );
 
 
-  button.disabled =
-    coins < cost;
+    setNumber(
+      STORAGE.totalTaps,
+      getNumber(
+        STORAGE.totalTaps,
+        0
+      ) + 1
+    );
 
-}
+
+    setNumber(
+      STORAGE.energy,
+      Math.max(
+        0,
+        energy - 1
+      )
+    );
 
 
-/* =========================================================
-   STORAGE SYNC
-   ========================================================= */
+    setNumber(
+      STORAGE.combo,
+      combo + 1
+    );
 
-window.addEventListener(
-  "storage",
-  () => {
+
+    setNumber(
+      STORAGE.xp,
+      getNumber(
+        STORAGE.xp,
+        0
+      ) + 1
+    );
+
 
     updateUI();
 
@@ -1824,27 +1885,341 @@ window.addEventListener(
 );
 
 
-/* =========================================================
-   VISIBILITY SYNC
-   ========================================================= */
+/* =========================
+   TAP UPGRADE
+========================= */
 
-document.addEventListener(
-  "visibilitychange",
-  () => {
+document
+.getElementById(
+  "upgradeTap"
+)
+.addEventListener(
+  "click",
+  function(){
 
-    if(!document.hidden){
+    if(checkBan()){
+      return;
+    }
 
-      updateUI();
+
+    const level =
+      getNumber(
+        STORAGE.tapLevel,
+        0
+      );
+
+
+    const cost =
+      Math.floor(
+        100 *
+        Math.pow(
+          1.5,
+          level
+        )
+      );
+
+
+    const coins =
+      getNumber(
+        STORAGE.coins,
+        0
+      );
+
+
+    if(coins < cost){
+
+      alert(
+        "🪙 سکه کافی نیست!"
+      );
+
+      return;
 
     }
+
+
+    setNumber(
+      STORAGE.coins,
+      coins - cost
+    );
+
+
+    setNumber(
+      STORAGE.tapLevel,
+      level + 1
+    );
+
+
+    setNumber(
+      STORAGE.tapPower,
+      getNumber(
+        STORAGE.tapPower,
+        1
+      ) + 1
+    );
+
+
+    updateUI();
 
   }
 );
 
 
-/* =========================================================
-   GLOBAL API
-   ========================================================= */
+/* =========================
+   ENERGY UPGRADE
+========================= */
+
+document
+.getElementById(
+  "upgradeEnergy"
+)
+.addEventListener(
+  "click",
+  function(){
+
+    if(checkBan()){
+      return;
+    }
+
+
+    const level =
+      getNumber(
+        STORAGE.energyLevel,
+        0
+      );
+
+
+    const cost =
+      Math.floor(
+        150 *
+        Math.pow(
+          1.5,
+          level
+        )
+      );
+
+
+    const coins =
+      getNumber(
+        STORAGE.coins,
+        0
+      );
+
+
+    if(coins < cost){
+
+      alert(
+        "🪙 سکه کافی نیست!"
+      );
+
+      return;
+
+    }
+
+
+    setNumber(
+      STORAGE.coins,
+      coins - cost
+    );
+
+
+    setNumber(
+      STORAGE.energyLevel,
+      level + 1
+    );
+
+
+    setNumber(
+      STORAGE.maxEnergy,
+      getNumber(
+        STORAGE.maxEnergy,
+        100
+      ) + 10
+    );
+
+
+    updateUI();
+
+  }
+);
+
+
+/* =========================
+   RECHARGE UPGRADE
+========================= */
+
+document
+.getElementById(
+  "upgradeRecharge"
+)
+.addEventListener(
+  "click",
+  function(){
+
+    if(checkBan()){
+      return;
+    }
+
+
+    const level =
+      getNumber(
+        STORAGE.rechargeLevel,
+        0
+      );
+
+
+    const cost =
+      Math.floor(
+        200 *
+        Math.pow(
+          1.6,
+          level
+        )
+      );
+
+
+    const coins =
+      getNumber(
+        STORAGE.coins,
+        0
+      );
+
+
+    if(coins < cost){
+
+      alert(
+        "🪙 سکه کافی نیست!"
+      );
+
+      return;
+
+    }
+
+
+    setNumber(
+      STORAGE.coins,
+      coins - cost
+    );
+
+
+    setNumber(
+      STORAGE.rechargeLevel,
+      level + 1
+    );
+
+
+    updateUI();
+
+  }
+);
+
+
+/* =========================
+   ENERGY RECHARGE
+========================= */
+
+setInterval(
+  function(){
+
+    if(isBanned()){
+      return;
+    }
+
+
+    const energy =
+      getNumber(
+        STORAGE.energy,
+        100
+      );
+
+
+    const maxEnergy =
+      getNumber(
+        STORAGE.maxEnergy,
+        100
+      );
+
+
+    if(
+      energy >= maxEnergy
+    ){
+
+      return;
+
+    }
+
+
+    const rechargeLevel =
+      getNumber(
+        STORAGE.rechargeLevel,
+        0
+      );
+
+
+    const amount =
+      Math.max(
+        1,
+        1 + rechargeLevel
+      );
+
+
+    setNumber(
+      STORAGE.energy,
+      Math.min(
+        maxEnergy,
+        energy + amount
+      )
+    );
+
+
+    updateUI();
+
+  },
+  1000
+);
+
+
+/* =========================
+   COMBO RESET
+========================= */
+
+setInterval(
+  function(){
+
+    if(isBanned()){
+      return;
+    }
+
+
+    const combo =
+      getNumber(
+        STORAGE.combo,
+        0
+      );
+
+
+    if(combo > 0){
+
+      setNumber(
+        STORAGE.combo,
+        Math.max(
+          0,
+          combo - 1
+        )
+      );
+
+
+      updateUI();
+
+    }
+
+  },
+  3000
+);
+
+
+/* =========================
+   GHOST TAP API
+========================= */
 
 window.GhostTap = {
 
@@ -1858,7 +2233,14 @@ window.GhostTap = {
   getEnergy(){
     return getNumber(
       STORAGE.energy,
-      0
+      100
+    );
+  },
+
+  getMaxEnergy(){
+    return getNumber(
+      STORAGE.maxEnergy,
+      100
     );
   },
 
@@ -1876,82 +2258,41 @@ window.GhostTap = {
     );
   },
 
-  getRebirthMultiplier,
+  getTapLevel(){
+    return getNumber(
+      STORAGE.tapLevel,
+      0
+    );
+  },
 
-  getCardMultiplier,
+  isBanned(){
 
-  getWheelMultiplier,
+    return isBanned();
 
-  getAbilityTapMultiplier,
+  },
 
-  getAbilityCoinMultiplier,
+  updateUI(){
 
-  getAbilityComboMultiplier,
+    if(
+      !checkBan()
+    ){
 
-  calculateTapReward,
+      updateUI();
 
-  updateUI
+    }
+
+  }
 
 };
 
 
-/* =========================================================
-   EVENTS
-   ========================================================= */
-
-document
-  .getElementById("tapButton")
-  .addEventListener(
-    "click",
-    tap
-  );
-
-
-document
-  .getElementById("tapUpgrade")
-  .addEventListener(
-    "click",
-    buyTapUpgrade
-  );
-
-
-document
-  .getElementById("energyUpgrade")
-  .addEventListener(
-    "click",
-    buyEnergyUpgrade
-  );
-
-
-document
-  .getElementById("rechargeUpgrade")
-  .addEventListener(
-    "click",
-    buyRechargeUpgrade
-  );
-
-
-/* =========================================================
-   START
-   ========================================================= */
-
-initializeGame();
+/* =========================
+   FIRST UI UPDATE
+========================= */
 
 updateUI();
-
-
-setInterval(
-  regenerateEnergy,
-  1000
-);
-
-
-setInterval(
-  updateUI,
-  1000
-);
 
 </script>
 
 </body>
-    </html>
+  </html>

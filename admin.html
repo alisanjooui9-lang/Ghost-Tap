@@ -2,235 +2,195 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-<meta name="theme-color" content="#080b12">
-
-<title>Ghost Tap Admin 👑</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghost Tap Admin</title>
 
 <style>
 *{
   box-sizing:border-box;
-  margin:0;
-  padding:0;
   -webkit-tap-highlight-color:transparent;
 }
 
 body{
+  margin:0;
   background:#080b12;
   color:#fff;
-  font-family:Tahoma,Arial,sans-serif;
-  min-height:100vh;
+  font-family:Arial,sans-serif;
 }
 
 .container{
   width:100%;
-  max-width:520px;
+  max-width:650px;
   margin:auto;
-  padding:16px;
+  padding:20px 14px 40px;
 }
 
-/* HEADER */
-
 .header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:16px;
+  text-align:center;
+  margin-bottom:20px;
 }
 
 .logo{
-  font-size:21px;
+  font-size:42px;
+  margin-bottom:5px;
+}
+
+.title{
+  font-size:25px;
   font-weight:900;
 }
 
-.logo span{
-  color:#7c5cff;
+.subtitle{
+  color:#8d96a8;
+  font-size:12px;
+  margin-top:7px;
 }
-
-.badge{
-  background:#241b3f;
-  border:1px solid #513e91;
-  color:#b9aaff;
-  padding:7px 10px;
-  border-radius:10px;
-  font-size:10px;
-}
-
-/* WARNING */
-
-.warning{
-  background:#15121c;
-  border:1px solid #382b4d;
-  color:#a9a1b9;
-  border-radius:15px;
-  padding:12px;
-  font-size:10px;
-  line-height:1.8;
-  margin-bottom:12px;
-}
-
-/* CARD */
 
 .card{
-  background:linear-gradient(145deg,#151a29,#0f131d);
-  border:1px solid #282f42;
+  background:#111621;
+  border:1px solid #202838;
   border-radius:20px;
-  padding:16px;
-  margin-bottom:12px;
+  padding:17px;
+  margin-bottom:14px;
 }
 
 .card-title{
-  font-size:15px;
+  font-size:17px;
   font-weight:900;
-  margin-bottom:13px;
+  margin-bottom:15px;
 }
-
-/* STATS */
 
 .stats{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
 .stat{
-  background:#111621;
-  border:1px solid #232a3a;
-  border-radius:14px;
-  padding:12px;
+  background:#0c1018;
+  border:1px solid #202838;
+  border-radius:15px;
+  padding:13px;
   text-align:center;
 }
 
 .stat-name{
-  color:#7f899c;
-  font-size:10px;
+  color:#8d96a8;
+  font-size:11px;
+  margin-bottom:6px;
 }
 
 .stat-value{
-  margin-top:5px;
-  font-size:17px;
+  font-size:20px;
   font-weight:900;
 }
 
-/* CONTROL */
-
 .control{
-  background:#111621;
-  border:1px solid #232a3a;
-  border-radius:15px;
-  padding:13px;
-  margin-top:10px;
+  margin-top:15px;
 }
 
 .control-title{
+  color:#c7ccda;
   font-size:12px;
-  font-weight:900;
-  margin-bottom:9px;
+  margin-bottom:8px;
 }
 
 input{
   width:100%;
-  background:#090d15;
-  border:1px solid #30384b;
+  background:#0a0e15;
+  border:1px solid #273144;
   color:#fff;
-  border-radius:10px;
-  padding:12px;
-  font-family:inherit;
-  font-size:14px;
+  border-radius:12px;
+  padding:13px;
   outline:none;
+  font-size:15px;
   text-align:center;
 }
 
 input:focus{
-  border-color:#7c5cff;
+  border-color:#596cff;
 }
-
-/* BUTTONS */
 
 .buttons{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:7px;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
   margin-top:8px;
 }
 
 button{
-  border:none;
-  border-radius:10px;
-  padding:11px 5px;
+  border:0;
+  border-radius:12px;
+  padding:13px 8px;
   color:#fff;
-  font-family:inherit;
-  font-size:10px;
-  font-weight:900;
+  font-weight:800;
+  font-size:12px;
   cursor:pointer;
 }
 
 .plus{
-  background:#174d36;
+  background:#16834c;
 }
 
 .minus{
-  background:#52252b;
+  background:#a92d43;
 }
 
 .set{
-  background:#302477;
-}
-
-.reset{
-  background:#56222b;
+  background:#4758d9;
 }
 
 .refresh{
-  background:#24304a;
   width:100%;
-  margin-top:8px;
+  background:#343d52;
+  margin-top:5px;
 }
-
-/* DANGER */
 
 .danger{
-  border-color:#542833;
-  background:linear-gradient(145deg,#211219,#120d11);
+  background:#241018;
+  border-color:#49232d;
 }
 
-.danger button{
+.ban-status{
+  text-align:center;
+  padding:13px;
+  border-radius:12px;
+  background:#0a0e15;
+  font-weight:900;
+  font-size:13px;
+  margin-bottom:10px;
+}
+
+.reset{
   width:100%;
+  background:#b3263d;
 }
 
-/* TOAST */
+.note{
+  color:#7f899c;
+  font-size:11px;
+  line-height:1.9;
+  margin-top:10px;
+}
 
 .toast{
   position:fixed;
   left:50%;
   bottom:25px;
-  transform:translateX(-50%) translateY(20px);
-  background:#171d29;
-  border:1px solid #30384a;
+  transform:translateX(-50%);
+  background:#171d2a;
+  border:1px solid #30394d;
   color:#fff;
-  padding:11px 16px;
-  border-radius:13px;
-  font-size:11px;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-  z-index:9999;
-  white-space:nowrap;
+  padding:13px 20px;
+  border-radius:14px;
+  font-size:13px;
+  font-weight:800;
+  display:none;
+  z-index:999999;
+  box-shadow:0 10px 30px #0008;
 }
 
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
-}
-
-.footer{
-  text-align:center;
-  color:#50596b;
-  font-size:9px;
-  padding:12px;
-}
-
-@media(max-width:350px){
+@media(max-width:420px){
   .buttons{
     grid-template-columns:1fr;
   }
@@ -243,48 +203,45 @@ button{
 <div class="container">
 
   <div class="header">
-    <div class="logo">
-      Ghost <span>Tap</span> 👻
-    </div>
-
-    <div class="badge">
-      ADMIN 👑
-    </div>
+    <div class="logo">👻</div>
+    <div class="title">Ghost Tap Admin</div>
+    <div class="subtitle">مدیریت سیو محلی Ghost Tap</div>
   </div>
 
-  <div class="warning">
-    ⚠️ این پنل برای مدیریت اطلاعات Ghost Tap روی همین دستگاه است.
-    تغییرات مستقیماً روی LocalStorage بازی اعمال می‌شوند.
-  </div>
-
-  <!-- CURRENT STATS -->
-
+  <!-- وضعیت -->
   <div class="card">
-
-    <div class="card-title">
-      📊 وضعیت فعلی بازیکن
-    </div>
+    <div class="card-title">📊 وضعیت بازیکن</div>
 
     <div class="stats">
 
       <div class="stat">
-        <div class="stat-name">🪙 Coins</div>
-        <div class="stat-value" id="showCoins">0</div>
+        <div class="stat-name">سکه</div>
+        <div class="stat-value" id="coinsValue">0</div>
       </div>
 
       <div class="stat">
-        <div class="stat-name">♻️ Rebirth</div>
-        <div class="stat-value" id="showRebirth">0</div>
+        <div class="stat-name">ریبیرث</div>
+        <div class="stat-value" id="rebirthValue">0</div>
       </div>
 
       <div class="stat">
-        <div class="stat-name">👆 Tap Power</div>
-        <div class="stat-value" id="showPower">1</div>
+        <div class="stat-name">قدرت ضربه</div>
+        <div class="stat-value" id="powerValue">1</div>
       </div>
 
       <div class="stat">
-        <div class="stat-name">⚡ Energy</div>
-        <div class="stat-value" id="showEnergy">100</div>
+        <div class="stat-name">انرژی</div>
+        <div class="stat-value" id="energyValue">100</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-name">حداکثر انرژی</div>
+        <div class="stat-value" id="maxEnergyValue">100</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-name">Tap Level</div>
+        <div class="stat-value" id="tapLevelValue">0</div>
       </div>
 
     </div>
@@ -292,26 +249,22 @@ button{
     <button class="refresh" id="refreshBtn">
       🔄 بروزرسانی اطلاعات
     </button>
-
   </div>
 
 
-  <!-- COINS -->
-
+  <!-- سکه -->
   <div class="card">
 
-    <div class="card-title">
-      🪙 مدیریت سکه
-    </div>
+    <div class="card-title">🪙 مدیریت سکه</div>
 
     <div class="control">
 
       <div class="control-title">
-        مقدار سکه
+        مقدار
       </div>
 
       <input
-        id="coinAmount"
+        id="coinsInput"
         type="number"
         min="0"
         value="1000"
@@ -321,15 +274,15 @@ button{
       <div class="buttons">
 
         <button class="plus" id="addCoins">
-          + افزایش
+          ➕ افزودن
         </button>
 
         <button class="minus" id="removeCoins">
-          − کاهش
+          ➖ کم کردن
         </button>
 
         <button class="set" id="setCoins">
-          تعیین مقدار
+          🎯 تعیین مقدار
         </button>
 
       </div>
@@ -339,40 +292,36 @@ button{
   </div>
 
 
-  <!-- REBIRTH -->
-
+  <!-- ریبیرث -->
   <div class="card">
 
-    <div class="card-title">
-      ♻️ مدیریت Rebirth
-    </div>
+    <div class="card-title">♻️ مدیریت Rebirth</div>
 
     <div class="control">
 
       <div class="control-title">
-        مقدار Rebirth
+        مقدار
       </div>
 
       <input
-        id="rebirthAmount"
+        id="rebirthInput"
         type="number"
         min="0"
         value="1"
-        placeholder="مثلاً 5"
       >
 
       <div class="buttons">
 
         <button class="plus" id="addRebirth">
-          + افزایش
+          ➕ افزودن
         </button>
 
         <button class="minus" id="removeRebirth">
-          − کاهش
+          ➖ کم کردن
         </button>
 
         <button class="set" id="setRebirth">
-          تعیین مقدار
+          🎯 تعیین مقدار
         </button>
 
       </div>
@@ -382,151 +331,113 @@ button{
   </div>
 
 
-  <!-- POWER -->
-
+  <!-- قدرت -->
   <div class="card">
 
-    <div class="card-title">
-      👆 مدیریت قدرت Tap
-    </div>
+    <div class="card-title">⚡ قدرت ضربه</div>
 
     <div class="control">
 
       <input
-        id="powerAmount"
+        id="powerInput"
         type="number"
         min="1"
         value="10"
-        placeholder="مثلاً 10"
       >
 
-      <button
-        class="set"
-        id="setPower"
-        style="width:100%;margin-top:8px;"
-      >
-        💪 تعیین Power
-      </button>
+      <div class="buttons">
+
+        <button class="set" id="setPower">
+          🎯 تعیین Power
+        </button>
+
+      </div>
 
     </div>
 
   </div>
 
 
-  <!-- ENERGY -->
-
+  <!-- انرژی -->
   <div class="card">
 
-    <div class="card-title">
-      ⚡ مدیریت Energy
-    </div>
+    <div class="card-title">🔋 انرژی</div>
 
     <div class="control">
 
+      <div class="control-title">
+        انرژی فعلی
+      </div>
+
       <input
-        id="energyAmount"
+        id="energyInput"
         type="number"
         min="0"
         value="100"
-        placeholder="مثلاً 100"
       >
 
-      <button
-        class="set"
-        id="setEnergy"
-        style="width:100%;margin-top:8px;"
-      >
-        ⚡ تعیین Energy
-      </button>
+      <div class="buttons">
+
+        <button class="set" id="setEnergy">
+          🔋 تعیین انرژی
+        </button>
+
+      </div>
 
     </div>
 
-  </div>
-
-
-  <!-- MAX ENERGY -->
-
-  <div class="card">
-
-    <div class="card-title">
-      🔋 مدیریت ظرفیت Energy
-    </div>
 
     <div class="control">
 
+      <div class="control-title">
+        حداکثر انرژی
+      </div>
+
       <input
-        id="maxEnergyAmount"
+        id="maxEnergyInput"
         type="number"
         min="1"
         value="100"
-        placeholder="مثلاً 500"
       >
 
-      <button
-        class="set"
-        id="setMaxEnergy"
-        style="width:100%;margin-top:8px;"
-      >
-        🔋 تعیین Max Energy
-      </button>
+      <div class="buttons">
+
+        <button class="set" id="setMaxEnergy">
+          📈 تعیین Max Energy
+        </button>
+
+      </div>
 
     </div>
 
   </div>
 
 
-  <!-- LEVELS -->
-
+  <!-- لول‌ها -->
   <div class="card">
 
-    <div class="card-title">
-      📈 مدیریت Level های Upgrade
-    </div>
+    <div class="card-title">📈 مدیریت Level ها</div>
 
     <div class="control">
 
       <div class="control-title">
-        👆 Tap Level
+        Tap Level
       </div>
 
       <input
-        id="tapLevel"
+        id="tapLevelInput"
         type="number"
         min="0"
         value="0"
       >
 
-      <button
-        class="set"
-        id="setTapLevel"
-        style="width:100%;margin-top:8px;"
-      >
-        تعیین Tap Level
-      </button>
+      <div class="buttons">
 
-    </div>
+        <button class="set" id="setTapLevel">
+          🎯 تعیین
+        </button>
 
-
-    <div class="control">
-
-      <div class="control-title">
-        ⚡ Energy Level
       </div>
-
-      <input
-        id="energyLevel"
-        type="number"
-        min="0"
-        value="0"
-      >
-
-      <button
-        class="set"
-        id="setEnergyLevel"
-        style="width:100%;margin-top:8px;"
-      >
-        تعیین Energy Level
-      </button>
 
     </div>
 
@@ -534,118 +445,189 @@ button{
     <div class="control">
 
       <div class="control-title">
-        🔋 Recharge Level
+        Energy Level
       </div>
 
       <input
-        id="rechargeLevel"
+        id="energyLevelInput"
         type="number"
         min="0"
         value="0"
       >
 
-      <button
-        class="set"
-        id="setRechargeLevel"
-        style="width:100%;margin-top:8px;"
+      <div class="buttons">
+
+        <button class="set" id="setEnergyLevel">
+          🎯 تعیین
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="control">
+
+      <div class="control-title">
+        Recharge Level
+      </div>
+
+      <input
+        id="rechargeLevelInput"
+        type="number"
+        min="0"
+        value="0"
       >
-        تعیین Recharge Level
-      </button>
+
+      <div class="buttons">
+
+        <button class="set" id="setRechargeLevel">
+          🎯 تعیین
+        </button>
+
+      </div>
 
     </div>
 
   </div>
 
 
-  <!-- RESET -->
+  <!-- بن -->
+  <div class="card">
 
+    <div class="card-title">🚫 مدیریت بن بازیکن</div>
+
+    <div
+      id="banStatus"
+      class="ban-status"
+    >
+      در حال بررسی...
+    </div>
+
+    <div class="buttons">
+
+      <button
+        class="minus"
+        id="banPlayer"
+      >
+        🚫 بن کردن
+      </button>
+
+      <button
+        class="plus"
+        id="unbanPlayer"
+      >
+        ✅ رفع بن
+      </button>
+
+    </div>
+
+    <div class="note">
+      بن در این نسخه روی همین مرورگر و همین دستگاه ذخیره می‌شود.
+    </div>
+
+  </div>
+
+
+  <!-- خطر -->
   <div class="card danger">
 
-    <div class="card-title">
-      ⚠️ منطقه خطر
-    </div>
+    <div class="card-title">⚠️ منطقه خطر</div>
 
     <button
       class="reset"
       id="resetGame"
     >
-      🗑️ ریست کامل Ghost Tap
+      🗑️ حذف کامل سیو Ghost Tap
     </button>
 
-  </div>
+    <div class="note">
+      این گزینه تمام اطلاعات ذخیره‌شده Ghost Tap را از localStorage
+      حذف می‌کند.
+    </div>
 
-
-  <div class="footer">
-    Ghost Tap Admin 👑<br>
-    Ghost Studio
   </div>
 
 </div>
 
-<div class="toast" id="toast"></div>
+
+<div
+  id="toast"
+  class="toast"
+></div>
 
 
 <script>
 
-/* =========================================================
-   GHOST TAP ADMIN
-   Compatible with current Ghost Tap index.html
-   ========================================================= */
-
 const STORAGE = {
 
   coins: "ghostCoins",
-
   energy: "ghostEnergy",
-
   maxEnergy: "ghostMaxEnergy",
-
   tapPower: "ghostTapPower",
-
-  rebirths: "ghostRebirths",
-
-  tapLevel: "ghostTapLevel",
-
-  energyLevel: "ghostEnergyLevel",
-
-  rechargeLevel: "ghostRechargeLevel",
 
   combo: "ghostCombo",
 
+  rebirths: "ghostRebirths",
+
   xp: "ghostXP",
 
-  totalTaps: "ghostTotalTaps",
+  tapLevel: "ghostTapLevel",
+  energyLevel: "ghostEnergyLevel",
+  rechargeLevel: "ghostRechargeLevel",
 
+  totalTaps: "ghostTotalTaps",
   totalCoins: "ghostTotalCoins",
 
   cards: "ghostCards",
-
   abilities: "ghostAbilities",
-
   wheelItems: "ghostWheelItems"
 
 };
 
 
-/* =========================================================
-   HELPERS
-   ========================================================= */
+const BAN_KEY = "ghostPlayerBanned";
 
-function getNumber(key, fallback = 0){
 
-  const value =
-    Number(
-      localStorage.getItem(key)
-    );
+function numberValue(id){
 
-  return Number.isFinite(value)
-    ? value
-    : fallback;
+  const input = document.getElementById(id);
+
+  let value = Number(input.value);
+
+  if(!Number.isFinite(value)){
+    value = 0;
+  }
+
+  return Math.max(0, Math.floor(value));
 
 }
 
 
-function setNumber(key,value){
+function getNumber(key, fallback = 0){
+
+  const value = Number(
+    localStorage.getItem(key)
+  );
+
+  if(!Number.isFinite(value)){
+    return fallback;
+  }
+
+  return value;
+
+}
+
+
+function setNumber(key, value){
+
+  value = Number(value);
+
+  if(!Number.isFinite(value)){
+    value = 0;
+  }
+
+  value = Math.max(0, Math.floor(value));
 
   localStorage.setItem(
     key,
@@ -655,622 +637,507 @@ function setNumber(key,value){
 }
 
 
-function formatNumber(number){
-
-  number =
-    Number(number) || 0;
-
-  if(number >= 1e18)
-    return (number / 1e18).toFixed(2) + "Qi";
-
-  if(number >= 1e15)
-    return (number / 1e15).toFixed(2) + "Qa";
-
-  if(number >= 1e12)
-    return (number / 1e12).toFixed(2) + "T";
-
-  if(number >= 1e9)
-    return (number / 1e9).toFixed(2) + "B";
-
-  if(number >= 1e6)
-    return (number / 1e6).toFixed(2) + "M";
-
-  if(number >= 1e3)
-    return (number / 1e3).toFixed(2) + "K";
-
-  return Math.floor(number)
-    .toLocaleString("en-US");
-
-}
-
-
-function getInput(id){
-
-  const value =
-    Number(
-      document.getElementById(id).value
-    );
-
-  if(!Number.isFinite(value) || value < 0){
-
-    showToast("❌ مقدار وارد شده معتبر نیست");
-
-    return null;
-
-  }
-
-  return Math.floor(value);
-
-}
-
-
-/* =========================================================
-   TOAST
-   ========================================================= */
-
-let toastTimer = null;
-
-
 function showToast(message){
 
   const toast =
     document.getElementById("toast");
 
-  toast.textContent =
-    message;
+  toast.textContent = message;
+  toast.style.display = "block";
 
-  toast.classList.add("show");
+  clearTimeout(
+    window.ghostToastTimer
+  );
 
-  clearTimeout(toastTimer);
-
-  toastTimer =
-    setTimeout(() => {
-
-      toast.classList.remove("show");
-
+  window.ghostToastTimer =
+    setTimeout(()=>{
+      toast.style.display = "none";
     },1800);
 
 }
 
 
-/* =========================================================
-   UPDATE
-   ========================================================= */
+function refresh(){
 
-function updateAdmin(){
-
-  document.getElementById("showCoins")
-    .textContent =
-    formatNumber(
-      getNumber(
-        STORAGE.coins,
-        0
-      )
-    );
+  document.getElementById(
+    "coinsValue"
+  ).textContent =
+    getNumber(STORAGE.coins,0);
 
 
-  document.getElementById("showRebirth")
-    .textContent =
-    formatNumber(
-      getNumber(
-        STORAGE.rebirths,
-        0
-      )
-    );
+  document.getElementById(
+    "rebirthValue"
+  ).textContent =
+    getNumber(STORAGE.rebirths,0);
 
 
-  document.getElementById("showPower")
-    .textContent =
-    formatNumber(
-      getNumber(
-        STORAGE.tapPower,
-        1
-      )
-    );
+  document.getElementById(
+    "powerValue"
+  ).textContent =
+    getNumber(STORAGE.tapPower,1);
 
 
-  document.getElementById("showEnergy")
-    .textContent =
-    formatNumber(
-      getNumber(
-        STORAGE.energy,
-        100
-      )
-    );
+  document.getElementById(
+    "energyValue"
+  ).textContent =
+    getNumber(STORAGE.energy,100);
 
 
-  document.getElementById("tapLevel").value =
-    getNumber(
-      STORAGE.tapLevel,
-      0
-    );
+  document.getElementById(
+    "maxEnergyValue"
+  ).textContent =
+    getNumber(STORAGE.maxEnergy,100);
 
 
-  document.getElementById("energyLevel").value =
-    getNumber(
-      STORAGE.energyLevel,
-      0
-    );
+  document.getElementById(
+    "tapLevelValue"
+  ).textContent =
+    getNumber(STORAGE.tapLevel,0);
 
 
-  document.getElementById("rechargeLevel").value =
-    getNumber(
-      STORAGE.rechargeLevel,
-      0
-    );
+  updateBanStatus();
 
 }
 
 
-/* =========================================================
-   COINS
-   ========================================================= */
+function isPlayerBanned(){
+
+  return localStorage.getItem(
+    BAN_KEY
+  ) === "true";
+
+}
+
+
+function updateBanStatus(){
+
+  const status =
+    document.getElementById(
+      "banStatus"
+    );
+
+  if(isPlayerBanned()){
+
+    status.textContent =
+      "🚫 بازیکن بن شده است";
+
+    status.style.color =
+      "#ff6b7a";
+
+    status.style.border =
+      "1px solid #632936";
+
+  }else{
+
+    status.textContent =
+      "✅ بازیکن آزاد است";
+
+    status.style.color =
+      "#63e6a0";
+
+    status.style.border =
+      "1px solid #24543b";
+
+  }
+
+}
+
+
+/* سکه */
 
 document
-  .getElementById("addCoins")
-  .addEventListener("click",() => {
+.getElementById("addCoins")
+.addEventListener("click",()=>{
 
-    const amount =
-      getInput("coinAmount");
+  const amount =
+    numberValue("coinsInput");
 
-    if(amount === null)
-      return;
+  const current =
+    getNumber(STORAGE.coins,0);
 
-    const current =
-      getNumber(
-        STORAGE.coins,
-        0
-      );
+  setNumber(
+    STORAGE.coins,
+    current + amount
+  );
 
-    setNumber(
-      STORAGE.coins,
-      current + amount
-    );
+  refresh();
 
-    updateAdmin();
+  showToast(
+    "🪙 سکه اضافه شد"
+  );
 
-    showToast(
-      "🪙 " +
-      formatNumber(amount) +
-      " سکه اضافه شد"
-    );
-
-  });
-
-
-document
-  .getElementById("removeCoins")
-  .addEventListener("click",() => {
-
-    const amount =
-      getInput("coinAmount");
-
-    if(amount === null)
-      return;
-
-    const current =
-      getNumber(
-        STORAGE.coins,
-        0
-      );
-
-    setNumber(
-      STORAGE.coins,
-      Math.max(
-        0,
-        current - amount
-      )
-    );
-
-    updateAdmin();
-
-    showToast(
-      "🪙 سکه کم شد"
-    );
-
-  });
-
-
-document
-  .getElementById("setCoins")
-  .addEventListener("click",() => {
-
-    const amount =
-      getInput("coinAmount");
-
-    if(amount === null)
-      return;
-
-    setNumber(
-      STORAGE.coins,
-      amount
-    );
-
-    updateAdmin();
-
-    showToast(
-      "✅ مقدار سکه تنظیم شد"
-    );
-
-  });
-
-
-/* =========================================================
-   REBIRTH
-   ========================================================= */
-
-document
-  .getElementById("addRebirth")
-  .addEventListener("click",() => {
-
-    const amount =
-      getInput("rebirthAmount");
-
-    if(amount === null)
-      return;
-
-    const current =
-      getNumber(
-        STORAGE.rebirths,
-        0
-      );
-
-    setNumber(
-      STORAGE.rebirths,
-      current + amount
-    );
-
-    updateAdmin();
-
-    showToast(
-      "♻️ Rebirth افزایش یافت"
-    );
-
-  });
+});
 
 
 document
-  .getElementById("removeRebirth")
-  .addEventListener("click",() => {
+.getElementById("removeCoins")
+.addEventListener("click",()=>{
 
-    const amount =
-      getInput("rebirthAmount");
+  const amount =
+    numberValue("coinsInput");
 
-    if(amount === null)
-      return;
+  const current =
+    getNumber(STORAGE.coins,0);
 
-    const current =
-      getNumber(
-        STORAGE.rebirths,
-        0
-      );
+  setNumber(
+    STORAGE.coins,
+    Math.max(0,current - amount)
+  );
 
-    setNumber(
-      STORAGE.rebirths,
-      Math.max(
-        0,
-        current - amount
-      )
-    );
+  refresh();
 
-    updateAdmin();
+  showToast(
+    "🪙 سکه کم شد"
+  );
 
-    showToast(
-      "♻️ Rebirth کاهش یافت"
-    );
-
-  });
+});
 
 
 document
-  .getElementById("setRebirth")
-  .addEventListener("click",() => {
+.getElementById("setCoins")
+.addEventListener("click",()=>{
 
-    const amount =
-      getInput("rebirthAmount");
+  const amount =
+    numberValue("coinsInput");
 
-    if(amount === null)
-      return;
+  setNumber(
+    STORAGE.coins,
+    amount
+  );
 
-    setNumber(
-      STORAGE.rebirths,
-      amount
-    );
+  refresh();
 
-    updateAdmin();
+  showToast(
+    "🎯 مقدار سکه تنظیم شد"
+  );
 
-    showToast(
-      "✅ Rebirth تنظیم شد"
-    );
-
-  });
+});
 
 
-/* =========================================================
-   POWER
-   ========================================================= */
+/* ریبیرث */
 
 document
-  .getElementById("setPower")
-  .addEventListener("click",() => {
+.getElementById("addRebirth")
+.addEventListener("click",()=>{
 
-    const amount =
-      getInput("powerAmount");
+  const amount =
+    numberValue("rebirthInput");
 
-    if(amount === null)
-      return;
+  const current =
+    getNumber(STORAGE.rebirths,0);
 
-    if(amount < 1){
+  setNumber(
+    STORAGE.rebirths,
+    current + amount
+  );
 
-      showToast(
-        "❌ Power باید حداقل 1 باشد"
-      );
+  refresh();
 
-      return;
+  showToast(
+    "♻️ ریبیرث اضافه شد"
+  );
 
-    }
+});
 
-    setNumber(
-      STORAGE.tapPower,
-      amount
-    );
-
-    updateAdmin();
-
-    showToast(
-      "💪 Power تنظیم شد"
-    );
-
-  });
-
-
-/* =========================================================
-   ENERGY
-   ========================================================= */
 
 document
-  .getElementById("setEnergy")
-  .addEventListener("click",() => {
+.getElementById("removeRebirth")
+.addEventListener("click",()=>{
 
-    const amount =
-      getInput("energyAmount");
+  const amount =
+    numberValue("rebirthInput");
 
-    if(amount === null)
-      return;
+  const current =
+    getNumber(STORAGE.rebirths,0);
 
-    const max =
-      getNumber(
-        STORAGE.maxEnergy,
-        100
-      );
+  setNumber(
+    STORAGE.rebirths,
+    Math.max(0,current - amount)
+  );
+
+  refresh();
+
+  showToast(
+    "♻️ ریبیرث کم شد"
+  );
+
+});
+
+
+document
+.getElementById("setRebirth")
+.addEventListener("click",()=>{
+
+  const amount =
+    numberValue("rebirthInput");
+
+  setNumber(
+    STORAGE.rebirths,
+    amount
+  );
+
+  refresh();
+
+  showToast(
+    "🎯 مقدار Rebirth تنظیم شد"
+  );
+
+});
+
+
+/* Power */
+
+document
+.getElementById("setPower")
+.addEventListener("click",()=>{
+
+  const amount =
+    Math.max(
+      1,
+      numberValue("powerInput")
+    );
+
+  setNumber(
+    STORAGE.tapPower,
+    amount
+  );
+
+  refresh();
+
+  showToast(
+    "⚡ قدرت ضربه تنظیم شد"
+  );
+
+});
+
+
+/* Energy */
+
+document
+.getElementById("setEnergy")
+.addEventListener("click",()=>{
+
+  const amount =
+    numberValue("energyInput");
+
+  const maxEnergy =
+    getNumber(
+      STORAGE.maxEnergy,
+      100
+    );
+
+  setNumber(
+    STORAGE.energy,
+    Math.min(
+      amount,
+      maxEnergy
+    )
+  );
+
+  refresh();
+
+  showToast(
+    "🔋 انرژی تنظیم شد"
+  );
+
+});
+
+
+document
+.getElementById("setMaxEnergy")
+.addEventListener("click",()=>{
+
+  const amount =
+    Math.max(
+      1,
+      numberValue("maxEnergyInput")
+    );
+
+  setNumber(
+    STORAGE.maxEnergy,
+    amount
+  );
+
+  const currentEnergy =
+    getNumber(
+      STORAGE.energy,
+      100
+    );
+
+  if(currentEnergy > amount){
 
     setNumber(
       STORAGE.energy,
-      Math.min(
-        amount,
-        max
-      )
-    );
-
-    updateAdmin();
-
-    showToast(
-      "⚡ Energy تنظیم شد"
-    );
-
-  });
-
-
-/* =========================================================
-   MAX ENERGY
-   ========================================================= */
-
-document
-  .getElementById("setMaxEnergy")
-  .addEventListener("click",() => {
-
-    const amount =
-      getInput("maxEnergyAmount");
-
-    if(amount === null)
-      return;
-
-    if(amount < 1){
-
-      showToast(
-        "❌ ظرفیت باید حداقل 1 باشد"
-      );
-
-      return;
-
-    }
-
-    setNumber(
-      STORAGE.maxEnergy,
       amount
     );
 
-    const energy =
-      getNumber(
-        STORAGE.energy,
-        amount
-      );
+  }
 
-    if(energy > amount){
+  refresh();
 
-      setNumber(
-        STORAGE.energy,
-        amount
-      );
+  showToast(
+    "📈 حداکثر انرژی تنظیم شد"
+  );
 
-    }
-
-    updateAdmin();
-
-    showToast(
-      "🔋 Max Energy تنظیم شد"
-    );
-
-  });
+});
 
 
-/* =========================================================
-   LEVELS
-   ========================================================= */
+/* Levels */
 
 document
-  .getElementById("setTapLevel")
-  .addEventListener("click",() => {
+.getElementById("setTapLevel")
+.addEventListener("click",()=>{
 
-    const amount =
-      getInput("tapLevel");
+  setNumber(
+    STORAGE.tapLevel,
+    numberValue("tapLevelInput")
+  );
 
-    if(amount === null)
-      return;
+  refresh();
 
-    setNumber(
-      STORAGE.tapLevel,
-      amount
-    );
+  showToast(
+    "🎯 Tap Level تنظیم شد"
+  );
 
-    updateAdmin();
-
-    showToast(
-      "👆 Tap Level تنظیم شد"
-    );
-
-  });
+});
 
 
 document
-  .getElementById("setEnergyLevel")
-  .addEventListener("click",() => {
+.getElementById("setEnergyLevel")
+.addEventListener("click",()=>{
 
-    const amount =
-      getInput("energyLevel");
+  setNumber(
+    STORAGE.energyLevel,
+    numberValue("energyLevelInput")
+  );
 
-    if(amount === null)
-      return;
+  refresh();
 
-    setNumber(
-      STORAGE.energyLevel,
-      amount
-    );
+  showToast(
+    "🎯 Energy Level تنظیم شد"
+  );
 
-    updateAdmin();
-
-    showToast(
-      "⚡ Energy Level تنظیم شد"
-    );
-
-  });
+});
 
 
 document
-  .getElementById("setRechargeLevel")
-  .addEventListener("click",() => {
+.getElementById("setRechargeLevel")
+.addEventListener("click",()=>{
 
-    const amount =
-      getInput("rechargeLevel");
+  setNumber(
+    STORAGE.rechargeLevel,
+    numberValue("rechargeLevelInput")
+  );
 
-    if(amount === null)
-      return;
+  refresh();
 
-    setNumber(
-      STORAGE.rechargeLevel,
-      amount
-    );
+  showToast(
+    "🎯 Recharge Level تنظیم شد"
+  );
 
-    updateAdmin();
-
-    showToast(
-      "🔋 Recharge Level تنظیم شد"
-    );
-
-  });
+});
 
 
-/* =========================================================
-   REFRESH
-   ========================================================= */
+/* بن */
 
 document
-  .getElementById("refreshBtn")
-  .addEventListener("click",() => {
+.getElementById("banPlayer")
+.addEventListener("click",()=>{
 
-    updateAdmin();
+  localStorage.setItem(
+    BAN_KEY,
+    "true"
+  );
 
-    showToast(
-      "🔄 اطلاعات بروزرسانی شد"
-    );
+  updateBanStatus();
 
-  });
+  showToast(
+    "🚫 بازیکن بن شد"
+  );
 
+});
 
-/* =========================================================
-   RESET GAME
-   ========================================================= */
 
 document
-  .getElementById("resetGame")
-  .addEventListener("click",() => {
+.getElementById("unbanPlayer")
+.addEventListener("click",()=>{
 
-    const confirmed =
-      confirm(
-        "⚠️ مطمئنی می‌خواهی تمام اطلاعات Ghost Tap پاک شود؟"
-      );
+  localStorage.setItem(
+    BAN_KEY,
+    "false"
+  );
 
-    if(!confirmed)
-      return;
+  updateBanStatus();
 
+  showToast(
+    "✅ بن بازیکن برداشته شد"
+  );
 
-    Object.values(STORAGE)
-      .forEach(key => {
-
-        localStorage.removeItem(key);
-
-      });
+});
 
 
-    updateAdmin();
+/* بروزرسانی */
 
-    showToast(
-      "🗑️ اطلاعات بازی ریست شد"
+document
+.getElementById("refreshBtn")
+.addEventListener(
+  "click",
+  refresh
+);
+
+
+/* حذف کامل سیو */
+
+document
+.getElementById("resetGame")
+.addEventListener("click",()=>{
+
+  const confirmed =
+    confirm(
+      "آیا مطمئنی می‌خواهی تمام سیو Ghost Tap حذف شود؟"
     );
 
-  });
+  if(!confirmed){
+    return;
+  }
+
+  Object
+    .values(STORAGE)
+    .forEach(key=>{
+      localStorage.removeItem(key);
+    });
+
+  /*
+    با ریست کامل، بن هم برداشته می‌شود.
+  */
+  localStorage.removeItem(
+    BAN_KEY
+  );
+
+  refresh();
+
+  showToast(
+    "🗑️ تمام سیو حذف شد"
+  );
+
+});
 
 
-/* =========================================================
-   AUTO SYNC
-   ========================================================= */
+/* اجرای اولیه */
+
+refresh();
+
+
+/* اگر سیو از تب دیگری تغییر کرد */
 
 window.addEventListener(
   "storage",
-  updateAdmin
-);
-
-document.addEventListener(
-  "visibilitychange",
-  () => {
-
-    if(!document.hidden){
-
-      updateAdmin();
-
-    }
-
+  ()=>{
+    refresh();
   }
 );
-
-
-/* =========================================================
-   START
-   ========================================================= */
-
-updateAdmin();
 
 </script>
 
 </body>
-        </html>
+</html>
